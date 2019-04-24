@@ -59,7 +59,7 @@ namespace pythonlike{
 				}//endfor
 				return this->get(lidx,ridx+1);
 			}//end_strip()
-			vector<Pystring> split(Pystring delimiter=" "){
+			vector<Pystring> split(Pystring delimiter=" ",bool _boolRemain=false){
 				vector<Pystring> _output;
 				// ngram scan
 				int _dlen = delimiter.size();
@@ -68,6 +68,9 @@ namespace pythonlike{
 				for(int i=0;i<_slen-_dlen+1;i++){
 					if(_str.get(i,i+_dlen) == delimiter){
 						_output.push_back(_str.get(_currentidx,i));
+						if(_boolRemain == true){
+							_output.push_back(_str.get(i,i+_dlen));
+						}//endif
 						_currentidx = i+_dlen;
 					}//endif;	
 				}//endfor
@@ -75,6 +78,25 @@ namespace pythonlike{
 				return _output;
 			}//end_split()
 			//--------------------------------------------------------------------------
+			vector<Pystring> splits(unordered_set<string> _setDelimiter,bool _boolRemain=false){
+				vector<Pystring> _output;
+				// ngram scan
+				int _dlen = 1;
+				int _slen = _str.size();
+				int _currentidx = 0;
+				for(int i=0;i<_slen-_dlen+1;i++){
+					if(_setDelimiter.find(_str.get(i,i+_dlen)) != _setDelimiter.end()){
+						_output.push_back(_str.get(_currentidx,i));
+						if(_boolRemain == true){
+							_output.push_back(_str.get(i,i+_dlen));
+						}//endif
+						_currentidx = i+_dlen;
+					}//endif;	
+				}//endfor
+				_output.push_back(_str.get(_currentidx,_slen));
+				return _output;
+			}//end_splits
+
 			Pystring join(vector<Pystring> _list){
 				Pystring _output = "";
 				int _llen = _list.size();
@@ -129,11 +151,13 @@ namespace pythonlike{
 			void test(){
 				cerr << _str.dict().size() << endl;
 				cerr << _str.invdict().size() << endl;
-				vector<Pystring> vec = _str.split(",");
+				vector<Pystring> vec = _str.splits({":","{","["},true);
+				vector<Pystring> vec2 = _str.split(",",true);
 				for(int i=0;i<vec.size();i++){
 					cerr <<  "["<< i << "] : " << vec[i] << endl;
 				}//endfor
 				cerr << Pystring("_").join(vec) << endl;
+				cerr << Pystring("_").join(vec2) << endl;
 			}//end_test
 
 
