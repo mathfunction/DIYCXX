@@ -44,10 +44,6 @@ namespace JsonHandle{
 			void parser(){
 				
 
-
-
-
-
 			}//end_parser
 
 			void tokenizer(){
