@@ -42,8 +42,6 @@ namespace JsonHandle{
 			}//end_value
 
 
-
-
 			JsonNode(){}
 			~JsonNode(){
 				_dict.clear();
@@ -55,35 +53,17 @@ namespace JsonHandle{
 	class ReadJson{
 		private:
 			string longstr;
+			vector<Pystring> longtokens;
 		public:			
 			
-			/*
-			void tokenizer(){
-				bool _collectButton = false;
-				string _temp = "";
-				for(int i=0;i<longstr.size();i++){
-					// handle button 
-					if(longstr[i] == '\"'){
-						if(_collectButton == true){
-							cout << _temp << endl;
-							_temp = "";
-						}//endif
-						_collectButton = !_collectButton;
-						continue;
-					}//endif
-					if(_collectButton == true){
-						_temp += longstr[i];
-					}//endif
-				}//endfor
-			}//end_tokenizer
-			*/
+			
 
 			ReadJson(string filename,bool _boolPrint=true){
 				ifstream fin(filename.c_str(),ios::in);
 				stringstream ss;
 				ss << fin.rdbuf();
 				longstr = compress(ss.str());
-				//longstr = ss.str();
+				longtokens = Pystring(longstr).tokens({":[",":{",":","[","]","{","}",",","\""});
 				if(checkEven()==false){
 					cerr << "checkEven Failed !! " << endl;
 					exit(1);
@@ -111,9 +91,8 @@ namespace JsonHandle{
 			}//end_compress
 			void printLoad(){
 				cerr << longstr << endl;
-				vector<Pystring> vec = Pystring("{1,2,3}").splits({":","[","]","{","}",",","\""},true);
-				for(int i=0;i<vec.size();i++){
-					cout << "[" << i << "]:" << vec[i] << endl;
+				for(int i=0;i<longtokens.size();i++){
+					cout << "[" << i << "]: " << longtokens[i] << endl;
 				}//endfor
 			}//endprint
 			bool checkEven(){
@@ -160,7 +139,7 @@ int main(){
 	_dictJson.append("5");
 	*/
 	JsonHandle::ReadJson("../testfile/json_samplefile.json");
-
+	
 	
 
 	

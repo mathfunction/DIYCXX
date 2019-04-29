@@ -78,24 +78,55 @@ namespace pythonlike{
 				return _output;
 			}//end_split()
 			//--------------------------------------------------------------------------
-			vector<Pystring> splits(unordered_set<string> _setDelimiter,bool _boolRemain=false){
+			vector<Pystring> tokens(unordered_set<string> _setTokens,int _bound=5,char MARK='`'){
 				vector<Pystring> _output;
-				// ngram scan
-				int _dlen = 1;
+				unordered_map<int,int> _dictPointer;
 				int _slen = _str.size();
-				int _currentidx = 0;
-				for(int i=0;i<_slen-_dlen+1;i++){
-					if(_setDelimiter.find(_str.get(i,i+_dlen)) != _setDelimiter.end()){
-						_output.push_back(_str.get(_currentidx,i));
-						if(_boolRemain == true){
-							_output.push_back(_str.get(i,i+_dlen));
-						}//endif
-						_currentidx = i+_dlen;
-					}//endif;	
+				Pystring _tempstr = _str;
+				for(int b=_bound;b>(-1);b--){
+					for(int i=0;i<_slen-b+1;i++){
+						if(_setTokens.find(_tempstr.get(i,i+b))!=_setTokens.end()){
+							for(int j=i;j<(i+b);j++){
+								_tempstr[j] = MARK;
+							}//endfor
+							_dictPointer[i] = (i+b);
+						}//endif;
+					}//endfor
 				}//endfor
-				_output.push_back(_str.get(_currentidx,_slen));
+				/*----------------------------------------------------------------------------------------------
+				cerr << _tempstr << endl;
+				for(unordered_map<int,int>::iterator it=_dictPointer.begin();it!=_dictPointer.end();++it){
+					cerr << _str.get(it->first,it->second) << endl;
+				}//endfor
+				---------------------------------------------------------------------------------------------*/
+				int _currentidx = 0;
+				string _temp = "";
+				while(_currentidx!=_str.size()){
+					if(_dictPointer.find(_currentidx)!=_dictPointer.end()){
+						if(_temp.size()!=0){
+							_output.push_back(_temp);
+							_temp = "";
+						}//endif
+						_output.push_back(_str.get(_currentidx,_dictPointer[_currentidx]));
+						_currentidx = _dictPointer[_currentidx];
+					}else{
+						_temp += _str[_currentidx];
+						_currentidx += 1;
+					}//end_else
+				}//end_while
+				if(_temp.size()!=0){
+					_output.push_back(_temp);
+					_temp = "";
+				}//endif
+
+				for(int i=0;i<_output.size();i++){
+					cerr << _output[i] << endl;
+				}
+
+
 				return _output;
-			}//end_splits
+			}//end_tokens
+
 
 			Pystring join(vector<Pystring> _list){
 				Pystring _output = "";
@@ -149,15 +180,10 @@ namespace pythonlike{
 			// test code 
 			//====================================================================
 			void test(){
-				cerr << _str.dict().size() << endl;
-				cerr << _str.invdict().size() << endl;
-				vector<Pystring> vec = _str.splits({":","{","["},true);
-				vector<Pystring> vec2 = _str.split(",",true);
-				for(int i=0;i<vec.size();i++){
-					cerr <<  "["<< i << "] : " << vec[i] << endl;
-				}//endfor
-				cerr << Pystring("_").join(vec) << endl;
-				cerr << Pystring("_").join(vec2) << endl;
+				//cerr << _str.dict().size() << endl;
+				//cerr << _str.invdict().size() << endl;
+				//vector<Pystring> vec = _str.split(",");
+				//cerr << Pystring("_").join(vec) << endl;
 			}//end_test
 
 
