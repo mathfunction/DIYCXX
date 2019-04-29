@@ -54,24 +54,8 @@ namespace JsonHandle{
 		private:
 			string longstr;
 			vector<Pystring> longtokens;
-		public:			
-			
-			
 
-			ReadJson(string filename,bool _boolPrint=true){
-				ifstream fin(filename.c_str(),ios::in);
-				stringstream ss;
-				ss << fin.rdbuf();
-				longstr = compress(ss.str());
-				longtokens = Pystring(longstr).tokens({":[",":{",":","[","]","{","}",",","\""});
-				if(checkEven()==false){
-					cerr << "checkEven Failed !! " << endl;
-					exit(1);
-				}//endif
-				if(_boolPrint == true){
-					printLoad();
-				}//endif
-			}//end
+
 			string compress(string _str){
 				string output;
 				for(int i=0;i<_str.size();i++){
@@ -89,12 +73,6 @@ namespace JsonHandle{
 				}//endfor
 				return output;
 			}//end_compress
-			void printLoad(){
-				cerr << longstr << endl;
-				for(int i=0;i<longtokens.size();i++){
-					cout << "[" << i << "]: " << longtokens[i] << endl;
-				}//endfor
-			}//endprint
 			bool checkEven(){
 				unordered_map<string,int> _count;
 				_count["[]"] = 0;
@@ -123,6 +101,33 @@ namespace JsonHandle{
 				return true;
 			}//end_checkEven
 
+
+		public:			
+			
+			ReadJson(string filename,bool _boolPrint=true,string option="first_order"){
+				ifstream fin(filename.c_str(),ios::in);
+				stringstream ss;
+				ss << fin.rdbuf();
+				longstr = compress(ss.str());
+				longtokens = Pystring(longstr).tokens({":[",":{","]","{","}",",","},"});
+				if(checkEven()==false){
+					cerr << "checkEven Failed !! " << endl;
+					exit(1);
+				}//endif
+
+				if(_boolPrint == true){
+					printLoad();
+				}//endif
+			}//end
+			
+			void printLoad(){
+				cerr << longstr << endl;
+				for(int i=0;i<longtokens.size();i++){
+					cout << "[" << i << "]: " << longtokens[i] << endl;
+				}//endfor
+			}//endprint
+			
+
 	};
 
 };
@@ -138,7 +143,7 @@ int main(){
 	_dictJson.append("4");
 	_dictJson.append("5");
 	*/
-	JsonHandle::ReadJson("../testfile/json_samplefile.json");
+	JsonHandle::ReadJson("../testfile/Init.json");
 	
 	
 
