@@ -1,5 +1,21 @@
 /*---------------------------------------------------------------------------
 	
+	這是解析 DIY Json 實作:
+		
+		ReadJson :  
+			need pythonlike.hpp
+		JsonParser 參考網址:
+			http://notes.eatonphil.com/writing-a-simple-json-parser.html?fbclid=IwAR02w6X2hC8MO4NHSXlQWlgikxSzHWz50lsMcQQ_RYlOjxx2DCqFXOjlAeY
+
+	存在 bug 
+	1. value 值 不可以是空字串 ""
+	2. 中文處理??
+
+
+
+
+
+
 
 ----------------------------------------------------------------------------*/
 #include<iostream>
@@ -11,10 +27,10 @@
 #include<unordered_set>
 #include<utility>
 #include<vector>
-#include"pythonlike.hpp"
+//#include"pythonlike.hpp"
 
 using namespace std;
-using namespace pythonlike;
+//using namespace pythonlike;
 
 
 namespace JsonHandle{
@@ -51,7 +67,7 @@ namespace JsonHandle{
 				_list.clear();
 			}//end_JsonNode
 	};
-	
+	/*
 	class ReadJson{
 		private:
 			string longstr;
@@ -127,7 +143,7 @@ namespace JsonHandle{
 				}//endfor
 			}//endprint
 	};
-
+	*/
 	class JsonParser{
 		private:
 			// constants
@@ -397,7 +413,7 @@ int main(){
 	*/
 	
 	
-	JsonHandle::JsonParser("../testfile/Init.json",true);
+	JsonHandle::JsonParser("Init.json",true);
 	
 
 

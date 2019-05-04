@@ -13,6 +13,10 @@ namespace pythonlike{
 	using namespace std;
 	
 
+
+
+
+
 	class Pystring :public string{
 		private:
 			Pystring& _str = (*this); 
