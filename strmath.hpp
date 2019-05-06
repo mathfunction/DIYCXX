@@ -48,30 +48,7 @@ namespace strmath{
 				}
 				return _str;
 			}//end_addot
-			/*
-			Numstring strip(){
-				int lidx = -1;
-				int ridx = _str.size();
-				for(int i=0;i<_str.size();i++){
-					if(
-						_str[i]!='0'
-					){
-						lidx = i;
-						break;
-					}//endif
-				}//endfor
-				for(int i=_str.size()-1;i>-1;i--){
-					if(
-						_str[i]!='0'
-					){
-						ridx = i;
-						break;
-					}//endif
-				}//endfor
-				
-				return this->get(lidx,ridx+1);
-			}//end_strip()
-			*/
+		
 			pair<int,int> scale(bool _boolPrint=false){
 				int idx = _str.find('.');
 				// simple integers 
@@ -87,9 +64,8 @@ namespace strmath{
 					return make_pair(idx,_str.size()-idx-1);
 				}//end_else
 			}//end_Scale
-
-
 	};
+	
 	int reshape(Numstring &_str1,Numstring &_str2,bool _boolPrint=false){
 		//======================================================
 		// addDot
@@ -116,52 +92,41 @@ namespace strmath{
 		}//endif
 		return idx;
 	}//end_reshape
-
-	Numstring operator+(Numstring &_str1,Numstring &_str2){
+	
+	
+	Numstring positive_addition(Numstring &_str1,Numstring &_str2){
 		Numstring _result = "";
 		int idxDot = reshape(_str1,_str2);
 		int n = _str1.size();
-		pair<char,char> _temp1;
-		pair<char,char> _temp2;
+		string _temp1,_temp2;
 		char carrier = '0';
+		
 		if(idxDot < n){
 			for(int i=n-1;i>idxDot;i--){
 				_temp1 = PLUSTABLE(_str1[i],_str2[i]);
-				_temp2 = PLUSTABLE(_temp1.second,carrier);
-				_result += _temp2.second;
-				carrier = PLUSTABLE(_temp1.first,_temp2.first).second;
+				_temp2 = PLUSTABLE(_temp1[1],carrier);
+				_result += _temp2[1];
+				carrier = PLUSTABLE(_temp1[0],_temp2[0])[1];
 			}//endfor
 			_result += ".";
 		}//endif
-		//cerr << "." ;
+		
+	
 		for(int i=idxDot-1;i>-1;i--){
 			_temp1 = PLUSTABLE(_str1[i],_str2[i]);
-			_temp2 = PLUSTABLE(_temp1.second,carrier);
-			_result += _temp2.second;
-			carrier = PLUSTABLE(_temp1.first,_temp2.first).second;
+			_temp2 = PLUSTABLE(_temp1[1],carrier);
+			_result += _temp2[1];
+			carrier = PLUSTABLE(_temp1[0],_temp2[0])[1];
+			
 		}//endfor 
 		reverse(_result.begin(),_result.end());
-		return _result; 
+		return _result;
 	}//end_Numstring
-
-	/*
-	Numstring operator-(Numstring _str1,Numstring _str2){
-		return Numstring("0");
-	}//end_Numstring
-
-	Numstring operator*(Numstring _str1,Numstring _str2){
-		return Numstring("1");
-	}//end_Numstring
-
-	Numstring operator/(Numstring _str1,Numstring _str2){
-		return Numstring("0");
-	}//end_Numstring
-	*/
+	
+	
 
 
-
-
-
+	
 
 
 
