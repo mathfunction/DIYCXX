@@ -15,8 +15,6 @@ namespace pythonlike{
 
 
 
-
-
 	class Pystring :public string{
 		private:
 			Pystring& _str = (*this); 
