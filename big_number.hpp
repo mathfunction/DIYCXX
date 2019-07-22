@@ -89,9 +89,6 @@ string positive_int_addition(string str1, string str2){
 }//end_addition
 
 
-
-
-
 // Multiplies str1 and str2, and prints result.
 string positive_int_multiply(string num1, string num2){
     int n1 = num1.size();
@@ -150,7 +147,6 @@ string positive_int_multiply(string num1, string num2){
     if (i == -1){
        return "0";
     }//endif
- 
     // generate the result string
     string s = "";
     while (i >= 0){
@@ -236,9 +232,6 @@ string positive_int_diff(string str1,string str2){
     
     return str;
 }//end_positive_int_diff
-
-
-
 
 
 

@@ -111,7 +111,6 @@ namespace strmath{
 			_result += ".";
 		}//endif
 		
-	
 		for(int i=idxDot-1;i>-1;i--){
 			_temp1 = PLUSTABLE(_str1[i],_str2[i]);
 			_temp2 = PLUSTABLE(_temp1[1],carrier);
