@@ -36,6 +36,7 @@ typedef boost::multiprecision::cpp_dec_float_100 BoostFloat;
 	boost.format("%1%,%2%") % [變數1] % [變數2] ;
 	.str() 可回傳 string   
 ------------------------------------------*/
+
 #include <boost/foreach.hpp>
 /*---------------------------------------
 BOOST_FOREACH(T i ,vector<T> &vec){
@@ -43,6 +44,7 @@ BOOST_FOREACH(T i ,vector<T> &vec){
 }  // 取代 (iterator::it=vec.begin();it!=vec.end();++it)
 
 --------------------------------------------*/
+
 #include <boost/range/algorithm.hpp>
 /*-------------------------------------
 計算字串數目
@@ -50,10 +52,12 @@ boost::count(string,ch)
 boost::count_if(string,bool(ch))
 ---------------------------------------*/
 
-
-
-
-
+#include <boost/any.hpp>
+#include <typeinfo>
+/*------------------------------------
+萬用型別
+--------------------------------------*/
+typedef boost::any BoostAny;
 
 
 #endif

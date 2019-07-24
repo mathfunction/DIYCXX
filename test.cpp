@@ -1,38 +1,88 @@
-#include "strmath.hpp"
-#include "big_number.hpp"
-#include "cxxclocker.hpp"
+/*
 
+	g++ -std=c++11 -O3 -o test test.cpp -I. -I./src -I"C:\Users\Tommy_Cheng\Desktop\cxx_useful\3rdparty\boost_1_68_0"
+
+*/
+
+
+#include <iostream>
+#include <functional>
+#include <typeinfo>
+#include "boost/any.hpp"
 using namespace std;
-using namespace strmath;
+
+
+
+
+class HandleType{
+	private:
+		string STR_NAME = typeid(string).name();
+		string INT_NAME = typeid(int).name();
+		string DOUBLE_NAME = typeid(double).name();
+		string CONSTCHAR_NAME = "PKc";
+		
+	protected:
+		boost::any _output;
+		virtual boost::any handleDouble(double d){
+			cout << "I'm double " << d << endl;
+			return _output;
+		}
+		virtual boost::any handleInt(int i){
+			cout << "I'm int " << i << endl;
+			return _output;
+		}
+		virtual boost::any handleString(string s){
+			cout << "I'm string " << s << endl;
+			return _output;
+		}
+
+
+	public:
+		HandleType(boost::any val){
+			string _strType = (val.type()).name();
+			
+			if(_strType == STR_NAME){
+				handleString(boost::any_cast<string>(val));
+			}else if(_strType == CONSTCHAR_NAME){
+				handleString(string(boost::any_cast<const char*>(val)));
+			}else if(_strType == INT_NAME){
+				handleInt(boost::any_cast<int>(val));
+			}else if(_strType == DOUBLE_NAME){
+				handleDouble(boost::any_cast<double>(val));
+			}else{
+				cout << "[Error] Unable to find type : " << _strType << endl;
+				exit(1);
+			}//end_else		
+		}//end_HandleType
+		
+};
+
+
+
+class MyClass:public HandleType{
+	protected:
+		boost::any handleDouble(double d) override {
+			cout << d+1 << endl;
+			return _output;
+		}
+	public:	
+		MyClass(boost::any val):HandleType(val){
+			handleDouble(1.2);
+		}
+		
+};
+
+
+
+
 
 
 int main(){
-	string a = "189234885787604457697456732467567495423569437695743975463976574936795634975643965934659746397564397697526975652878274857576176347624975672465746579423956276597677164754619874297592745692";
-	string b = "378047326495763746579346573974697361974235634927536956472359244444445947569724569724659624398569347695864956924375924932864972943769529475924765934276594329564959465943659437659436594369";
-	//Numstring d ="189234885787604457697456732467567495423569437695743975463976574936795634975643965934659746397564397697526975652878274857576176347624975672465746579423956276597677164754619874297592745692";
-	//Numstring e ="378047326495763746579346573974697361974235634927536956472359244444445947569724569724659624398569347695864956924375924932864972943769529475924765934276594329564959465943659437659436594369";
 	
-	//cerr << big_number::positive_int_addition(a,b) << endl;
-	
-	//cerr <<strmath::positive_addition(d,e) << endl;
+	MyClass a(1.23);
 	
 	
-	{//--------------------------------------------------------------------------------------
-		cxxclocker::Timer clock;
-		cerr << big_number::positive_int_multiply(a,b) << endl;
-		//cerr << c << endl;	
-	}
 	
-	/*
-	{	
-		cxxclocker::Timer clock;
-		for(int i=0;i<20000;i++){
-			strmath::positive_addition(d,e);
-		}//endfor
-		//Numstring f = strmath::positive_addition(d,e);
-		//cerr << f << endl;	
-	}
-	*/
 	
 
 	return 0;
