@@ -53,11 +53,15 @@ boost::count_if(string,bool(ch))
 ---------------------------------------*/
 
 #include <boost/any.hpp>
-#include <typeinfo>
 /*------------------------------------
 萬用型別
 --------------------------------------*/
 typedef boost::any BoostAny;
-
+/*----------------------------------------
+讀 json , xml 
+-----------------------------------------*/
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+#include <boost/property_tree/xml_parser.hpp>
 
 #endif
