@@ -6,16 +6,14 @@ You can use those subroutines to print colorful message in Windows Command Line
 #define __CMDCOLOR_HPP__
 
 
-#include <iostream>
+
 #if defined _WIN32 || defined _WIN64 
 	#include <windows.h>
 #endif
 
-using namespace std;
 
 namespace cxxuseful{
 	namespace cmdcolor{
-
 		// ------------------   windows ----------------------------- 
 		#if defined _WIN32 || defined _WIN64 
 			HANDLE _CMDCOLOR_=GetStdHandle(STD_OUTPUT_HANDLE);

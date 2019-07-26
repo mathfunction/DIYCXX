@@ -23,7 +23,7 @@ namespace cxxuseful{
 					}else if(v[i].type() == typeid(double)){
 						ss << type<double>(v[i]);
 					}else{
-						ss << "@";
+						ss << "<E>";
 					}
 				}//endfor
 				return ss.str();
@@ -32,9 +32,6 @@ namespace cxxuseful{
 	} makestr;
 
 };
-
-
-
 
 
 

@@ -1,7 +1,5 @@
 /*
-	這是主要函式庫
-
-
+	這是主要引入函式庫
 
 */
 #ifndef __CXXUSEFUL_HPP__
@@ -23,8 +21,9 @@
 #include <stack>
 #include <utility>
 #include "boost_includes.hpp"
+using namespace std;
 // =============================================================================
-namespace cxxuseful{	
+namespace cxxuseful{
 	template<typename T> T type(BoostAny val){
 		return boost::any_cast<T>(val);
 	}//endif

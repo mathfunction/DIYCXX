@@ -2,7 +2,7 @@
 #define __TODICTFUNC_HPP__
 
 namespace cxxuseful{
-
+	
 	class ToDictFunc{
 		
 		public: 
