@@ -3,7 +3,11 @@
 #define __PRINTFUNC_HPP__
 
 
-namespace typefunc{
+
+namespace cxxuseful{
+	using namespace std;
+	using namespace cmdcolor;
+
 	class PrintFunc{
 			public:
 				BoostAny operator()(basic_string<int> &v){printGreen("basic_string<int>",true); return handleList<int>(v);}

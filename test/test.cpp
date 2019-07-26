@@ -4,21 +4,17 @@
 	
 
 */
-#include"typefunc.hpp"
-
-using namespace typefunc;
-
+#include"cxxuseful.hpp"
+using namespace cxxuseful;
 
 int main(){
 	
 	int a = 2;
 	double b = 2.45069;
 	string c = "r9409";
-	makestr.setMark("|");
-	cout << makestr({a,b,c}) << endl;
-	makestr.setMark("-");
-	cout << makestr({a,b,c}) << endl;
-
+	cout << makestr({a,b,c},"_") << endl;
+	cout << makestr({a,b,c},"-") << endl;
+	
 	
 
 

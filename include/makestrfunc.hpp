@@ -3,15 +3,13 @@
 
 
 
-namespace typefunc{	
+namespace cxxuseful{	
 
+	
 	class MakeStrFunc{
 		public:
-			void setMark(string delimiter){
-				this->delimiter = delimiter;
-			}
 
-			string operator()(vector<BoostAny> v){
+			string operator()(vector<BoostAny> v,string delimiter="_",string title="[Key]"){
 				stringstream ss;
 				ss << title;
 				for(int i=0;i<v.size();i++){
@@ -31,13 +29,7 @@ namespace typefunc{
 				return ss.str();
 			}
 
-		private:
-			string delimiter = "_";
-			string title = "[Key]";
-
 	} makestr;
-
-
 
 };
 

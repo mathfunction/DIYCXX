@@ -1,16 +1,40 @@
-# DIYCXX
+​	
 
-| 檔名                                   | 功用                      | 更新日期  | 狀態 |
-| -------------------------------------- | ------------------------- | --------- | ---- |
-| cxxcolor.hpp                           | windows 系統上 cmd 印顏色 | 2019/4/24 | 維護 |
-| big_number.hpp                         | 大整數運算                |           | 維護 |
-| binary_handle.hpp                      | 二進位字串處理            |           | 維護 |
-| file_system.hpp                        | windows 上得到檔名        |           | 維護 |
-| randomlib.hpp                          | 亂數產生器 (C++11)        |           | 維護 |
-| RNG.hpp                                | 亂數產生器 (C++11)        |           | 維護 |
-| string_handle.hpp                      | 常見結構預處理            |           | 維護 |
-| Natural_Dual_Correspondence_Source.hpp | 自然對偶對應              |           | 維護 |
-| sparse_mulpoly.cpp                     | 稀疏多元多項式基本運算    |           | 開發 |
-| sparse_poly.cpp                        | 稀疏一元多項式基本運算    |           | 開發 |
-| json_handle.cpp                        | 讀取 json 檔              |           | 開發 |
+### 專案概述
+
+ - 這是嘗試讓 C++ 一些易用好開發的函式庫 ~ **開發中**
+ - **headfile-only**   #include\<cxxuseful\>  in ***[yourfile]***
+
+- 詳細用法可見 example/hello.cpp
+
+- 作者: Fuyuan Cheng 
+
+- 更新日期: 2019.07.26 
+
+### 測試環境 (作業系統 / **終端機** / compiler)
+
+- windows 10 , cmd , g++ (tdm-1) 5.1.0 , CodeBlocks  (C++11,C++14)
+- mac os , terminal  , Apple LLVM version 10.0.0 (clang-1000.10.44.4)
+
+### 函式庫需求
+
+- standard C++ boost library  1_X_0   [X>=66]  <https://www.boost.org/>
+
+### 編譯指令
+
+=================================================================================
+
+g++ -std=c++11 -O3 -o ***[yourfile]*** ***[yourfile].cpp*** -I ***"[path_to_boost_library]"*** -I***"[path_to_include_folder]"***
+
+==================================================================================
+
+### ./include 檔案說明
+
+| 檔名               | 說明                                |
+| ------------------ | ----------------------------------- |
+| boost_includes.hpp | 關於此專案會需要用到的 boost 函式庫 |
+| cmdcolor           | 關於在終端機上顯示顏色              |
+| makestrfunc        | 建立字串實用程序                    |
+| printfunc          | 列印 STL 結構實用程序               |
+| todictfunc         | 轉換成 HashTable 實用程序           |
 

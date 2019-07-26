@@ -1,13 +1,11 @@
 #ifndef __TODICTFUNC_HPP__
 #define __TODICTFUNC_HPP__
 
-namespace typefunc{
+namespace cxxuseful{
 
 	class ToDictFunc{
 		
-
 		public: 
-
 			BoostAny operator()(basic_string<int> &v){return handleList<int>(v);}
 			BoostAny operator()(basic_string<double> &v){return handleList<double>(v);}
 
