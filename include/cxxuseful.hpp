@@ -24,7 +24,7 @@
 using namespace std;
 // =============================================================================
 namespace cxxuseful{
-	template<typename T> T type(BoostAny val){
+	template<typename T> T type(const BoostAny &val){
 		return boost::any_cast<T>(val);
 	}//endif
 };//end_namespace
@@ -34,6 +34,7 @@ namespace cxxuseful{
 #include "printfunc.hpp"
 #include "todictfunc.hpp"
 #include "makestrfunc.hpp"
+#include "randomfunc.hpp"
 
 //==============================================================================
 

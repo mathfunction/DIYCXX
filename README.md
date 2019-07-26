@@ -16,7 +16,7 @@
 - windows 10 , cmd , g++ (tdm-1) 5.1.0 , CodeBlocks  (C++11,C++14)
 - mac os , terminal  , Apple LLVM version 10.0.0 (clang-1000.10.44.4)
 
-### 函式庫需求
+### 函式庫需求(預先安裝)
 
 - standard C++ boost library  1_X_0   [X>=66]  <https://www.boost.org/>
 
@@ -24,11 +24,11 @@
 
 ===============================================================================
 
-g++ -std=c++11 -O3 -o ***[yourfile]*** ***[yourfile].cpp*** -I ***"[path_to_boost_library]"*** -I***"[path_to_/cxxuseful/]"***
+g++ -std=c++11 -O3 -o ***[yourfile]*** ***[yourfile].cpp*** -I ***"[path_to_boost_library]"*** -I***"[path_to_include]"***
 
 ===============================================================================
 
-### ./cxxuseful/ 檔案說明
+### ./include/ 檔案說明
 
 | 檔名               | 說明                                |
 | ------------------ | ----------------------------------- |

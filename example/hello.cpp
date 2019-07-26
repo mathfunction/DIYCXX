@@ -17,13 +17,9 @@ int main(){
 	printBlue("blue",true);
 	printPurple("purple",true);
 
-
 	//===============================================
 	// makestr
-	int a = 2;
-	double b = 0.12345949;
-	string c = "I'm string";
-	string _str = makestr({c,b,a,a},"_","[head]");
+	string _str = makestr({2,0.123456,"I'm String"},"_","[head]");
 	cout << _str << endl;
 	//================================================
 	// print
@@ -36,12 +32,23 @@ int main(){
 	print(_dict);
 	//================================================
 	// todict
-	basic_string<int> _bastr({2,3,4,5,6,7,8});
-	print(_bastr);
-	auto _dictBastr = type<unordered_map<int,int> >(todict(_bastr));
+	basic_string<int> _bas({2,3,4,5,6,7,8});
+	auto _dictBastr = type<unordered_map<int,int> >(todict(_bas));
 	print(_dictBastr);
-	//==================================================
 	
+
+	print(todict.cumulative({
+		{"a",0.5},
+		{"b",0.3},
+		{"c",0.2}
+	}));
+
+	//==================================================
+	// randomfunc
+	cout << "toss-coin : " << randomfunc.unif_int(2) << endl;
+	cout << makestr(randomfunc.draw_one_at_a_time({{"a",8},{"b",5}},10,true)) << endl;
+	//==================================================
+
 
 
 

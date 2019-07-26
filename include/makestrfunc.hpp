@@ -8,8 +8,15 @@ namespace cxxuseful{
 	
 	class MakeStrFunc{
 		public:
-
-			string operator()(vector<BoostAny> v,string delimiter="_",string title="[Key]"){
+			string operator()(const vector<string> &v,string delimiter="_",string title="[Key]"){
+				string _output = title;
+				for(int i=0;i<v.size();i++){
+					_output += delimiter;
+					_output += v[i];
+				}//endfor
+				return _output;
+			}//end
+			string operator()(const vector<BoostAny> &v,string delimiter="_",string title="[Key]"){
 				stringstream ss;
 				ss << title;
 				for(int i=0;i<v.size();i++){
