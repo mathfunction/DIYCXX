@@ -44,7 +44,7 @@ namespace typefunc{
 // typefunc project files 
 #include "printfunc.hpp"
 #include "todictfunc.hpp"
-
+#include "makestrfunc.hpp"
 
 //==============================================================================
 

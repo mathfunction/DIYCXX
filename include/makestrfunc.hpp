@@ -11,40 +11,29 @@ namespace typefunc{
 				this->delimiter = delimiter;
 			}
 
-			string operator[](basic_string<BoostAny> v){
-				string _str = title;
+			string operator()(vector<BoostAny> v){
+				stringstream ss;
+				ss << title;
 				for(int i=0;i<v.size();i++){
-					if(typeid(v[i])==typeid(int)){
-						
-					}else if(typeid(v[i])==typeid(double)){
-
-					}else if(typeid(v[i])==typeid(string)){
-
+					ss << delimiter;
+					if(v[i].type() == typeid(string)){
+						ss << type<string>(v[i]);
+					}else if(v[i].type() == typeid(const char*)){
+						ss << type<const char*>(v[i]);
+					}else if(v[i].type() == typeid(int)){
+						ss << type<int>(v[i]);
+					}else if(v[i].type() == typeid(double)){
+						ss << type<double>(v[i]);
 					}else{
-						cerr << "[Error] Unable to find type in makestr" << endl;
-						exit(1);
+						ss << "@";
 					}
-
-
-
 				}//endfor
-				return _str;
+				return ss.str();
 			}
 
 		private:
 			string delimiter = "_";
-			string title = "";
-
-
-
-
-
-
-
-
-
-
-
+			string title = "[Key]";
 
 	} makestr;
 
