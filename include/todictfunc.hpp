@@ -1,7 +1,7 @@
 #ifndef __TODICTFUNC_HPP__
 #define __TODICTFUNC_HPP__
 
-#include<utility>
+
 namespace cxxuseful{
 	
 	class ToDictFunc{

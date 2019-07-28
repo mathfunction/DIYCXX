@@ -13,10 +13,7 @@
 #define __RANDOMFUNC_HPP__
 
 	
-#include<iostream>
-#include<string>
-#include<chrono>
-#include<random>
+
 
 namespace cxxuseful{
 
