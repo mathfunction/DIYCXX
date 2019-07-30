@@ -26,7 +26,7 @@
 
 ===============================================================================
 
-g++ -std=c++11 -O3 -o ***[yourfile]*** ***[yourfile].cpp*** -I ***[path_to_boost_library]***  -I***[path_to_include]***
+g++ -std=c++11 -O3 -o [yourfile] [yourfile].cpp -I [path_to_boost_library]  -I[path_to_include]
 
 ===============================================================================
 
