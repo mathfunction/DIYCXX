@@ -1,14 +1,17 @@
-​	
+
+
+
+$$
+\color{red}{------------------開發中 ------------------}
+$$
 
 ### 專案概述
 
- - 這是嘗試讓 C++ 一些易用好開發的函式庫 ~ **開發中**
- - **headfile-only**   #include\<cxxuseful\>  in ***[yourfile]***
-
-- 詳細用法可見 example/hello.cpp
-
+ - 這是嘗試讓 C++ 一些易用好開發的函式庫 ~  
+ - **headfile-only**  都在 ./include/ 只需要 #include\<cxxuseful\>  in ***[yourfile]***
+- 詳細用法可見 ./example/hello.cpp
+- ./develop/ 為開發中檔案+測試 (無法使用)
 - 作者: Fuyuan Cheng 
-
 - 更新日期: 2019.07.26 
 
 ### 測試環境 (作業系統 / **終端機** / compiler)
@@ -24,7 +27,7 @@
 
 ===============================================================================
 
-g++ -std=c++11 -O3 -o ***[yourfile]*** ***[yourfile].cpp*** -I ***"[path_to_boost_library]"*** -I***"[path_to_include]"***
+g++ -std=c++11 -O3 -o ***[yourfile]*** ***[yourfile].cpp*** -I ***[path_to_boost_library]***  -I***[path_to_include]***
 
 ===============================================================================
 
