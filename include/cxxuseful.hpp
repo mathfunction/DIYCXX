@@ -37,6 +37,7 @@ namespace cxxuseful{
 #include "todictfunc.hpp"
 #include "makestrfunc.hpp"
 #include "randomfunc.hpp"
+#include "timer.hpp"
 
 //==============================================================================
 

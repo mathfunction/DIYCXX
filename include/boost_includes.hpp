@@ -17,6 +17,7 @@
 #include <boost/multiprecision/cpp_dec_float.hpp>
 
 typedef boost::multiprecision::cpp_int BoostInt;
+typedef boost::multiprecision::cpp_rational BoostRational;
 typedef boost::multiprecision::cpp_dec_float_100 BoostFloat;
 
 
