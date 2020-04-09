@@ -12,13 +12,18 @@ namespace cxxuseful{
 	
 	class JsonFunc{
 		public:
-			json from(string jsonfile){
+			json read(string jsonfile){
 				ifstream i(jsonfile);
 				json j;
 				i >> j;
 				return j;
 			}//endread
-	} readjson;
+			template<typename T,typename S> unordered_map<T,S> todict(json &j){
+				unordered_map<T,S> d = j;
+				return d;
+			} 
+
+	} jsonfunc;
 
 
 };

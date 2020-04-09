@@ -5,7 +5,7 @@
 		unif_int(_size,min)  隨機產生 [min,min+_size) 之間的整數
 		draw_one_at_a_time(_dist,_drawsize,_boolPrint) 
 			逐一從 _dist 分布抽出 _drawsize 東西
-
+		
 
 
 =============================================================================*/
@@ -43,7 +43,7 @@ namespace cxxuseful{
 				return min + gen()%_size;
 			}//end unif
 
-			vector<string> draw_one_at_a_time(const unordered_map<string,int> &_dist,int _drawsize=1,bool _boolPrint=false){
+			vector<string> draw_one_at_a_time(const unordered_map<string,int> &_dist,int _drawsize=1,bool _boolPrint=false,bool _boolReplacement=false){
 				// compute total size , build blackbox
 				vector<string> result;
 				vector<string> blackbox;
@@ -63,15 +63,17 @@ namespace cxxuseful{
 					}else{
 						it = blackbox.begin();
 						it += this->unif_int(blackbox.size());
-						blackbox.erase(it);
 						result.push_back(*it);
+						if(_boolReplacement == false){
+							blackbox.erase(it);
+						}//endif
 					}//endif
 				}//endfor
 
 				if(_boolPrint){
 					cerr << "____ result _____" << endl;
 					print(result);
-				} 
+				}//endif
 				return result;
 			}//end_box_draw
 
