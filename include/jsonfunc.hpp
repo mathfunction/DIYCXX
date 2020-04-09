@@ -12,13 +12,13 @@ namespace cxxuseful{
 	
 	class JsonFunc{
 		public:
-			json read(string jsonfile){
+			json from(string jsonfile){
 				ifstream i(jsonfile);
 				json j;
 				i >> j;
 				return j;
 			}//endread
-	};
+	} readjson;
 
 
 };
