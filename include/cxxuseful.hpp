@@ -7,6 +7,7 @@
 
 // STL_Library
 #include <iostream>
+#include <fstream>
 #include <sstream>
 #include <cstdlib>
 #include <typeinfo>
@@ -22,7 +23,12 @@
 #include <utility>
 #include <chrono>
 #include <random>
+// ===============================================================================
+// third_party 第三方好用函式庫
 #include "boost_includes.hpp"
+// JSON for Modern C++ / single_include https://github.com/nlohmann/json
+#include "json.hpp"
+using json = nlohmann::json;
 using namespace std;
 // =============================================================================
 namespace cxxuseful{
@@ -31,6 +37,8 @@ namespace cxxuseful{
 	}//endif
 };//end_namespace
 //==============================================================================
+// DIY 開發 HPP 
+
 // typefunc project files 
 #include "cmdcolor.hpp"
 #include "printfunc.hpp"
@@ -38,7 +46,7 @@ namespace cxxuseful{
 #include "makestrfunc.hpp"
 #include "randomfunc.hpp"
 #include "timer.hpp"
-
+#include "jsonfunc.hpp"
 //==============================================================================
 
 #endif 
