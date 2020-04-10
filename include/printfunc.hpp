@@ -90,8 +90,6 @@ namespace cxxuseful{
 
 
 
-
-
 				// handle basic_string 
 				template<class T>
 				void handleList(const basic_string<T> &v){
@@ -117,21 +115,11 @@ namespace cxxuseful{
 
 				void handleList(const vector<string> &v){
 					printYellow("[",true);
-					#if defined _WIN32 || defined _WIN64
-						SetConsoleOutputCP(65001);
-					#endif
 					for(int i=0;i<v.size();i++){
 						cerr << "\t" << i << " : " ;
-						#if defined _WIN32 || defined _WIN64
-							printYellow(" \b"+v[i],true);
-						#else
-							printYellow(v[i],true);
-						#endif
+						printYellow(v[i],true);
 					}//endfor
 					printYellow("]",true);
-					#if defined _WIN32 || defined _WIN64
-						SetConsoleOutputCP(950);
-					#endif
 				}//end_
 
 

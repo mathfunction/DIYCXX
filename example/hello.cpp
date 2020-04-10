@@ -60,16 +60,14 @@ int main(){
 	}
 
 	
-	string _cxxstr = "C++中文處理真的很麻煩，超級難!!!!最後是用 UTF-8 切字串 u8len() 變成 vector<string> !!";
-	
-	shlr.u8print(_cxxstr); 
-	print(shlr.u8(_cxxstr)); // 在 windows 下有 bug 
-
-
-
-
-
-
-
+	string _cxxstr = "C++中文處理真的很麻煩，超級難!!!!最後是用 UTF-8 切中字串 u8len() 變成 vector<string> !!";
+	vector<string> u8str = utf8(_cxxstr);
+	for(int i=0;i<u8str.size();i++){
+		if(u8str[i] == "中"){
+			u8str[i] = "英";
+		}//endif
+	}//endfor
+	print_utf8(u8str); // 在 windows 下有 bug 
 	return 0;
+	
 }//end_main
