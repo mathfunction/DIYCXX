@@ -49,7 +49,7 @@ namespace cxxuseful{
 // typefunc project files 
 #include "cmdcolor.hpp"
 #include "printfunc.hpp"
-#include "todictfunc.hpp"
+#include "makedictfunc.hpp"
 #include "makestrfunc.hpp"
 #include "randomfunc.hpp"
 #include "timer.hpp"

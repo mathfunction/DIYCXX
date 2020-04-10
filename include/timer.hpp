@@ -50,7 +50,7 @@ namespace cxxuseful{
 			};
 			~Timer(){
 				clock_t t = GetMs();
-				cerr << "CodeBlock[" << program_name << "]:  costs " << t << " clicks (" << 1000*((float)t)/CLOCKS_PER_SEC << " ms)" << endl;
+				cerr << "Block{" << program_name << "} : " << 1000*((float)t)/CLOCKS_PER_SEC << " ms" << endl;
 			};
 	};
 	

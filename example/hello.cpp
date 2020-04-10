@@ -32,7 +32,7 @@ int main(){
 	//================================================
 	// todict
 	basic_string<int> _bas({2,3,4,5,6,7,8});
-	auto _dictBastr = type<unordered_map<int,int> >(todict(_bas));
+	auto _dictBastr = type<unordered_map<int,int> >(mkdict(_bas));
 	print(_dictBastr);
 	
 
@@ -45,7 +45,7 @@ int main(){
 	//==================================================
 	// randomfunc
 	cout << "toss-coin : " << randfc.unif_int(2) << endl;
-	cout << makestr(randfc.draw_one_at_a_time({{"a",8},{"b",5}},10,true)) << endl;
+	cout << mkstr(randfc.draw_one_at_a_time({{"a",8},{"b",5}},10,true)) << endl;
 	//==================================================
 
 
