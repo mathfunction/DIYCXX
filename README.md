@@ -1,16 +1,16 @@
-### DIYCXX 專案概述 [ 開發中!! ]
+### DIYCXX 專案概述 [ 開發階段中!! ]
 
- - 這是嘗試讓 C++ 一些易用好開發的函式庫 ~  
+ - 這是嘗試讓 C++ 一些易用輔助開發的函式庫 ~  
 
- - **headfile-only**  都在 include/*  (用法可以看各 .hpp 註解)
+ - **headfile-only**  都在 include/*  
 
    ```c++
-   #include<cxxuseful>
+   #include "cxxuseful.hpp"
    using namespace cxxuseful;
    /* your codes */
    ```
 
-- 詳細用法可見 example/hello.cpp
+- 詳細用法可見 example/hello.cpp  或是各 .hpp 置頂註解
 
 - 作者: Plus & Minus
 
@@ -18,8 +18,8 @@
 
 ### 測試環境 (作業系統 / **終端機** / 編譯器)
 
-- windows 10 , cmd , g++ (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 8.1.0
-- mac os , terminal  , Apple LLVM version 10.0.0 (clang-1000.10.44.4)
+- windows 10 ,  g++ (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 8.1.0
+- mac os  , Apple LLVM version 10.0.0 (clang-1000.10.44.4)
 
 ### 函式庫需求(預先安裝)
 
@@ -41,25 +41,30 @@
 直接透過 g++
 
 ```shell
-g++ -std=c++14 -O3 -o yourfile.cpp -I"{yourpath}/include/" -I"{yourpath}/thirdparty/{dirname}"
+g++ -std=c++14 -O3 -o {your.cpp} -I"{yourpath}/include/" -I"{yourpath}/thirdparty/{project_name}"
 ```
 
 或是透過 python 腳本編譯+試跑，參考  script.py
 
 ```shell
-python3 script.py --compile yourcppfile
-python3 script.py --run yourcppfile
+python script.py --compile {your.cpp}
+python script.py --run {your.cpp}
 ```
 
 
 
-### include/* 檔案說明
+### include/*.hpp 檔案說明
 
-| 檔名               | 說明                                |
-| ------------------ | ----------------------------------- |
-| boost_includes.hpp | 關於此專案會需要用到的 boost 函式庫 |
-| cmdcolor           | 關於在終端機上顯示顏色              |
-| makestrfunc        | 建立字串實用程序                    |
-| printfunc          | 列印 STL 結構實用程序               |
-| todictfunc         | STL結構 轉換成 HashTable 實用程序   |
+| hpp 檔名           | 實體物件名 | 說明                                |
+| ------------------ | ----------------------------------- | ----------------------------------- |
+| cxxuseful.hpp     | -    | 關於此專案所有 header 引用(包含 STL,Boost,DIY) |
+| boost_includes.hpp | - | 關於此專案會需要用到的 boost 函式庫 |
+| cmdcolor.hpp       | printXXX | 關於在終端機上顯示彩色字串 XXX = { Red , Yellow , Blue , Green ...} |
+| makestrfunc.hpp   | mkstr | 建立字串實用程序                    |
+| printfunc.hpp      | print | 列印 STL 結構實用程序               |
+| todictfunc.hpp     | todict | STL結構 轉換成 HashTable 實用程序   |
+| jsonfunc.hpp | jsonfc | 處裡 json 相關 |
+| randomfunc.hpp | randfc | 亂數產生模擬相關 |
+| strhandler.hpp | shlr | 字串輔助相關 |
+| timer.hpp | - |程式計時相關|
 

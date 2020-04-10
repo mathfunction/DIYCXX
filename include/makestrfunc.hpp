@@ -36,7 +36,7 @@ namespace cxxuseful{
 				return ss.str();
 			}
 
-	} makestr;
+	} mkstr;
 
 };
 
