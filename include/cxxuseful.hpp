@@ -4,7 +4,9 @@
 */
 #ifndef __CXXUSEFUL_HPP__
 #define __CXXUSEFUL_HPP__
-
+#if defined _WIN32 || defined _WIN64
+	#include<windows.h>
+#endif
 // STL_Library
 #include <iostream>
 #include <fstream>

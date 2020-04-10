@@ -60,7 +60,10 @@ int main(){
 	}
 
 	
-
+	string _cxxstr = "C++中文處理真的很麻煩，超級難!!!!最後是用 UTF-8 切字串 u8len() 變成 vector<string> !!";
+	
+	shlr.u8print(_cxxstr); 
+	print(shlr.u8(_cxxstr)); // 在 windows 下有 bug 
 
 
 

@@ -117,11 +117,21 @@ namespace cxxuseful{
 
 				void handleList(const vector<string> &v){
 					printYellow("[",true);
+					#if defined _WIN32 || defined _WIN64
+						SetConsoleOutputCP(65001);
+					#endif
 					for(int i=0;i<v.size();i++){
 						cerr << "\t" << i << " : " ;
-						printYellow(v[i],true);
+						#if defined _WIN32 || defined _WIN64
+							printYellow(" \b"+v[i],true);
+						#else
+							printYellow(v[i],true);
+						#endif
 					}//endfor
 					printYellow("]",true);
+					#if defined _WIN32 || defined _WIN64
+						SetConsoleOutputCP(950);
+					#endif
 				}//end_
 
 
