@@ -30,13 +30,20 @@
 #include "json.hpp"
 using json = nlohmann::json;
 using namespace std;
+
+
 // =============================================================================
 namespace cxxuseful{
 	template<typename T> T type(const BoostAny &val){
 		return boost::any_cast<T>(val);
 	}//endif
+
+
 };//end_namespace
+
 //==============================================================================
+
+
 // DIY 開發 HPP 
 
 // typefunc project files 
@@ -47,6 +54,8 @@ namespace cxxuseful{
 #include "randomfunc.hpp"
 #include "timer.hpp"
 #include "jsonfunc.hpp"
+#include "strhandler.hpp"
+
 //==============================================================================
 
 #endif 

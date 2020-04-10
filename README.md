@@ -28,8 +28,17 @@
 
 ### 編譯指令 
 
+直接透過 g++
+
 ```shell
 g++ -std=c++14 -O3 -o yourfile.cpp -I"{yourpath}/include/" -I"{yourpath}/thirdparty/{dirname}"
+```
+
+或是透過 python 腳本編譯+試跑，參考  script.py
+
+```shell
+python3 script.py --compile yourcppfile
+python3 script.py --run yourcppfile
 ```
 
 
