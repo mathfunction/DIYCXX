@@ -27,7 +27,7 @@
 // third_party 第三方好用函式庫
 #include "boost_includes.hpp"
 // JSON for Modern C++ / single_include https://github.com/nlohmann/json
-#include "json.hpp"
+//#include "json.hpp"
 // =============================================================================
 // 全域函式
 namespace cxxuseful{
@@ -49,7 +49,7 @@ namespace cxxuseful{
 #include "makedictfunc.hpp"
 #include "randomfunc.hpp"
 #include "timer.hpp"
-#include "jsonfunc.hpp"
+//#include "jsonfunc.hpp"
 #include "strhandler.hpp"
 #include "utf8str.hpp"
 #include "otherfunc.hpp"

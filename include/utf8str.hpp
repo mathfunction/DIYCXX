@@ -52,9 +52,10 @@ namespace cxxuseful{
 			cout << "\t" << i << " : " ;
 			#if defined _WIN32 || defined _WIN64
 				// bug windows_cmd 加入 dummy 空格+退格
-				vc[i] = " \b"+vc[i];
+				cout << " \b"+vc[i];
+			#else
+				cout << vc[i];
 			#endif 
-			cout << vc[i];
 			cout << "\n";
 		}//endfor
 		cout << "]\n";

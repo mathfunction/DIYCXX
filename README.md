@@ -102,8 +102,6 @@ python script.py --run {your.cpp}
   cout << _str << endl;
   ```
 
-  
-
 - 宣告 / 列印 print 結構 
 
   ```cpp
@@ -124,7 +122,9 @@ python script.py --run {your.cpp}
   print(_dictBastr);
   ```
 
-  ![](./pic/hello1.png)
+  | Windows cmd              | MAC TERMINAL          |
+  | ------------------------ | --------------------- |
+  | ![](./pic/hello1win.png) | ![](./pic/hello1.png) |
 
 - 程式區塊計時
 
@@ -138,7 +138,12 @@ python script.py --run {your.cpp}
   }//計時結束
   ```
 
-  ![](./pic/hello2.png)
+  | Windows CMD              |
+  | ------------------------ |
+  | ![](./pic/hello2win.png) |
+  | MAC TERMINAL             |
+  | ![](./pic/hello2.png)    |
+
 
 
 
@@ -156,7 +161,10 @@ python script.py --run {your.cpp}
   print_utf8(_cxxstr2);
   ```
 
-  ![](./pic/hello3.png)
+  | WINDOWS CMD              | Mac terminal          |
+  | ------------------------ | --------------------- |
+  | ![](./pic/hello3win.png) | ![](./pic/hello3.png) |
+
 
 
 
