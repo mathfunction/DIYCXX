@@ -7,8 +7,8 @@
 ### 專案概述
 
  - 這是嘗試讓 C++ 一些易用好開發的函式庫 ~  
- - **headfile-only**  都在 ./include/ 只需要 #include\<cxxuseful\>  in yourfile
-- 詳細用法可見 ./example/hello.cpp
+ - **headfile-only**  都在 include/* 只需要 #include\<cxxuseful\>  in yourfile
+- 詳細用法可見 example/hello.cpp
 - 作者: Fuyuan Cheng 
 - 更新日期: 2020.04.10 
 
