@@ -14,7 +14,7 @@ if __name__ == '__main__':
 			# 編譯腳本 !!
 			cmds = [
 				"g++",
-				"-std=c++14",
+				"-std=c++11",
 				"-O3",
 				"-o",
 				cppname.split(".cpp")[0],
