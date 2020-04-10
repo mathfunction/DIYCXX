@@ -1,10 +1,13 @@
-/*-------------------------------
-	source code :
+/*===================================
+	實作參考 :
 		https://www.youtube.com/watch?v=oEx5vGNFrLk
----------------------------------*/
+- 用法如下，可以測量以下 block 程式執行時間 !! 
 
+{
+	Timer t("block1");
+}
 
-
+=====================================*/
 
 #ifndef __TIMER_HPP__
 #define __TIMER_HPP__
@@ -18,25 +21,6 @@ namespace cxxuseful{
 	using namespace std;
 	
 	
-	/*
-	class Timer{
-		
-		public:
-			chrono::time_point<chrono::steady_clock> start,end;
-			chrono::duration<float> duration;
-			string program_name;
-		Timer(string program_name){
-			this->program_name = program_name;
-			start = chrono::high_resolution_clock::now();
-		}//end_Timer
-		~Timer(){
-			end = chrono::high_resolution_clock::now();
-			duration = end-start;
-			cerr << program_name << " tooks " << duration.count()*1000.0f << " ms" << endl;
-		}
-		
-	};*/
-
 	class TimerBaseClocker{
 		public:
 			TimerBaseClocker(){ m_start = -1;}

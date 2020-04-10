@@ -1,3 +1,30 @@
+/*==================================================================================
+
+	print( something )
+	
+	目前 something 支援格式如下:
+		
+		- basic_string
+			basic_string<int>
+			basic_string<double>
+		- vector
+			vector<int>
+			vector<double>
+			vector< pair<string,double> >
+		
+		- unordered_map
+			unordered_map<string,string>
+			unordered_map<string,double>
+			unordered_map<string,int>
+			unordered_map<int,int>
+			unordered_map<int,double>
+		-list
+			list<string>
+
+
+
+===========================================================================*/
+
 
 #ifndef __PRINTFUNC_HPP__
 #define __PRINTFUNC_HPP__

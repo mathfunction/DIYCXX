@@ -2,9 +2,9 @@
 
 	這是關於隨機亂數產生器 !! 
 		
-		unif_int(_size,min)  隨機產生 [min,min+_size) 之間的整數
-		draw_one_at_a_time(_dist,_drawsize,_boolPrint) 
-			逐一從 _dist 分布抽出 _drawsize 東西
+		- unif_int(_size,min)  隨機產生 [min,min+_size) 之間的整數
+		- draw_one_at_a_time(_dist,_drawsize,_boolPrint,_boolReplacement) 
+			逐一從 _dist 離散分布(unoredered_map<string,int>) 抽出 _drawsize 個東西  , _boolReplacement = true 代表取後放回 !!
 		
 
 

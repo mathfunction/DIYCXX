@@ -1,7 +1,15 @@
-/*---------------------------------------------------------------------------
-last update : 2019.07
-You can use those subroutines to print colorful message in Windows Command Line    
-----------------------------------------------------------------------------*/
+/*====================================================================================
+	C++ 跨平台 ( windows / linux / mac ) 支援列印顏色在終端機:
+		newline == true 代表換行 !!
+		
+		printYellow(_str,_newline)
+		printRed(_str,_newline)
+		printBlue(_str,_newline)
+		printBlueGreen(_str,_newline)
+		printPurple(_str,_newline)
+		printGray(_str,_newline)
+		printGold(_str,_newline)
+========================================================================================*/
 #ifndef __CMDCOLOR_HPP__
 #define __CMDCOLOR_HPP__
 

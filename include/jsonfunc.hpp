@@ -1,8 +1,12 @@
 /*=============================================================================== 
-	JSON for Modern C++ / single_include https://github.com/nlohmann/json
-	#include "json.hpp"
-	using json = nlohmann::json;
-===============================================================================*/
+	底層需依賴第三方 : JSON for Modern C++ / single_include https://github.com/nlohmann/json
+
+	
+ -  jsonfunc.read("xxx.json")  可以回傳 json 物件
+ -  jsonfunc.todict<T,S>(j) 可以回傳 key = T , value = S 的 unordered_map
+=================================================================================*/
+
+
 
 #ifndef __JSONFUNC_HPP__
 #define __JSONFUNC_HPP__
@@ -27,6 +31,9 @@ namespace cxxuseful{
 
 
 };
+
+
+
 
 
 #endif
