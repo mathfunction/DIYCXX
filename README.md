@@ -59,7 +59,7 @@ python script.py --run {your.cpp}
 | ------------------ | ----------------------------------- | ----------------------------------- |
 | cxxuseful.hpp     | -    | 關於此專案所有 header 引用(包含 STL,Boost,DIY) |
 | boost_includes.hpp | - | 關於此專案會需要用到的 boost 函式庫 |
-| printfunc.hpp      | print | 列印 STL 結構實用程序               |
+| printfunc.hpp      | print | 列印結構相關           |
 | cmdcolor.hpp       | printXXX | 關於在終端機上顯示彩色字串 XXX = { Red , Yellow , Blue , Green ...} |
 | jsonfunc.hpp | jsonfc | json 處理相關 |
 | randomfunc.hpp | randfc | 亂數產生模擬相關 |

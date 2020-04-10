@@ -12,8 +12,8 @@
 #define __JSONFUNC_HPP__
 
 namespace cxxuseful{
-	
-	
+	using json = nlohmann::json;
+	using namespace std;
 	class JsonFunc{
 		public:
 			json read(string jsonfile){

@@ -16,6 +16,7 @@
 
 
 namespace cxxuseful{
+	using namespace std;
 	class StrHandler{
 		public:
 			string operator()(const vector<string> &v,string delimiter="_",string title="[Key]"){

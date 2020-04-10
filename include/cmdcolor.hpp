@@ -22,6 +22,7 @@
 
 namespace cxxuseful{
 	namespace cmdcolor{
+		using namespace std;
 		// ------------------   windows ----------------------------- 
 		#if defined _WIN32 || defined _WIN64 
 			HANDLE _CMDCOLOR_=GetStdHandle(STD_OUTPUT_HANDLE);

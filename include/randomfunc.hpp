@@ -16,7 +16,7 @@
 
 
 namespace cxxuseful{
-
+	using namespace std;
 	class RandomFunc{
 		private:
 			unsigned seed;

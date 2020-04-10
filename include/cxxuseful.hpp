@@ -28,11 +28,8 @@
 #include "boost_includes.hpp"
 // JSON for Modern C++ / single_include https://github.com/nlohmann/json
 #include "json.hpp"
-using json = nlohmann::json;
-using namespace std;
-
-
 // =============================================================================
+// 全域函式
 namespace cxxuseful{
 	template<typename T> T type(const BoostAny &val){
 		return boost::any_cast<T>(val);
@@ -54,6 +51,7 @@ namespace cxxuseful{
 #include "timer.hpp"
 #include "jsonfunc.hpp"
 #include "strhandler.hpp"
+#include "otherfunc.hpp"
 
 //==============================================================================
 

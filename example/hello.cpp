@@ -18,7 +18,7 @@ int main(){
 
 	//===============================================
 	// makestr
-	string _str = shlr({2,0.123456,"I'm String"},"_","[head]");
+	string _str = shlr({1,0.123,"456"},"_","X");
 	cout << _str << endl;
 	//================================================
 	// print
@@ -36,7 +36,7 @@ int main(){
 	print(_dictBastr);
 	
 
-	print(mkdict.cumulative({
+	print(otherfc.cumulative({
 		{"a",0.5},
 		{"b",0.3},
 		{"c",0.2}
