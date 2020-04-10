@@ -18,7 +18,7 @@ int main(){
 
 	//===============================================
 	// makestr
-	string _str = makestr({2,0.123456,"I'm String"},"_","[head]");
+	string _str = mkstr({2,0.123456,"I'm String"},"_","[head]");
 	cout << _str << endl;
 	//================================================
 	// print
@@ -36,7 +36,7 @@ int main(){
 	print(_dictBastr);
 	
 
-	print(todict.cumulative({
+	print(mkdict.cumulative({
 		{"a",0.5},
 		{"b",0.3},
 		{"c",0.2}
@@ -44,8 +44,8 @@ int main(){
 
 	//==================================================
 	// randomfunc
-	cout << "toss-coin : " << randomfunc.unif_int(2) << endl;
-	cout << makestr(randomfunc.draw_one_at_a_time({{"a",8},{"b",5}},10,true)) << endl;
+	cout << "toss-coin : " << randfc.unif_int(2) << endl;
+	cout << makestr(randfc.draw_one_at_a_time({{"a",8},{"b",5}},10,true)) << endl;
 	//==================================================
 
 

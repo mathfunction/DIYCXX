@@ -1,10 +1,10 @@
-#ifndef __TODICTFUNC_HPP__
-#define __TODICTFUNC_HPP__
+#ifndef __MAKEDICTFUNC_HPP__
+#define __MAKEDICTFUNC_HPP__
 
 
 namespace cxxuseful{
 	
-	class ToDictFunc{
+	class MakeDictFunc{
 		
 		public: 
 			BoostAny operator()(const basic_string<int> &v){return handleList<int>(v);}
@@ -32,7 +32,7 @@ namespace cxxuseful{
 				}//endfor
 				return _dict;
 			} 
-	} todict;
+	} mkdict;
 
 };
 
