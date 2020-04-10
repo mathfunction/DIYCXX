@@ -1,9 +1,19 @@
-### 專案概述 [ 開發中!! ]
+### DIYCXX 專案概述 [ 開發中!! ]
 
  - 這是嘗試讓 C++ 一些易用好開發的函式庫 ~  
- - **headfile-only**  都在 include/* 只需要 #include\<cxxuseful\>  in yourfile
+
+ - **headfile-only**  都在 include/*  (用法可以看各 .hpp 註解)
+
+   ```c++
+   #include<cxxuseful>
+   using namespace cxxuseful;
+   /* your codes */
+   ```
+
 - 詳細用法可見 example/hello.cpp
+
 - 作者: Plus & Minus
+
 - 更新日期: 2020.04.10 
 
 ### 測試環境 (作業系統 / **終端機** / 編譯器)
