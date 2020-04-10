@@ -34,12 +34,16 @@ $$
 
   ![](./pic/3party.png)
 
+  
+
 - 第三方函式庫資訊:
 
   | 函式數名                                                     | 資料夾/檔名   | 用途                |
   | ------------------------------------------------------------ | ------------- | ------------------- |
   | [boost](<https://www.boost.org/>)                            | boost_X_X_X/* | 可視為 STL 擴展函式 |
 | [json](<https://github.com/nlohmann/json/tree/develop/single_include/nlohmann>) | json.hpp      | 處理 json 結構      |
+
+
 
 
 
@@ -160,20 +164,9 @@ python script.py --run {your.cpp}
   		}//endif
   }//endfor
   print_utf8(_cxxstr2);
-```
-  
+  ```
   | WINDOWS CMD  預設 Big5(950) | Mac terminal          |
   | --------------------------- | --------------------- |
   | ![](./pic/hello3win.png)    | ![](./pic/hello3.png) |
-
-
-
-
-
-
-
-
-
-
 
 
