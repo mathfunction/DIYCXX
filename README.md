@@ -40,7 +40,6 @@ $$
   | ------------------------------------------------------------ | ------------- | ------------------- |
   | [boost](<https://www.boost.org/>)                            | boost_X_X_X/* | 可視為 STL 擴展函式 |
 | [json](<https://github.com/nlohmann/json/tree/develop/single_include/nlohmann>) | json.hpp      | 處理 json 結構      |
-  
 
 
 
