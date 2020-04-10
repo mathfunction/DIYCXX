@@ -18,7 +18,7 @@ int main(){
 
 	//===============================================
 	// makestr
-	string _str = mkstr({2,0.123456,"I'm String"},"_","[head]");
+	string _str = shlr({2,0.123456,"I'm String"},"_","[head]");
 	cout << _str << endl;
 	//================================================
 	// print
@@ -45,7 +45,7 @@ int main(){
 	//==================================================
 	// randomfunc
 	cout << "toss-coin : " << randfc.unif_int(2) << endl;
-	cout << mkstr(randfc.draw_one_at_a_time({{"a",8},{"b",5}},10,true)) << endl;
+	cout << shlr(randfc.draw_one_at_a_time({{"a",8},{"b",5}},10,true)) << endl;
 	//==================================================
 
 

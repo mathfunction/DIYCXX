@@ -50,7 +50,6 @@ namespace cxxuseful{
 #include "cmdcolor.hpp"
 #include "printfunc.hpp"
 #include "makedictfunc.hpp"
-#include "makestrfunc.hpp"
 #include "randomfunc.hpp"
 #include "timer.hpp"
 #include "jsonfunc.hpp"

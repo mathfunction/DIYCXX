@@ -61,9 +61,7 @@ python script.py --run {your.cpp}
 | boost_includes.hpp | - | 關於此專案會需要用到的 boost 函式庫 |
 | printfunc.hpp      | print | 列印 STL 結構實用程序               |
 | cmdcolor.hpp       | printXXX | 關於在終端機上顯示彩色字串 XXX = { Red , Yellow , Blue , Green ...} |
-| makestrfunc.hpp   | mkstr | 建立字串實用程序                    |
-| makedictfunc.hpp | mkdict | STL結構 轉換成 HashTable 實用程序   |
-| jsonfunc.hpp | jsonfc | 處裡 json 相關 |
+| jsonfunc.hpp | jsonfc | json 處理相關 |
 | randomfunc.hpp | randfc | 亂數產生模擬相關 |
 | strhandler.hpp | shlr | 字串輔助相關 |
 | timer.hpp | - |程式計時相關|
