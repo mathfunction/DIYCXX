@@ -17,7 +17,7 @@ int main(){
 	printPurple("purple",true);
 
 	//===============================================
-	// makestr
+	// shlr
 	string _str = shlr({1,0.123,"456"},"_","X");
 	cout << _str << endl;
 	//================================================
@@ -30,7 +30,7 @@ int main(){
 	print(_vec);
 	print(_dict);
 	//================================================
-	// todict
+	// makedictfunc
 	basic_string<int> _bas({2,3,4,5,6,7,8});
 	auto _dictBastr = type<unordered_map<int,int> >(mkdict(_bas));
 	print(_dictBastr);
@@ -47,9 +47,7 @@ int main(){
 	cout << "toss-coin : " << randfc.unif_int(2) << endl;
 	cout << shlr(randfc.draw_one_at_a_time({{"a",8},{"b",5}},10,true)) << endl;
 	//==================================================
-
-
-	//====================================================
+	
 	
 	// timer
 	{

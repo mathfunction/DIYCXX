@@ -25,9 +25,9 @@ namespace cxxuseful{
 			template<typename T,typename S> unordered_map<T,S> todict(json &j){
 				unordered_map<T,S> d = j;
 				return d;
-			} 
+			}
 
-	} jsonfunc;
+	} jsonfc;
 
 
 };
