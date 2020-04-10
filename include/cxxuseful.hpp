@@ -51,7 +51,7 @@ namespace cxxuseful{
 #include "timer.hpp"
 #include "jsonfunc.hpp"
 #include "strhandler.hpp"
-#include "utf8string.hpp"
+#include "utf8str.hpp"
 #include "otherfunc.hpp"
 
 //==============================================================================

@@ -1,9 +1,10 @@
 /*==================================================================
+  utf8 本質為 vector<string>
   print_utf8(_str) 可以正確地把中文印出來 (跨平台)
-  utf8(_str) 回傳出 vector<string> , 每一個 index 代表一個 UTF8 字元
+  s2u8(_str) 回傳出 vector<string> , 每一個 index 代表一個 UTF8 字元
 ====================================================================*/
-#ifndef __UTF8_STRING_HPP__
-#define __UTF8_STRING_HPP__
+#ifndef __UTF8STR_HPP__
+#define __UTF8STR_HPP__
 
 #if defined _WIN32 || defined _WIN64
 	#include<windows.h>
@@ -14,8 +15,10 @@
 
 //==============================================================================
 namespace cxxuseful{
-	using namespace std;		
-	inline vector<string> utf8(const string& str){
+	using namespace std;
+	typedef vector<string> utf8;
+
+	inline utf8 s2u8(const string& str){
 		vector<string> vc;
 		for(int i=0;i<str.size();i++){
 			int c = (unsigned char) str[i];
@@ -40,7 +43,7 @@ namespace cxxuseful{
 
 
 	// utf8 encoding
-	void print_utf8(const vector<string> &vc){
+	void print_utf8(const utf8 &vc){
 		#if defined _WIN32 || defined _WIN64
 			SetConsoleOutputCP(65001); // 調到 utf8 模式
 		#endif

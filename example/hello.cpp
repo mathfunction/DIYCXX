@@ -4,8 +4,6 @@ using namespace cxxuseful;
 
 
 
-
-
 int main(){
 	//================================================
 	// cmdcolor
@@ -48,7 +46,6 @@ int main(){
 	cout << shlr(randfc.draw_one_at_a_time({{"a",8},{"b",5}},10,true)) << endl;
 	//==================================================
 	
-	
 	// timer
 	{
 		Timer timer("test");
@@ -58,16 +55,16 @@ int main(){
 		cerr << endl;
 
 	}
-
-	
-	string _cxxstr = "C++中文處理真的很麻煩，超級難!!!!最後是用 UTF-8 切中字串 u8len() 變成 vector<string> !!";
-	vector<string> u8str = utf8(_cxxstr);
-	for(int i=0;i<u8str.size();i++){
-		if(u8str[i] == "中"){
-			u8str[i] = "英";
+	//=============================================================================================================
+	// utf8 
+	string _cxxstr = "C++中文處理真的很麻煩，超級難⁉⁉最後是用 UTF-8 切中字串 u8len() 變成 vector<string> 😅 ";
+	utf8 _cxxstr2 = s2u8(_cxxstr);
+	for(int i=0;i<_cxxstr2.size();i++){
+		if(_cxxstr2[i] == "中"){
+			_cxxstr2[i] = "英";
 		}//endif
 	}//endfor
-	print_utf8(u8str); // 在 windows 下有 bug 
+	print_utf8(_cxxstr2);
 	return 0;
 	
 }//end_main
