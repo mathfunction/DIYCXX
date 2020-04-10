@@ -24,9 +24,9 @@ $$
 
 ### 測試環境 (作業系統 / **終端機** / 編譯器)
 
-- windows 10 ,  g++ (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 8.1.0
-- ubuntu18.04 from wsl (windows subsystem for linux)  g++ 4.8.5
-- mac os  , Apple LLVM version 10.0.0 (clang-1000.10.44.4)
+- Windows10  g++ (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 8.1.0  ([CodeBlocks](http://www.codeblocks.org/) 20.03)
+- ubuntu18.04 from wsl (windows subsystem for linux)  ([GNU](https://gcc.gnu.org/)  g++ 4.8.5)
+- mac os  , Apple LLVM version 10.0.0 (clang-1000.10.44.4)  ([Xcode](https://developer.apple.com/xcode/) 10)
 
 ### 函式庫需求(預先安裝)
 
@@ -147,9 +147,10 @@ python script.py --run {your.cpp}
 
 
 
-- utf8 中文處理/顯示   (註: IDE/文字編輯器 需要為 utf8編碼 )
+- utf8 中文處理/顯示   
 
   ```cpp
+  // 註: IDE/文字編輯器 , 觀看 hello.cpp 需要為 utf8編碼 
   string _cxxstr = "C++中文處理真的很麻煩，超級難⁉⁉最後是用 UTF-8 切中字串 u8len() 變成 vector<string> 😅 ";
   utf8 _cxxstr2 = s2u8(_cxxstr); // utf8 本質上為 vector<string>
   // 把字串裡的"中"字改成"英"
@@ -159,11 +160,11 @@ python script.py --run {your.cpp}
   		}//endif
   }//endfor
   print_utf8(_cxxstr2);
-  ```
-
-  | WINDOWS CMD              | Mac terminal          |
-  | ------------------------ | --------------------- |
-  | ![](./pic/hello3win.png) | ![](./pic/hello3.png) |
+```
+  
+  | WINDOWS CMD  預設 Big5(950) | Mac terminal          |
+  | --------------------------- | --------------------- |
+  | ![](./pic/hello3win.png)    | ![](./pic/hello3.png) |
 
 
 
