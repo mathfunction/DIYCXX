@@ -41,7 +41,8 @@ $$
   | 函式數名                                                     | 資料夾/檔名   | 用途                |
   | ------------------------------------------------------------ | ------------- | ------------------- |
   | [boost](<https://www.boost.org/>)                            | boost_X_X_X/* | 可視為 STL 擴展函式 |
-| [json](<https://github.com/nlohmann/json/tree/develop/single_include/nlohmann>) | json.hpp      | 處理 json 結構      |
+  | [json](<https://github.com/nlohmann/json/tree/develop/single_include/nlohmann>) | json.hpp      | 處理 json 結構      |
+  |                                                              |               |                     |
 
 
 
@@ -86,7 +87,7 @@ python script.py --run {your.cpp}
 
 ### 範例:  hello.cpp
 
-- 終端機顯示彩色 string (尚未支援中文)
+- 終端機顯示彩色 string 
 
   ```cpp
   printRed("red",true);
@@ -165,8 +166,26 @@ python script.py --run {your.cpp}
   }//endfor
   print_utf8(_cxxstr2);
   ```
-  | WINDOWS CMD  預設 Big5(950) | Mac terminal          |
+  | Windows cmd  預設 Big5(950) | Mac terminal          |
   | --------------------------- | --------------------- |
   | ![](./pic/hello3win.png)    | ![](./pic/hello3.png) |
 
+- 讀 json 檔 (./example/politics.json)
 
+  ```cpp
+  json j;
+  j = jsonfc.read("./example/politics.json");
+  cout << j << endl; // 原始 json.hpp 功能 !!
+  unordered_map<string,string> cov = jsonfc.dict<string,string>(j["衛生組織"]); 
+  vector<string> who = jsonfc.list<string>(j["肺炎"]);
+  vector<int> sicks = jsonfc.list<int>(j["武漢起始數據"]["累積確診人數"]);
+  print(cov);
+  print(who);
+  print(sicks);
+  ```
+
+  | Windows cmd | Mac terminal          |
+  | ----------- | --------------------- |
+  |             | ![](./pic/hello4.png) |
+
+  
