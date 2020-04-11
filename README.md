@@ -25,7 +25,13 @@ $$
 ### 測試環境 (作業系統 / **終端機** / 編譯器)
 
 - Windows10  g++ (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 8.1.0  ([CodeBlocks](http://www.codeblocks.org/) 20.03)
+
+  ​	- [如何讓 CodeBlocks g++ 在 windows cmd 呼叫得到 ??](https://www.youtube.com/watch?v=9aHXNGrpTuM)
+
 - ubuntu18.04 from wsl (windows subsystem for linux)  ([GNU](https://gcc.gnu.org/)  g++ 4.8.5)
+
+  ​	[-如何在 windows 上安裝 wsl 來得到 linux 系統??](https://blog.miniasp.com/post/2019/02/01/Useful-tool-WSL-Windows-Subsystem-for-Linux)
+
 - mac os  , Apple LLVM version 10.0.0 (clang-1000.10.44.4)  ([Xcode](https://developer.apple.com/xcode/) 10)
 
 ### 函式庫需求(預先安裝)
@@ -41,8 +47,6 @@ $$
   | [boost](<https://www.boost.org/>)                            | boost_X_X_X/* | 可視為 STL 擴展函式 |
   | [json](<https://github.com/nlohmann/json/tree/develop/single_include/nlohmann>) | json.hpp      | 處理 json 結構      |
   |                                                              |               |                     |
-
-
 
 
 
@@ -176,7 +180,7 @@ python script.py --run {your.cpp}
   //===========================================
   // Windows cmd 轉到 utf8 模式
   #if defined _WIN32 || defined _WIN64
-  	SetConsoleOutputCP(65001); 
+  	SetConsoleOutputCP(65001); //詳細可參考 https://blog.darkthread.net/blog/command-prompt-codepage/
   #endif
   cout << j << endl; // 原始 json.hpp 功能 !!
   #if defined _WIN32 || defined _WIN64
