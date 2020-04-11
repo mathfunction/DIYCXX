@@ -76,13 +76,22 @@ int main(){
 		 j = jsonfc.read("./politics.json"); 
 	}//end_try
 	
-	cout << j << endl; // 原始 json.hpp 功能 !!
+	#if defined _WIN32 || defined _WIN64
+		SetConsoleOutputCP(65001); 
+	#endif
+		cout << j << endl;
+	#if defined _WIN32 || defined _WIN64
+		SetConsoleOutputCP(950); 
+	#endif
+	
 	unordered_map<string,string> cov = jsonfc.dict<string,string>(j["衛生組織"]); 
 	vector<string> who = jsonfc.list<string>(j["肺炎"]);
 	vector<int> sicks = jsonfc.list<int>(j["武漢起始數據"]["累積確診人數"]);
+	
 	print(cov);
 	print(who);
-	print(sicks);
+	print(sicks);	
+	
 
 
 	return 0;

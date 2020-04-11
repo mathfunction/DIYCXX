@@ -1,6 +1,10 @@
 /*==================================================================
   utf8 本質為 vector<string>
-  print_utf8(_str) 可以正確地把中文印出來 (跨平台)
+  print_utf8( something ) 可以正確地把中文印出來 (跨平台)
+	目前 something 支援格式如下: 
+		vector<string>
+	
+
   s2u8(_str) 回傳出 vector<string> , 每一個 index 代表一個 UTF8 字元
 ====================================================================*/
 #ifndef __UTF8STR_HPP__
@@ -42,7 +46,7 @@ namespace cxxuseful{
 
 
 
-	// utf8 encoding
+	// ======================================================================================
 	void print_utf8(const utf8 &vc){
 		#if defined _WIN32 || defined _WIN64
 			SetConsoleOutputCP(65001); // 調到 utf8 模式
@@ -63,6 +67,10 @@ namespace cxxuseful{
 			SetConsoleOutputCP(950); // 預設 Big5
 		#endif
 	}//end_printutf8
+
+	
+
+
 };
 
 #endif

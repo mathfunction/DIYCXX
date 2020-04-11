@@ -60,21 +60,33 @@ namespace cxxuseful{
 
 				template<class T,class S>
 				void handleDict(const unordered_map<T,S> &v){
+					#if defined _WIN32 || defined _WIN64
+							SetConsoleOutputCP(65001);
+					#endif
 					printYellow("{",true);
 					for(auto &k:v){
 						cerr << "\t" << k.first << " : " ;
 						printYellow(to_string(k.second),true);
 					}//endfor
 					printYellow("}",true);
+					#if defined _WIN32 || defined _WIN64
+						SetConsoleOutputCP(950); 
+					#endif
 				}//end_handleDict
 
 				void handleDict(const unordered_map<string,string> &v){
+					#if defined _WIN32 || defined _WIN64
+						SetConsoleOutputCP(65001); 
+					#endif
 					printYellow("{",true);
 					for(auto &k:v){
 						cerr << "\t" << k.first << " : " ;
 						printYellow(k.second,true);
 					}//endfor
 					printYellow("}",true);
+					#if defined _WIN32 || defined _WIN64
+						SetConsoleOutputCP(950); 
+					#endif
 				}//end_
 				// handle list
 				void handleList(const list<string> &v){
@@ -114,12 +126,18 @@ namespace cxxuseful{
 
 
 				void handleList(const vector<string> &v){
+					#if defined _WIN32 || defined _WIN64
+						SetConsoleOutputCP(65001); 
+					#endif
 					printYellow("[",true);
 					for(int i=0;i<v.size();i++){
 						cerr << "\t" << i << " : " ;
 						printYellow(v[i],true);
 					}//endfor
 					printYellow("]",true);
+					#if defined _WIN32 || defined _WIN64
+						SetConsoleOutputCP(950); 
+					#endif
 				}//end_
 
 

@@ -34,8 +34,6 @@ $$
 
   ![](./pic/3party.png)
 
-  
-
 - 第三方函式庫資訊:
 
   | 函式數名                                                     | 資料夾/檔名   | 用途                |
@@ -175,7 +173,17 @@ python script.py --run {your.cpp}
   ```cpp
   json j;
   j = jsonfc.read("./example/politics.json");
+  //===========================================
+  // Windows cmd 轉到 utf8 模式
+  #if defined _WIN32 || defined _WIN64
+  	SetConsoleOutputCP(65001); 
+  #endif
   cout << j << endl; // 原始 json.hpp 功能 !!
+  #if defined _WIN32 || defined _WIN64
+  	SetConsoleOutputCP(950); 
+  #endif
+  // Windows cmd 轉回預設模式
+  //============================================
   unordered_map<string,string> cov = jsonfc.dict<string,string>(j["衛生組織"]); 
   vector<string> who = jsonfc.list<string>(j["肺炎"]);
   vector<int> sicks = jsonfc.list<int>(j["武漢起始數據"]["累積確診人數"]);
@@ -184,8 +192,6 @@ python script.py --run {your.cpp}
   print(sicks);
   ```
 
-  | Windows cmd | Mac terminal          |
-  | ----------- | --------------------- |
-  |             | ![](./pic/hello4.png) |
-
-  
+  | Windows cmd              | Mac terminal          |
+  | ------------------------ | --------------------- |
+  | ![](./pic/hello4win.png) | ![](./pic/hello4.png) |
