@@ -65,6 +65,25 @@ int main(){
 		}//endif
 	}//endfor
 	print_utf8(_cxxstr2);
-	return 0;
+
+	//===============================================================================================================
+	// json
+	json j;
+	try{
+		 j = jsonfc.read("./example/politics.json");
+	}catch(const char* e){
+		 // 如果路徑在 examples 裡
+		 j = jsonfc.read("./politics.json"); 
+	}//end_try
 	
+	cout << j << endl; // 原始 json.hpp 功能 !!
+	unordered_map<string,string> cov = jsonfc.dict<string,string>(j["衛生組織"]); 
+	vector<string> who = jsonfc.list<string>(j["肺炎"]);
+	vector<int> sicks = jsonfc.list<int>(j["武漢起始數據"]["累積確診人數"]);
+	print(cov);
+	print(who);
+	print(sicks);
+
+
+	return 0;
 }//end_main

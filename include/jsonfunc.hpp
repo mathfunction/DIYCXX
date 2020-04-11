@@ -3,7 +3,8 @@
 
 	
  -  jsonfunc.read("xxx.json")  可以回傳 json 物件
- -  jsonfunc.todict<T,S>(j) 可以回傳 key = T , value = S 的 unordered_map
+ -  jsonfunc.dict<T,S>(j) 可以回傳 key = T , value = S 的 unordered_map
+ -  jsonfunc.list<T>(j)  value = T 的 list
 =================================================================================*/
 
 
@@ -22,10 +23,16 @@ namespace cxxuseful{
 				i >> j;
 				return j;
 			}//endread
-			template<typename T,typename S> unordered_map<T,S> todict(json &j){
+			template<typename T,typename S> unordered_map<T,S> dict(json &j){
 				unordered_map<T,S> d = j;
 				return d;
 			}
+			template<typename T> vector<T> list(json &j){
+				vector<T> v = j;
+				return j;
+			}
+
+
 
 	} jsonfc;
 
