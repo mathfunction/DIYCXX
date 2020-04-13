@@ -185,7 +185,7 @@ python script.py --run {your.cpp}
   string wintrick(const string& str){
   	return " \b"+str;
   }
-  // 步驟2. 調整模式至 utf8 (65001) 在調回預設(950) , 實作在 printfunc.hpp
+  // 步驟2. 調整模式至 utf8 (65001),cout 後,再調回預設(950) , 實作在 printfunc.hpp
   void print(const &str){
       #if defined _WIN32 || defined _WIN64
           SetConsoleOutputCP(65001); 
