@@ -1,10 +1,26 @@
 /*=====================================================================================
+	
+	u8string.hpp   (utf8 中文字串)
+	
+	// init
+		u8string s("中文"); 宣告 ;
+		u8string("中文") 建構式;
+	// assignment 
+		s = "中文"
+		s("中文")
+	// 列印字串
+		void s.print() 
+		
+	// 取得字串長度
+		int s.size()
 
-
-
-
-
-
+	// ngram
+	vector<u8string> s.ngram(2) 
+	
+	
+	// split
+	vector<u8string> v = s.split(u8string(","))
+	u8string u8string(",").join(v)
 
 
 
@@ -19,7 +35,6 @@
 
 
 ========================================================================================*/
-
 
 
 
@@ -167,7 +182,7 @@ namespace cxxuseful{
 					if ((this->operator()(i,i+dn)) == delimiter){
 						output.push_back(this->operator()(_idx,i));
 						_idx = i+dn;
-						i+=dn;
+						i +=(dn-1);
 					}//endif
 				}//endfor
 				output.push_back(this->operator()(_idx,m));
@@ -175,7 +190,22 @@ namespace cxxuseful{
 			}//end_split
 			
 
-	
+			vector<u8string> split(const string &delimiter){
+				vector<u8string> output;
+				int n = this->size();
+				int dn = delimiter.size();
+				int m = n-dn+1;
+				int _idx = 0;
+				for(int i=0;i<m;i++){
+					if ((this->operator()(i,i+dn)) == delimiter){
+						output.push_back(this->operator()(_idx,i));
+						_idx = i+dn;
+						i+=(dn-1);
+					}//endif
+				}//endfor
+				output.push_back(this->operator()(_idx,m));
+				return output;
+			}//end_split
 
 
 
