@@ -185,7 +185,7 @@ namespace cxxuseful{
 						i +=(dn-1);
 					}//endif
 				}//endfor
-				output.push_back(this->operator()(_idx,m));
+				output.push_back(this->operator()(_idx,n));
 				return output;
 			}//end_split
 			
@@ -203,7 +203,7 @@ namespace cxxuseful{
 						i+=(dn-1);
 					}//endif
 				}//endfor
-				output.push_back(this->operator()(_idx,m));
+				output.push_back(this->operator()(_idx,n));
 				return output;
 			}//end_split
 

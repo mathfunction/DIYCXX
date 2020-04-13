@@ -111,43 +111,32 @@ int main(){
 	s1(3).print();
 	// ngram 測試
 	v = s1.ngram(2);
-	v[0].print();
-	v[1].print();
-	v[2].print();
+	print(v);
 
-	// 測試相等 !! 
-	s1 = "那個";
-	if(s1=="那個"){
-		s1.print();
-	}
-
-	s1 = "這個";
-	if(s1=="這個"){
-		s1.print();
-	}
-
-	s1("我知道");
-
-	s2 = "我知道";
-	if(s1 == s2){
-		cout << "==" << endl;
-	}else{
-		cout << "!=" << endl;
-	}
 	// join 字串
-	s1 = u8(",").join({u8("我看"),u8("要去"),u8("哪?")});
+	s1 = u8(",").join({u8("我正要去"),u8("空中大學"),u8("!!")});
 	s1.print();
 
-
-	s1("我看看!知道什麼!到底要知道什麼!!知道");
+	// split 字串
+	s1("我看看!知道什麼!到底要知道什麼!!知道什麼不知道!知道最好!!看!");
 	s1.print();
 	v = s1.split("!");
 	print(v);
+	v = s1.split(u8("知道"));
+	print(v);
+	v = s1.split(u8("知道最好"));
+	print(v);
 	v = s1.split(u8("知"));
 	print(v);
+	v = s1.split(u8("看"));
+	print(v);
+
 	s1 = u8("測試").join(v);
 	s1.print();
-	cout << s1.size() << endl;
+	
+
+	
+
 
 	return 0;
 }//end_main
