@@ -59,6 +59,16 @@ namespace cxxuseful{
 				void operator()(const unordered_map<int,int> &v){printGreen("unordered_map<int,int>",true);return handleDict<int,int>(v);}//end
 				void operator()(const unordered_map<int,double> &v){printGreen("unordered_map<int,double>",true);return handleDict<int,double>(v);}//end
 				void operator()(const list<string> &v){printGreen("unordered_map<int,double>",true);return handleList(v);}
+				void operator()(const string &str){
+					#if defined _WIN32 || defined _WIN64
+						SetConsoleOutputCP(65001); 
+					#endif
+					cout << wintrick(str) << endl;
+					#if defined _WIN32 || defined _WIN64
+						SetConsoleOutputCP(950); 
+					#endif
+				}
+				
 			private:
 
 				template<class T,class S>
@@ -69,7 +79,7 @@ namespace cxxuseful{
 					printYellow("{",true);
 					for(auto &k:v){
 						cerr << "\t"  << k.first << " : " ;
-						printYellow(wins(to_string(k.second)),true);
+						printYellow(wintrick(to_string(k.second)),true);
 					}//endfor
 					printYellow("}",true);
 					#if defined _WIN32 || defined _WIN64
@@ -83,8 +93,8 @@ namespace cxxuseful{
 					#endif
 					printYellow("{",true);
 					for(auto &k:v){
-						cerr << "\t" << " \b"+k.first << " : " ;
-						printYellow(wins(k.second),true);
+						cerr << "\t" << wintrick(k.first) << " : " ;
+						printYellow(wintrick(k.second),true);
 					}//endfor
 					printYellow("}",true);
 					#if defined _WIN32 || defined _WIN64
@@ -111,7 +121,7 @@ namespace cxxuseful{
 					printYellow("[",true);
 					for(int i=0;i<v.size();i++){
 						cerr << "\t" << i << " : " ;
-						printYellow(wins(to_string(v[i])),true);
+						printYellow(wintrick(to_string(v[i])),true);
 					}//endfor
 					printYellow("]",true);
 				}//end_
@@ -122,7 +132,7 @@ namespace cxxuseful{
 					printYellow("[",true);
 					for(int i=0;i<v.size();i++){
 						cerr << "\t" << i << " : " ;
-						printYellow(wins(to_string(v[i])),true);
+						printYellow(wintrick(to_string(v[i])),true);
 					}//endfor
 					printYellow("]",true);
 				}//end_
@@ -135,7 +145,7 @@ namespace cxxuseful{
 					printYellow("[",true);
 					for(int i=0;i<v.size();i++){
 						cerr << "\t" << i << " : " ;
-						printYellow(wins(v[i]),true);
+						printYellow(wintrick(v[i]),true);
 					}//endfor
 					printYellow("]",true);
 					#if defined _WIN32 || defined _WIN64

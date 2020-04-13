@@ -88,7 +88,7 @@ int main(){
 	print(who);
 	print(sicks);	
 	
-
+	
 
 	return 0;
 }//end_main

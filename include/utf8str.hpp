@@ -7,7 +7,7 @@
 
   s2u8(_str) 回傳出 vector<string> , 每一個 index 代表一個 UTF8 字元
   u8s2(_str) vector<string> ---> string 
-  wins 在 windows cmd  正確輸出 trick " \b"
+  wintrick 在 windows cmd  正確輸出 trick " \b"
 ====================================================================*/
 #ifndef __UTF8STR_HPP__
 #define __UTF8STR_HPP__
@@ -47,10 +47,23 @@ namespace cxxuseful{
 	}//end_utf8
 
 
+	inline string u82s(const utf8 &v){
+		string output = "";
+		for(int i=0;i<v.size();i++){
+			output += v[i];
+		}//endfor
+		return output;
+	}//end_utf8
+
+
+
 	// 在 windows cmd  輸出的保險輸出
-	string wins(const string& str){
+	string wintrick(const string& str){
 		return " \b"+str;
 	}
+
+
+
 
 	// ======================================================================================
 	void print_utf8(const utf8 &vc){
@@ -62,7 +75,7 @@ namespace cxxuseful{
 			cout << "\t" << i << " : " ;
 			#if defined _WIN32 || defined _WIN64
 				// bug windows_cmd 加入 dummy 空格+退格
-				cout << wins(vc[i]);
+				cout << wintrick(vc[i]);
 			#else
 				cout << vc[i];
 			#endif 
@@ -74,6 +87,8 @@ namespace cxxuseful{
 		#endif
 	}//end_printutf8
 
+
+	
 	
 
 

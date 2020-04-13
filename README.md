@@ -1,8 +1,10 @@
 ### DIYCXX 專案概述 
 
-$$
-\bf 開發階段中～函式名稱，結構隨時有可能改變，僅供參考 !!
-$$
+=============================================================
+
+開發階段中～函式名稱，結構隨時有可能改變，僅供參考 !!
+
+=============================================================
 
  - 作者: Plus & Minus
 
@@ -55,7 +57,7 @@ $$
 直接透過 g++
 
 ```shell
-g++ -std=c++14 -O3 -o {your.cpp} -I"{yourpath}/include/" -I"{yourpath}/thirdparty/{project_name}"
+g++ -std=c++11 -O3 -o {your.cpp} -I"{yourpath}/include/" -I"{yourpath}/thirdparty/{project_name}"
 ```
 
 或是透過 python 腳本編譯+試跑，
@@ -172,6 +174,29 @@ python script.py --run {your.cpp}
   | --------------------------- | --------------------- |
   | ![](./pic/hello3win.png)    | ![](./pic/hello3.png) |
 
+  ====================================================================================
+
+  Trick 筆記 :  windows  cmd 保險輸出中文(UTF8)方法
+
+  ====================================================================================
+
+  ```cpp
+  // 步驟1. 在 windows cmd 字串前面加入 "空格退格" , 實作在 utf8str.hpp
+  string wintrick(const string& str){
+  	return " \b"+str;
+  }
+  // 步驟2. 調整模式至 utf8 (65001) 在調回預設(950) , 實作在 printfunc.hpp
+  void print(const &str){
+      #if defined _WIN32 || defined _WIN64
+          SetConsoleOutputCP(65001); 
+      #endif
+      cout << wintrick(str) << endl;
+      #if defined _WIN32 || defined _WIN64
+          SetConsoleOutputCP(950); 
+      #endif
+  }
+  ```
+
 - 讀 json 檔 (./example/politics.json)
 
   ```cpp
@@ -189,3 +214,4 @@ python script.py --run {your.cpp}
   | Windows cmd              | Mac terminal          |
   | ------------------------ | --------------------- |
   | ![](./pic/hello4win.png) | ![](./pic/hello4.png) |
+
