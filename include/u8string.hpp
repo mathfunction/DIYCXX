@@ -21,7 +21,18 @@
 	// split
 	vector<u8string> v = s.split(u8string(","))
 	u8string u8string(",").join(v)
+	
 
+	// strip
+
+
+	// rstrip
+
+
+	// lstrip
+
+
+	
 
 
 
@@ -173,6 +184,9 @@ namespace cxxuseful{
 			
 			
 			vector<u8string> split(const u8string &delimiter){
+				if (delimiter.v.size() == 0){
+					return this->ngram(1);
+				}//endif
 				vector<u8string> output;
 				int n = this->size();
 				int dn = delimiter.v.size();
@@ -190,7 +204,10 @@ namespace cxxuseful{
 			}//end_split
 			
 
-			vector<u8string> split(const string &delimiter){
+			vector<u8string> split(const string &delimiter=""){
+				if (delimiter.size() == 0){
+					return this->ngram(1);
+				}//endif
 				vector<u8string> output;
 				int n = this->size();
 				int dn = delimiter.size();
@@ -206,6 +223,8 @@ namespace cxxuseful{
 				output.push_back(this->operator()(_idx,n));
 				return output;
 			}//end_split
+
+
 
 
 
