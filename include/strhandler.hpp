@@ -13,7 +13,6 @@
 #ifndef __STRHANDLER_HPP__
 #define __STRHANDLER_HPP__
 
-
 namespace cxxuseful{
 	using namespace std;
 	class StrHandler{
@@ -54,6 +53,13 @@ namespace cxxuseful{
 				return string(1,c);
 			}
 			
+
+
+			
+
+
+
+
 	} shlr;
 };
 #endif

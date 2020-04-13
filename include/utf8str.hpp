@@ -43,7 +43,7 @@ namespace cxxuseful{
 			     break;
 			}//end_else
 		}//endfor
-			return vc;
+		return vc;
 	}//end_utf8
 
 
@@ -55,15 +55,10 @@ namespace cxxuseful{
 		return output;
 	}//end_utf8
 
-
-
 	// 在 windows cmd  輸出的保險輸出
 	string wintrick(const string& str){
 		return " \b"+str;
 	}
-
-
-
 
 	// ======================================================================================
 	void print_utf8(const utf8 &vc){
@@ -86,10 +81,12 @@ namespace cxxuseful{
 			SetConsoleOutputCP(950); // 預設 Big5
 		#endif
 	}//end_printutf8
-
+	
 
 	
-	
+
+
+
 
 
 };
