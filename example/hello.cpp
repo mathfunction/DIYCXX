@@ -90,46 +90,61 @@ int main(){
 	
 	//======================================================================================================================
 	// u8string
-	u8string("_______這是 u8string_測試_________").print();
-	u8string u("中國");
-	u8string u2("武漢");
+
+	typedef u8string u8;
+
+	u8("_______這是 u8string_測試_________").print();
+	u8 s1("中國");
+	u8 s2("武漢");
+	vector<u8> v;
 	// concat 測試 !!
-	(u+u2).print();
-	(u2+"肺炎").print();
-	(u+u2+"肺炎").print();
-	(u+"的"+u2).print();
+	(s1+s2).print();
+	(s2+"肺炎").print();
+	(s1+s2+"肺炎").print();
+	(s1+"的"+s2).print();
 
 	
-	u = "1二3四5六";
+	s1 = "1二3四5六";
 	// 子字串測試
-	u(1,-1).print();
-	u(2,4).print();
+	s1(1,-1).print();
+	s1(2,4).print();
+	s1(3).print();
 	// ngram 測試
-	vector<u8string> ngramv = u.ngram(2);
-	ngramv[0].print();
-	ngramv[1].print();
-	ngramv[2].print();
+	v = s1.ngram(2);
+	v[0].print();
+	v[1].print();
+	v[2].print();
 
-
-	u2 = "那個";
-	if(u2=="那個"){
-		u2.print();
+	// 測試相等 !! 
+	s1 = "那個";
+	if(s1=="那個"){
+		s1.print();
 	}
 
-	u2 = "這個";
-	if(u2=="這個"){
-		u2.print();
+	s1 = "這個";
+	if(s1=="這個"){
+		s1.print();
 	}
 
-	u8string u3("我知道");
+	s1("我知道");
 
-	u2 = "我知道";
-	if(u2 == u3){
+	s2 = "我知道";
+	if(s1 == s2){
 		cout << "==" << endl;
 	}else{
 		cout << "!=" << endl;
 	}
+	// join 字串
+	s1 = u8(",").join({u8("我看"),u8("要去"),u8("哪?")});
+	s1.print();
 
+	s1("我看看知道什麼到底要知道什麼!!知道");
+	s1.print();
+	v = s1.split(u8("知道"));
+	print(v);
+	s1 = u8("測試").join(v);
+	s1.print();
+	cout << s1.size() << endl;
 
 	return 0;
 }//end_main

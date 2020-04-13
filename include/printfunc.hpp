@@ -29,7 +29,7 @@
 #ifndef __PRINTFUNC_HPP__
 #define __PRINTFUNC_HPP__
 
-#include "utf8str.hpp"
+#include "u8string.hpp"
 
 
 namespace cxxuseful{
@@ -60,6 +60,20 @@ namespace cxxuseful{
 				void operator()(const unordered_map<int,int> &v){printGreen("unordered_map<int,int>",true);return handleDict<int,int>(v);}//end
 				void operator()(const unordered_map<int,double> &v){printGreen("unordered_map<int,double>",true);return handleDict<int,double>(v);}//end
 				void operator()(const list<string> &v){printGreen("unordered_map<int,double>",true);return handleList(v);}
+				
+				
+				void operator()(const vector<u8string> &v){
+					printYellow("[",true);
+					#if defined _WIN32 || defined _WIN64
+						SetConsoleOutputCP(65001); 
+						for(int i=0;i<v.size();i++){
+							cout << "\t" <<  i << " : " <<  wintrick(v[i].str)  << endl;
+						}
+						SetConsoleOutputCP(950); 
+					#endif
+					printYellow("]",true);
+				}
+
 				void operator()(const string &str){
 					#if defined _WIN32 || defined _WIN64
 						SetConsoleOutputCP(65001); 

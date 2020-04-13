@@ -72,6 +72,13 @@ namespace cxxuseful{
 			}
 
 			// substr
+
+			u8string& operator()(const string &_str){
+				str = _str;
+				v = s2u8(str);
+				return *this; 
+			}
+
 			u8string operator()(int first,int end){
 				utf8 v2;
 				if(end == -1){
@@ -82,6 +89,13 @@ namespace cxxuseful{
 				}//endfor
 				return u8string(u82s(v2));
 			}
+
+
+			u8string operator()(int idx){
+				return u8string(v[idx]);
+			}
+
+
 
 			// concat 
 			u8string operator+(const u8string& _u8str2){
@@ -127,18 +141,41 @@ namespace cxxuseful{
 				return true;				
 			}
 
-			
-			vector<u8string> split(const u8string & delimiter){
-				vector<u8string> output;
 
-				return output;
-			}//end_split
 
 
 			u8string join(const vector<u8string> &u8vec){
-				u8string output;
-				return output;
+				string output;
+				int n = u8vec.size();
+				for(int i=0;i<n;i++){
+					output+= u8vec[i].str;
+					if(i<n-1){
+						output += this->str;
+					}//endif
+				}//endfor
+				return u8string(output);
 			}//end_join
+			
+			
+			vector<u8string> split(const u8string &delimiter){
+				vector<u8string> output;
+				int n = this->size();
+				int dn = delimiter.v.size();
+				int m = n-dn+1;
+				int _idx = 0;
+				for(int i=0;i<m;i++){
+					if ((this->operator()(i,i+dn)) == delimiter){
+						output.push_back(this->operator()(_idx,i));
+						_idx = i+dn;
+						i+=dn;
+					}//endif
+				}//endfor
+				output.push_back(this->operator()(_idx,m));
+				return output;
+			}//end_split
+			
+
+	
 
 
 
