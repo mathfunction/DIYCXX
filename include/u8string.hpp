@@ -74,6 +74,9 @@ namespace cxxuseful{
 			// substr
 			u8string operator()(int first,int end){
 				utf8 v2;
+				if(end == -1){
+					end = this->size();
+				}//endif
 				for(int k=first;k<end;k++){
 					v2.push_back(v[k]);
 				}//endfor
@@ -89,9 +92,53 @@ namespace cxxuseful{
 			}
 
 
-			
-			
+			// ngram
+			vector<u8string> ngram(int n=2){
+				vector<u8string> output;
+				int m = this->size()-n+1;
+				for(int i=0;i<m;i++){
+					output.push_back(this->operator()(i,i+n));
+				}//endfor
+				return output;
+			}//end_ngram
 
+			bool operator==(const u8string& _u8str2){
+				if(this->size() != _u8str2.v.size()){
+					return false;
+				}//endif
+				for(int i=0;i<_u8str2.v.size();i++){
+					if(this->v[i] != _u8str2.v[i]){
+						return false;
+					}//endif
+				}//endfor
+				return true;
+			}
+
+			bool operator==(const string& _str){
+				u8string _u8str2(_str);
+				if(this->size() != _u8str2.v.size()){
+					return false;
+				}//endif
+				for(int i=0;i<_u8str2.v.size();i++){
+					if(this->v[i] != _u8str2.v[i]){
+						return false;
+					}//endif
+				}//endfor
+				return true;				
+			}
+
+			
+			vector<u8string> split(const u8string & delimiter){
+				vector<u8string> output;
+
+				return output;
+			}//end_split
+
+
+			u8string join(const vector<u8string> &u8vec){
+				u8string output;
+				return output;
+			}//end_join
 
 
 

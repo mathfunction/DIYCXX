@@ -90,15 +90,45 @@ int main(){
 	
 	//======================================================================================================================
 	// u8string
-	u8string("_______這是_u8string_測試_________").print();
+	u8string("_______這是 u8string_測試_________").print();
 	u8string u("中國");
 	u8string u2("武漢");
+	// concat 測試 !!
 	(u+u2).print();
 	(u2+"肺炎").print();
 	(u+u2+"肺炎").print();
 	(u+"的"+u2).print();
 
+	
+	u = "1二3四5六";
+	// 子字串測試
+	u(1,-1).print();
+	u(2,4).print();
+	// ngram 測試
+	vector<u8string> ngramv = u.ngram(2);
+	ngramv[0].print();
+	ngramv[1].print();
+	ngramv[2].print();
 
+
+	u2 = "那個";
+	if(u2=="那個"){
+		u2.print();
+	}
+
+	u2 = "這個";
+	if(u2=="這個"){
+		u2.print();
+	}
+
+	u8string u3("我知道");
+
+	u2 = "我知道";
+	if(u2 == u3){
+		cout << "==" << endl;
+	}else{
+		cout << "!=" << endl;
+	}
 
 
 	return 0;
