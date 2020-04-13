@@ -29,12 +29,15 @@
 #ifndef __PRINTFUNC_HPP__
 #define __PRINTFUNC_HPP__
 
+#include "utf8str.hpp"
+
 
 namespace cxxuseful{
 	using namespace std;
 	using namespace cmdcolor;
 	class PrintFunc{
 			public:
+
 				void operator()(const vector< pair<string,double> > &v){
 					printGreen("vector<pair<string,double> >",true);
 					printYellow("[",true);
@@ -65,8 +68,8 @@ namespace cxxuseful{
 					#endif
 					printYellow("{",true);
 					for(auto &k:v){
-						cerr << "\t" << k.first << " : " ;
-						printYellow(to_string(k.second),true);
+						cerr << "\t"  << k.first << " : " ;
+						printYellow(wins(to_string(k.second)),true);
 					}//endfor
 					printYellow("}",true);
 					#if defined _WIN32 || defined _WIN64
@@ -80,8 +83,8 @@ namespace cxxuseful{
 					#endif
 					printYellow("{",true);
 					for(auto &k:v){
-						cerr << "\t" << k.first << " : " ;
-						printYellow(k.second,true);
+						cerr << "\t" << " \b"+k.first << " : " ;
+						printYellow(wins(k.second),true);
 					}//endfor
 					printYellow("}",true);
 					#if defined _WIN32 || defined _WIN64
@@ -108,7 +111,7 @@ namespace cxxuseful{
 					printYellow("[",true);
 					for(int i=0;i<v.size();i++){
 						cerr << "\t" << i << " : " ;
-						printYellow(to_string(v[i]),true);
+						printYellow(wins(to_string(v[i])),true);
 					}//endfor
 					printYellow("]",true);
 				}//end_
@@ -119,7 +122,7 @@ namespace cxxuseful{
 					printYellow("[",true);
 					for(int i=0;i<v.size();i++){
 						cerr << "\t" << i << " : " ;
-						printYellow(to_string(v[i]),true);
+						printYellow(wins(to_string(v[i])),true);
 					}//endfor
 					printYellow("]",true);
 				}//end_
@@ -132,7 +135,7 @@ namespace cxxuseful{
 					printYellow("[",true);
 					for(int i=0;i<v.size();i++){
 						cerr << "\t" << i << " : " ;
-						printYellow(v[i],true);
+						printYellow(wins(v[i]),true);
 					}//endfor
 					printYellow("]",true);
 					#if defined _WIN32 || defined _WIN64

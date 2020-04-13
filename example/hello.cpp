@@ -76,13 +76,9 @@ int main(){
 		 j = jsonfc.read("./politics.json"); 
 	}//end_try
 	
-	#if defined _WIN32 || defined _WIN64
-		SetConsoleOutputCP(65001); 
-	#endif
-		cout << j << endl;
-	#if defined _WIN32 || defined _WIN64
-		SetConsoleOutputCP(950); 
-	#endif
+	
+	// cout << j << endl;   
+	
 	
 	unordered_map<string,string> cov = jsonfc.dict<string,string>(j["衛生組織"]); 
 	vector<string> who = jsonfc.list<string>(j["肺炎"]);
