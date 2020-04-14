@@ -252,6 +252,9 @@ typedef u8string u8;
 | windows cmd                | Mac Terminal |
 | -------------------------- | ------------ |
 | ![](./pic/hello_u8win.png) |              |
+|                            |              |
+
+
 
 - 讀 json 檔 (./example/politics.json)
 
