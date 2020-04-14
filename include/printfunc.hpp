@@ -70,6 +70,10 @@ namespace cxxuseful{
 							cout << "\t" <<  i << " : " <<  wintrick(v[i].str)  << endl;
 						}
 						SetConsoleOutputCP(950); 
+					#else
+						for(int i=0;i<v.size();i++){
+							cout << "\t" <<  i << " : " <<  v[i].str  << endl;
+						}
 					#endif
 					printYellow("]",true);
 				}

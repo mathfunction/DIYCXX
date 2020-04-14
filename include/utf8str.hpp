@@ -28,17 +28,13 @@
 	// ngram
 	vector<u8string> s.ngram(2) 
 	
-	
 	// split
 	vector<u8string> v = s.split(u8string(","))
 	u8string u8string(",").join(v)
 	
-
 	// strip
-
 	
 	// rstrip
-
 
 	// lstrip
 	
@@ -117,6 +113,8 @@ namespace cxxuseful{
 			SetConsoleOutputCP(950); // 預設 Big5
 		#endif
 	}//end_printutf8
+	
+
 	// ======================================================================================
 	// 主要物件 !! 
 	// ======================================================================================

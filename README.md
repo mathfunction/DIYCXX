@@ -84,7 +84,7 @@ python script.py --run {your.cpp}
 | jsonfunc.hpp | jsonfc | json 處理相關 |
 | randomfunc.hpp | randfc | 亂數產生模擬相關 |
 | strhandler.hpp | shlr | 字串輔助相關 |
-| utf8str.hpp| - | unicode , 中文字串切割相關|
+| utf8str.hpp| utf8 , u8string | utf8  中文字串處理相關 |
 | otherfunc.hpp| otherfc |已實作但無法分類區|
 
 
@@ -197,11 +197,65 @@ python script.py --run {your.cpp}
   }
   ```
 
+- u8string 實用物件，中文處理/顯示 !! 
+
+  ```cpp
+  typedef vector<string> utf8;
+  class u8string{
+     utf8 v;   // 切割過後的 vector<string> , v = s2u8(str) 
+     string str; // 原始字串  
+  };
+  ```
+
+
+
+  ```cpp
+  typedef u8string u8;
+  
+  u8("_______這是 u8string_測試_________").print();
+  u8 s1("中國");
+  u8 s2("武漢");
+  
+  // concat 測試 !!
+  (s1+s2).print();
+  (s2+"肺炎").print();
+  (s1+s2+"肺炎").print();
+  (s1+"的"+s2).print();
+  	
+  s1 = "1二3四5六";
+  // 子字串測試 (-1 代表 s1.size()-1)
+  s1(1,-1).print();
+  s1(2,4).print();
+  s1(3).print();
+  
+  // join 字串
+  s1 = u8(",").join({u8("我正要去"),u8("空中大學"),u8("!!")});
+  s1.print();
+  
+  // split 字串
+  vector<u8> v;
+  s1("!看我看看!知道什麼!到底要知道什麼!!知道什麼不知道!知道最好!!看!");
+  s1.print();
+  v = s1.ngram(3);
+  print(v);
+  v = s1.split("!");
+  print(v);
+  v = s1.split(u8("知道"));
+  print(v);
+  s1 = u8("測試").join(v);
+  s1.print();
+  
+  ```
+
+  | windows cmd | Mac Terminal |
+  | ----------- | ------------ |
+  | ![]()       |              |
+
 - 讀 json 檔 (./example/politics.json)
 
   ```cpp
   json j;
-  j = jsonfc.read("./example/politics.json");
+  j = jsonfc.read("./example/politics.json"); // 註:此路徑為寫死 !!
   // cout << j << endl;  // 有的 windows cmd 會有 bug !!
   unordered_map<string,string> cov = jsonfc.dict<string,string>(j["衛生組織"]); 
   vector<string> who = jsonfc.list<string>(j["肺炎"]);

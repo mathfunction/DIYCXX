@@ -69,12 +69,7 @@ int main(){
 	//===============================================================================================================
 	// json
 	json j;
-	try{
-		 j = jsonfc.read("./example/politics.json");
-	}catch(const char* e){
-		 // 如果路徑在 examples 裡
-		 j = jsonfc.read("./politics.json"); 
-	}//end_try
+	j = jsonfc.read("./example/politics.json");
 	
 	
 	// cout << j << endl;   
@@ -96,7 +91,6 @@ int main(){
 	u8("_______這是 u8string_測試_________").print();
 	u8 s1("中國");
 	u8 s2("武漢");
-	vector<u8> v;
 	// concat 測試 !!
 	(s1+s2).print();
 	(s2+"肺炎").print();
@@ -116,19 +110,12 @@ int main(){
 
 
 	// split 字串
+	vector<u8> v;
 	s1("!看我看看!知道什麼!到底要知道什麼!!知道什麼不知道!知道最好!!看!");
 	s1.print();
 	v = s1.ngram(3);
 	print(v);
-	v = s1.split();
-	print(v);
 	v = s1.split("!");
-	print(v);
-	v = s1.split(u8("知道最好"));
-	print(v);
-	v = s1.split(u8("知"));
-	print(v);
-	v = s1.split(u8("看"));
 	print(v);
 	v = s1.split(u8("知道"));
 	print(v);
