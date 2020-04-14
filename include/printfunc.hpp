@@ -29,7 +29,7 @@
 #ifndef __PRINTFUNC_HPP__
 #define __PRINTFUNC_HPP__
 
-#include "utf8string.hpp"
+#include "utf8str.hpp"
 
 
 namespace cxxuseful{
