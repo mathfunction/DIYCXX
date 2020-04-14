@@ -211,41 +211,41 @@ python script.py --run {your.cpp}
 
 
   ```cpp
-// hello.cpp  
-typedef u8string u8;
-  
-  u8("_______這是 u8string_測試_________").print();
-  u8 s1("中國");
-  u8 s2("武漢");
-  
-  // concat 測試 !!
-  (s1+s2).print();
-  (s2+"肺炎").print();
-  (s1+s2+"肺炎").print();
-  (s1+"的"+s2).print();
-  	
-  s1 = "1二3四5六";
-  // 子字串測試 (-1 代表 s1.size()-1)
-  s1(1,-1).print();
-  s1(2,4).print();
-  s1(3).print();
-  
-  // join 字串
-  s1 = u8(",").join({u8("我正要去"),u8("空中大學"),u8("!!")});
-  s1.print();
-  
-  // split 字串
-  vector<u8> v;
-  s1("!看我看看!知道什麼!到底要知道什麼!!知道什麼不知道!知道最好!!看!");
-  s1.print();
-  v = s1.ngram(3);
-  print(v);
-  v = s1.split("!");
-  print(v);
-  v = s1.split(u8("知道"));
-  print(v);
-  s1 = u8("測試").join(v);
-  s1.print();
+    // hello.cpp  
+    typedef u8string u8;
+
+      u8("_______這是 u8string_測試_________").print();
+      u8 s1("中國");
+      u8 s2("武漢");
+
+      // concat 測試 !!
+      (s1+s2).print();
+      (s2+"肺炎").print();
+      (s1+s2+"肺炎").print();
+      (s1+"的"+s2).print();
+
+      s1 = "1二3四5六";
+      // 子字串測試 (-1 代表 s1.size()-1)
+      s1(1,-1).print();
+      s1(2,4).print();
+      s1(3).print();
+
+      // join 字串
+      s1 = u8(",").join({u8("我正要去"),u8("空中大學"),u8("!!")});
+      s1.print();
+
+      // split 字串
+      vector<u8> v;
+      s1("!看我看看!知道什麼!到底要知道什麼!!知道什麼不知道!知道最好!!看!");
+      s1.print();
+      v = s1.ngram(3);
+      print(v);
+      v = s1.split("!");
+      print(v);
+      v = s1.split(u8("知道"));
+      print(v);
+      s1 = u8("測試").join(v);
+      s1.print();
   
   ```
 
