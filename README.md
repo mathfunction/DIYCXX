@@ -200,9 +200,10 @@ python script.py --run {your.cpp}
 - u8string 實用物件，中文處理/顯示 !! 
 
   ```cpp
+  // uft8str.hpp
   typedef vector<string> utf8;
   class u8string{
-     utf8 v;   // 切割過後的 vector<string> , v = s2u8(str) 
+     utf8 v;   // 切割過後的 vector<string>  即 v = s2u8(str) 
      string str; // 原始字串  
   };
   ```
@@ -210,7 +211,8 @@ python script.py --run {your.cpp}
 
 
   ```cpp
-  typedef u8string u8;
+// hello.cpp  
+typedef u8string u8;
   
   u8("_______這是 u8string_測試_________").print();
   u8 s1("中國");
@@ -247,9 +249,9 @@ python script.py --run {your.cpp}
   
   ```
 
-  | windows cmd | Mac Terminal |
-  | ----------- | ------------ |
-  | ![]()       |              |
+| windows cmd                | Mac Terminal |
+| -------------------------- | ------------ |
+| ![](./pic/hello_u8win.png) |              |
 
 - 讀 json 檔 (./example/politics.json)
 
