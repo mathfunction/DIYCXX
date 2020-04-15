@@ -123,8 +123,26 @@ int main(){
 	s1 = u8("測試").join(v);
 	s1.print();
 	
+	//==========================================================================================================================
+	// set
 
-	
+	unordered_map<int,int> dict2 = {
+		{1,1},
+		{3,2},
+		{5,4},
+		{7,5},
+		{9,10},
+		{11,12}
+	};
+	unordered_set<int> _setA = setfunc.keys<int,int>(dict2);
+	print(_setA);
+	unordered_set<int> _setB = setfunc.vals<int,int>(dict2);
+	print(_setB);
+
+	print(setfunc.union2<int>(_setA,_setB));
+	print(setfunc.diff2<int>(_setA,_setB));
+	print(setfunc.diff2<int>(_setB,_setA));
+	print(setfunc.inter2<int>(_setA,_setB));
 
 
 	return 0;

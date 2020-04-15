@@ -53,6 +53,7 @@ namespace cxxuseful{
 #include "strhandler.hpp"
 #include "utf8str.hpp"
 #include "otherfunc.hpp"
+#include "setfunc.hpp"
 
 //==============================================================================
 

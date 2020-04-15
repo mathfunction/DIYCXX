@@ -59,6 +59,8 @@ namespace cxxuseful{
 				void operator()(const unordered_map<string,int> &v){printGreen("unordered_map<string,int>",true);return handleDict<string,int>(v);}//end
 				void operator()(const unordered_map<int,int> &v){printGreen("unordered_map<int,int>",true);return handleDict<int,int>(v);}//end
 				void operator()(const unordered_map<int,double> &v){printGreen("unordered_map<int,double>",true);return handleDict<int,double>(v);}//end
+				void operator()(const unordered_set<int> &s){printGreen("unordered_set<int>",true);return handleSet<int>(s);}
+				//void operator()(const unordered_set<string> &s){printGreen("unordered_set<string>",true);return handleSet<string>(s);}
 				void operator()(const list<string> &v){printGreen("unordered_map<int,double>",true);return handleList(v);}
 				
 				
@@ -89,6 +91,22 @@ namespace cxxuseful{
 				}
 				
 			private:
+				template<class T>
+				void handleSet(const unordered_set<T> &s){
+					#if defined _WIN32 || defined _WIN64
+						SetConsoleOutputCP(65001);
+					#endif
+					printYellow("{",true);
+					for(auto &k:s){
+						cout << "\t";
+						printYellow(wintrick(to_string(k)),true);
+					}//endfor
+					printYellow("}",true);
+					#if defined _WIN32 || defined _WIN64
+						SetConsoleOutputCP(950); 
+					#endif
+				}//end_handleSet
+
 
 				template<class T,class S>
 				void handleDict(const unordered_map<T,S> &v){

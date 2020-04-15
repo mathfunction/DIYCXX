@@ -26,12 +26,26 @@ if __name__ == '__main__':
 
 			]
 			#===================================================================================
+
 			cmd1 = " ".join(cmds)
-			print(cmd1)
+			print("[Cmd] {}".format(cmd1))
 			os.system(cmd1)
 		elif sys.argv[1] == "--run":
+			ENTRANCE_PATH = os.getcwd()
 			cppname = sys.argv[2]
-			os.system(cppname.split(".cpp")[0])
+			
+			TARGET_PATH = os.path.dirname(cppname)
+			EXEFILE = cppname.split(".cpp")[0]
+			
+			print("[GoTo]\t {}".format(TARGET_PATH))
+			print("[Cmd] {}".format(EXEFILE))
+			print("[GoBack]\t {}".format(ENTRANCE_PATH))
+			# 移動到某 .cpp 專案路徑
+			os.chdir(TARGET_PATH)
+			os.system(EXEFILE)
+			# 移動到 DIYCXX 專案路徑
+			os.chdir(ENTRANCE_PATH)
+			
 		else:
 			pass
 
