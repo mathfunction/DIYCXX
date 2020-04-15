@@ -9,12 +9,12 @@ if __name__ == '__main__':
 
 	try:
 		if sys.argv[1] == "--compile":
-			cppname = sys.argv[2]
+			cppname = sys.argv[3]
 			#===================================================================================
 			# 編譯腳本 !!
 			cmds = [
 				"g++",
-				"-std=c++11",
+				"-std={}".format(sys.argv[2]),
 				"-O3",
 				"-o",
 				cppname.split(".cpp")[0],
@@ -26,16 +26,10 @@ if __name__ == '__main__':
 
 			]
 			#===================================================================================
-			for cxxflag in ["-std=c++17","-std=c++14","-std=c++11"]:
-				try:
-					cmds[1] = cxxflag
-					cmd1 = " ".join(cmds)
-					print("[Cmd] {}".format(cmd1))
-					os.system(cmd1)
-					break
-				except:
-					pass
-			#==================================================================================
+			cmd1 = " ".join(cmds)
+			print("[Cmd] {}".format(cmd1))
+			os.system(cmd1)
+		
 		elif sys.argv[1] == "--run":
 			ENTRANCE_PATH = os.getcwd()
 			cppname = sys.argv[2]
@@ -57,5 +51,5 @@ if __name__ == '__main__':
 
 	except Exception as e:
 		print(e)
-		print("--compile [cppfile] ")
+		print("--compile {c++11,c++14,c++17,c++20} [cppfile] ")
 		print("--run [cppfile]")

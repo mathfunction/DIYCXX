@@ -54,16 +54,16 @@
 
 ### 編譯指令 
 
-直接透過 g++
+直接透過 g++  
 
 ```shell
-g++ -std=c++11 -O3 -o {your.cpp} -I"{yourpath}/include/" -I"{yourpath}/thirdparty/{project_name}"
+g++ -std=c++XX -O3 -o {your.cpp} -I"{yourpath}/include/" -I"{yourpath}/thirdparty/{project_name}"
 ```
 
-或是透過 python 腳本編譯+試跑，
+或是透過 python 腳本編譯+試跑，c++XX 代表 {c++11,c++14,c++17,c++2a}
 
 ```shell
-python script.py --compile {your.cpp}
+python script.py --compile c++XX {your.cpp}
 python script.py --run {your.cpp}
 ```
 
