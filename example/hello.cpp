@@ -69,7 +69,7 @@ int main(){
 	//===============================================================================================================
 	// json
 	json j;
-	j = jsonfc.read("./example/politics.json");
+	j = jsonfc.read("politics.json");
 	
 	
 	// cout << j << endl;   

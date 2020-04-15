@@ -260,7 +260,7 @@ python script.py --run {your.cpp}
 
   ```cpp
   json j;
-  j = jsonfc.read("./example/politics.json"); // 註:此路徑為寫死 !!
+  j = jsonfc.read("politics.json"); // 註:此路徑為寫死 !!
   // cout << j << endl;  // 有的 windows cmd 會有 bug !!
   unordered_map<string,string> cov = jsonfc.dict<string,string>(j["衛生組織"]); 
   vector<string> who = jsonfc.list<string>(j["肺炎"]);
