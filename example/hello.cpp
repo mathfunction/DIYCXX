@@ -145,5 +145,22 @@ int main(){
 	print(setfunc.inter2<int>(_setA,_setB));
 
 
+
+	// FilePath !! 
+
+	FilePath f("/mnt/c/Users/XXX/Desktop/怕.jpg");
+	f.print();
+	print(f.tokens());
+	FilePath("C:\\Program Files (x86)\\微軟\\HelloWorld.cpp","\\").print();
+	// 取得此檔案路徑
+	#if defined _WIN32 || defined _WIN64
+		FilePath(__FILE__,"\\").print();
+	#else
+		FilePath(__FILE__).print();
+	#endif
+
+
+
+
 	return 0;
 }//end_main

@@ -13,8 +13,11 @@
 #ifndef __STRHANDLER_HPP__
 #define __STRHANDLER_HPP__
 
+
 namespace cxxuseful{
 	using namespace std;
+
+
 	class StrHandler{
 		public:
 			string operator()(const vector<string> &v,string delimiter="_",string title="[Key]"){
@@ -54,6 +57,7 @@ namespace cxxuseful{
 			}
 			
 
+			
 
 			
 

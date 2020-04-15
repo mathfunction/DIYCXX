@@ -239,7 +239,7 @@ namespace cxxuseful{
 			}//end_join
 			
 			
-			vector<u8string> split(const u8string &delimiter){
+			vector<u8string> split(const u8string &delimiter,bool _boolFull=false){
 				if (delimiter.v.size() == 0){
 					return this->ngram(1);
 				}//endif
@@ -251,6 +251,7 @@ namespace cxxuseful{
 				for(int i=0;i<m;i++){
 					if ((this->operator()(i,i+dn)) == delimiter){
 						output.push_back(this->operator()(_idx,i));
+						if(_boolFull) output.push_back(delimiter);
 						_idx = i+dn;
 						i +=(dn-1);
 					}//endif
@@ -260,23 +261,10 @@ namespace cxxuseful{
 			}//end_split
 			
 
-			vector<u8string> split(const string &delimiter=""){
-				if (delimiter.size() == 0){
-					return this->ngram(1);
-				}//endif
+			vector<u8string> split(const string &delimiter="",bool _boolFull=false){
 				vector<u8string> output;
-				int n = this->size();
-				int dn = delimiter.size();
-				int m = n-dn+1;
-				int _idx = 0;
-				for(int i=0;i<m;i++){
-					if ((this->operator()(i,i+dn)) == delimiter){
-						output.push_back(this->operator()(_idx,i));
-						_idx = i+dn;
-						i+=(dn-1);
-					}//endif
-				}//endfor
-				output.push_back(this->operator()(_idx,n));
+				u8string u8d = u8string(delimiter);
+				output = this->split(u8d,_boolFull);
 				return output;
 			}//end_split
 
@@ -284,7 +272,17 @@ namespace cxxuseful{
 
 	};
 		
-
+	// handle  vector<u8string>
+	u8string substr(const vector<u8string>&u8v,int m,int n){
+		string output;
+		if(n==-1){
+			n = u8v.size()-1;
+		}
+		for(int i=m;i<n;i++){
+			output += u8v[i].str;
+		}//endfor
+		return u8string(output);
+	}
 
 
 

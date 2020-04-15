@@ -54,6 +54,7 @@ namespace cxxuseful{
 #include "utf8str.hpp"
 #include "otherfunc.hpp"
 #include "setfunc.hpp"
+#include "filepath.hpp"
 
 //==============================================================================
 
