@@ -147,13 +147,13 @@ int main(){
 
 
 	// FilePath !! 
-
 	FilePath f("/mnt/c/Users/XXX/Desktop/怕.jpg");
 	f.print();
 	print(f.tokens());
 	FilePath("C:\\Program Files (x86)\\微軟\\HelloWorld.cpp","\\").print();
-	// 取得此檔案路徑
+	
 	#if defined _WIN32 || defined _WIN64
+		// __FILE__ = C macro 取得此檔案的絕對路徑
 		FilePath(__FILE__,"\\").print();
 	#else
 		FilePath(__FILE__).print();

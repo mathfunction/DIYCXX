@@ -85,6 +85,7 @@ python script.py --run {your.cpp}
 | randomfunc.hpp | randfc | 亂數產生模擬相關 |
 | strhandler.hpp | shlr | 字串輔助相關 |
 | utf8str.hpp| utf8 , u8string | utf8  中文字串處理相關 |
+| filepath.hpp| - | 檔案路徑分析 |
 | otherfunc.hpp| otherfc |已實作但無法分類區|
 
 
@@ -274,3 +275,32 @@ python script.py --run {your.cpp}
   | ------------------------ | --------------------- |
   | ![](./pic/hello4win.png) | ![](./pic/hello4.png) |
 
+- 檔案路徑 FilePath()
+
+  ```cpp
+  // filepath.hpp
+  class FilePath{
+      public:
+      	FilePath(const string &_str,string delimiter="/")
+  		vector<u8string> tokens();
+  		string dirname();
+      	string filename();
+  		string type();
+  };
+  
+  // hello.cpp
+  FilePath f("/mnt/c/Users/XXX/Desktop/怕.jpg");
+  f.print();
+  print(f.tokens());
+  FilePath("C:\\Program Files (x86)\\微軟\\HelloWorld.cpp","\\").print();	
+  #if defined _WIN32 || defined _WIN64
+  	// __FILE__ = C macro 取得此檔案的絕對路徑
+  	FilePath(__FILE__,"\\").print();
+  #else
+  	FilePath(__FILE__).print();
+  #endif
+  
+  
+  ```
+
+  ![](./pic/filepath_win.png)

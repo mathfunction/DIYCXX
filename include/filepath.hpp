@@ -48,6 +48,10 @@ namespace cxxuseful{
 				cout << "- type : ";
 				_type.print();
 			}
+			string dirname(){
+				return _dirname.str;
+			}
+			
 			vector<u8string> tokens(){
 				return _tokens;
 			}
