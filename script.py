@@ -26,10 +26,16 @@ if __name__ == '__main__':
 
 			]
 			#===================================================================================
-
-			cmd1 = " ".join(cmds)
-			print("[Cmd] {}".format(cmd1))
-			os.system(cmd1)
+			for cxxflag in ["-std=c++17","-std=c++14","-std=c++11"]:
+				try:
+					cmds[1] = cxxflag
+					cmd1 = " ".join(cmds)
+					print("[Cmd] {}".format(cmd1))
+					os.system(cmd1)
+					break
+				except:
+					pass
+			#==================================================================================
 		elif sys.argv[1] == "--run":
 			ENTRANCE_PATH = os.getcwd()
 			cppname = sys.argv[2]
@@ -51,5 +57,5 @@ if __name__ == '__main__':
 
 	except Exception as e:
 		print(e)
-		print("--compile [cppfile]")
+		print("--compile [cppfile] ")
 		print("--run [cppfile]")
