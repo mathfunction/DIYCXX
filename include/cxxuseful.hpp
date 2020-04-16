@@ -55,6 +55,7 @@ namespace cxxuseful{
 #include "otherfunc.hpp"
 #include "setfunc.hpp"
 #include "filepath.hpp"
+#include "checkinfunc.hpp"
 
 //==============================================================================
 

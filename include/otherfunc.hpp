@@ -20,6 +20,19 @@ namespace cxxuseful{
 						
 			return _output;
 		}//end_cumulative
+
+
+		// vector<string>  to  vector<int>
+		vector<int> vec_s2i(const vector<string> &vs){
+			vector<int> output;
+			for(int i=0;i<vs.size();i++){
+				output.push_back(stoi(vs[i]));
+			}//endfor
+			return output;
+		}//end_vec_s2i
+
+		
+
 	} otherfc;
 
 };
