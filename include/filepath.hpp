@@ -64,9 +64,21 @@ namespace cxxuseful{
 	};
 
 
+	string FileDir(const string &_str){
+		if(_str[0] == '.'){
+			return FilePath(_str,"/").dirname();
+		}else{
+			return FilePath(_str,"\\").dirname();
+		}//end_else
+	}
 
-
-
+	// 回傳引用 (.hpp) 的 main.cpp 的絕對位置!!
+	#ifndef __MainDir__
+		#define __MainDir__ FileDir(__FILE__) 
+	#endif
+	
+	
+	
 
 
 

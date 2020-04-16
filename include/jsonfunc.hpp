@@ -17,7 +17,10 @@ namespace cxxuseful{
 	using namespace std;
 	class JsonFunc{
 		public:
-			json read(string jsonfile){
+			json read(string jsonfile,bool _boolLog=true){
+				if(_boolLog == true){
+					printBlueGreen("[Read] "+jsonfile,true);
+				}
 				ifstream i(jsonfile);
 				json j;
 				i >> j;

@@ -239,6 +239,9 @@ namespace cxxuseful{
 			}//end_join
 			
 			
+
+
+
 			vector<u8string> split(const u8string &delimiter,bool _boolFull=false){
 				if (delimiter.v.size() == 0){
 					return this->ngram(1);
@@ -260,6 +263,7 @@ namespace cxxuseful{
 				return output;
 			}//end_split
 			
+
 
 			vector<u8string> split(const string &delimiter="",bool _boolFull=false){
 				vector<u8string> output;
