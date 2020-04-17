@@ -1,0 +1,36 @@
+<html>
+
+	<script type="text/javascript">
+		
+		let ws = new WebSocket('ws://localhost:8888')
+
+		/*
+		ws.onopen = () => {
+		    console.log('open connection')
+		}
+
+		ws.onclose = () => {
+		    console.log('close connection')
+		}
+		*/
+		
+
+		function sendMessage(){
+			let _str = document.getElementById("input_text").value
+			ws.send(_str)
+			document.getElementById("display").innerHTML = _str
+		}
+
+	</script>
+
+
+    <body>
+       
+        <input type="text" style="width:300px;height:30px;" id="input_text"  value="輸入位置"> 
+        <button type="button" style="width:100px;height:30px;" onclick="sendMessage()"> send </button><br>
+		<hr>       
+       	<span id="display"> [輸出位置] </span>
+       	<hr>
+
+    </body>
+</html>

@@ -56,7 +56,7 @@ namespace cxxuseful{
 #include "setfunc.hpp"
 #include "filepath.hpp"
 #include "checkinfunc.hpp"
-
+#include "socketio.hpp"
 //==============================================================================
 
 #endif 
