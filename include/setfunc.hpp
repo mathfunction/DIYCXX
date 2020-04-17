@@ -40,7 +40,16 @@ namespace cxxuseful{
 				return _output;
 			}//end_values
 
-			
+			template<class T>
+			unordered_set<T> fromlist(const vector<T> &v){
+				unordered_set<T> s;
+				for(int i=0;i<v.size();i++){
+					s.insert(v[i]);
+				}//endfor
+				return s;
+			}
+
+
 			template<class T>
 			unordered_set<T> inter2(const unordered_set<T> &A,const unordered_set<T> &B){
 				unordered_set<T> C;

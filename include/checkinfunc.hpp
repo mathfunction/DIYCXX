@@ -17,6 +17,17 @@ namespace cxxuseful{
 				return idx;
 			}//end_checkin
 
+			// 檢查 A subset B !!
+			template<class T>
+			bool subset(const unordered_set<T> &A,const unordered_set<T> &B){
+				for(auto &a:A){
+					if(B.find(a)==B.end()){
+						return false;
+					}//endif
+				}//endfor 
+				return true;
+			}//end_subset
+
 
 	} checkin;
 
