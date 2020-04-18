@@ -23,6 +23,7 @@
 #include <utility>
 #include <chrono>
 #include <random>
+#include <functional>
 // ===============================================================================
 // third_party 第三方好用函式庫
 #include "boost_includes.hpp"

@@ -1,6 +1,7 @@
 
 
 #include "cxxuseful.hpp"
+
 using namespace cxxuseful;
 
 

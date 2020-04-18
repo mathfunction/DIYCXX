@@ -1,3 +1,7 @@
+/*==========================================
+
+
+============================================= */
 
 
 #ifndef __SOCKETIO_HPP__ 
@@ -5,13 +9,18 @@
 
 
 
+
+
+
 namespace cxxuseful{
 
+	
+
+	
 	class AsioServer{
 		private:
 			string name;
 			int PORT; 
-			
 			
 			
 			string read_from_client(boost::asio::ip::tcp::socket & socket) {  
@@ -38,17 +47,19 @@ namespace cxxuseful{
 
 			void run(){
 				cerr << "Server[" << this->name << "] are running !! " << endl;
-				//==============================================
-				boost::asio::io_service io_service1;
-				boost::asio::ip::tcp::acceptor listener1(io_service1, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(),this->PORT));
-				
 				while(1){
+					//==============================================
+					boost::asio::io_service io_service1;
+					boost::asio::ip::tcp::acceptor listener1(io_service1, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(),this->PORT));
+					
+					
 					boost::asio::ip::tcp::socket socket1(io_service1);
 					listener1.accept(socket1);
 					//=================================================
 					// only serve once then close the soclet
 					string message = read_from_client(socket1);
-					cerr << "read_from_client : " << message << endl;
+					printYellow(message); 
+					cerr << endl;
 					serve_to_client(socket1,message);
 					// ===============================================
 					socket1.close();
@@ -109,7 +120,7 @@ namespace cxxuseful{
 
 
 	};
-
+	
 
 
 
