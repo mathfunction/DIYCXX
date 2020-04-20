@@ -38,6 +38,11 @@ namespace cxxuseful{
 				this->gen = mt19937(this->seed);
 				printGreen("RandomFunc set seed to "+_strSeed,true);
 			}//end_setSeed
+			double unif_real(double min=0,double max=1){
+				uniform_real_distribution<> dist(min,max);
+				return dist(gen);
+			}//end_unif_real
+
 			// [min,min+_size)
 			int unif_int(int _size,int min=0){
 				return min + gen()%_size;
