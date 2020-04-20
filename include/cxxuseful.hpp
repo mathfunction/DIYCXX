@@ -44,7 +44,7 @@ namespace cxxuseful{
 
 // DIY 開發 HPP 
 
-// typefunc project files 
+
 #include "cmdcolor.hpp"
 #include "printfunc.hpp"
 #include "makedictfunc.hpp"
@@ -57,7 +57,7 @@ namespace cxxuseful{
 #include "setfunc.hpp"
 #include "filepath.hpp"
 #include "checkinfunc.hpp"
-#include "socketio.hpp"
+//#include "socketio.hpp"
 //==============================================================================
 
 #endif 
