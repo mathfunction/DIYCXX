@@ -22,8 +22,8 @@ if __name__ == '__main__':
 				"-I\"{}\"".format(os.path.dirname(cppname)),
 				"-I./include/",
 				"-I./thirdparty/boost_1_70_0",
-				"-I./thirdparty/"
-
+                #"-I./thirdparty/websocketpp",
+                "-I./thirdparty/"
 			]
 			#===================================================================================
 			cmd1 = " ".join(cmds)
