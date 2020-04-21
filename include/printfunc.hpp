@@ -62,7 +62,17 @@ namespace cxxuseful{
 				void operator()(const unordered_set<int> &s){printGreen("unordered_set<int>",true);return handleSet<int>(s);}
 				//void operator()(const unordered_set<string> &s){printGreen("unordered_set<string>",true);return handleSet<string>(s);}
 				void operator()(const list<string> &v){printGreen("unordered_map<int,double>",true);return handleList(v);}
-				
+				void operator()(const vector<pair<string,int> > &s){
+					printGreen("vector<pair<string,int> >",true);
+					printYellow("[",true);
+					for(int i=0;i<s.size();i++){
+						cout << "\t" << s[i].first << "," << s[i].second << endl;
+					}//enfor
+					printYellow("]",true);
+				}
+
+
+
 				
 				void operator()(const vector<u8string> &v){
 					printYellow("[",true);

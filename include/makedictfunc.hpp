@@ -1,7 +1,7 @@
 /*======================================================================
 	- mkdict(basic_string<T>) 把一維陣列轉換成 unordered_map  (預設從 0 ,1,2... 開始 , _bool1based== true ==> 從 1,2,3...開始)
-	- mkdict.dist(vector<T>) 把陣列 轉成 個數 unordered<T,int>
-	- mkdict.dual(vector<T>) 把陣列轉成  對應位置 unordered <T,vector<int> >
+	- mkdict.dist(vector<T>) 把陣列 轉成 個數 unordered_map<T,int>
+	- mkdict.dual(vector<T>) 把陣列 轉成  T 對應位置 unordered_map <T,vector<int> >
 =======================================================================*/
 #ifndef __MAKEDICTFUNC_HPP__
 #define __MAKEDICTFUNC_HPP__
@@ -33,6 +33,11 @@ namespace cxxuseful{
 					output[_array[i]].push_back(i);
 				}//endfor
 			}//end_dual
+
+
+
+
+
 			
 		private:
 			template<typename T> BoostAny handleList(const basic_string<T> &v,bool _bool1based=false){
