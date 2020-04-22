@@ -7,9 +7,8 @@ namespace cxxuseful{
 	class DataFrame{
 		private:
 			vector<string> colnames;
-			unordered_map<string,vector<BoostAny> >data;
-			
 		public:
+			unordered_map<string,vector<BoostAny> >data;
 			DataFrame(const vector<string> &colnames){
 				this->colnames = colnames;
 			}//endDataFrame
@@ -43,14 +42,22 @@ namespace cxxuseful{
 				return colnames.size();
 			}//end
 
-			void print(int setw_n=10){
+			vector<BoostAny> operator[](int j){
+				vector<BoostAny> output;
+				for(int i=0;i<colnames.size();i++){
+					output.push_back(data[colnames[i]][j]);
+				}//endfor
+				return output;
+			}
+
+			void print(int l,int u,int setw_n=10){
 				for(int c=0;c<colnames.size();c++){
 					stringstream ss;
 					ss << setw(setw_n) << colnames[c] << " | ";
 					printYellow(ss.str());
 				}
 				cout << endl;
-				for(int r=0;r<rows();r++){
+				for(int r=l;r<u;r++){
 					for(int i=0;i<colnames.size();i++){
 						BoostAny &v = data[colnames[i]][r];
 						if(v.type()==typeid(int)){
@@ -74,6 +81,9 @@ namespace cxxuseful{
 					cout << endl;
 				}//endfor
 			}//end_print
+
+
+			
 
 
 

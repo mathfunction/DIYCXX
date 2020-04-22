@@ -49,6 +49,30 @@ namespace cxxuseful{
 					}//endfor
 					printYellow("]",true);
 				}	
+
+				void operator()(const vector<BoostAny> &v){
+					printGreen("vector<BoostAny>",true);
+					printYellow("[",true);
+					for(int i=0;i<v.size();i++){
+						if(v[i].type()==typeid(int)){
+							cout << "\t" <<  i << " : " << type<int>(v[i]) << endl;
+						}else if(v[i].type()==typeid(const char*)){
+							cout << "\t" <<  i << " : " << type<const char*>(v) << endl;
+						}else if(v[i].type()==typeid(string)){
+							cout << "\t" <<  i << " : " << type<string>(v[i]) << endl;
+						}else if(v[i].type()==typeid(double)){
+							cout << "\t" <<  i << " : " << type<double>(v[i]) << endl;
+						}else if(v[i].type()==typeid(BoostInt)){
+							cout << "\t" <<  i << " : " << type<BoostInt>(v[i]) << endl;
+						}else if(v[i].type()==typeid(BoostFloat)){
+							cout << "\t" <<  i << " : " << type<BoostFloat>(v[i]) << endl;
+						}else if(v[i].type()==typeid(BoostRational)){
+							cout << "\t" <<  i << " : " << type<BoostRational>(v[i]) << endl;
+						}else{
+						}//end_else
+					}//endfor
+					printYellow("]",true);
+				}
 				void operator()(const basic_string<int> &v){printGreen("basic_string<int>",true); return handleList<int>(v);}
 				void operator()(const basic_string<double> &v){printGreen("basic_string<double>",true);return handleList<double>(v);}
 				void operator()(const vector<int> &v){printGreen("vector<int>",true);return handleList<int>(v);}
