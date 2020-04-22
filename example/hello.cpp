@@ -145,7 +145,7 @@ int main(){
 	print(setfunc.inter2<int>(_setA,_setB));
 
 
-
+	//==============================================================================
 	// FilePath !! 
 	FilePath f("/mnt/c/Users/XXX/Desktop/怕.jpg");
 	f.print();
@@ -158,6 +158,25 @@ int main(){
 	#else
 		FilePath(__FILE__).print();
 	#endif
+
+	cout << "DataFrame : " << endl;
+	
+
+
+	//========================================================================
+	// DataFrame
+	DataFrame df({"name","integers","doubles"});
+	df += {"A",1,0.345};
+	df += {"B",4,0.3224};
+	df += {"C",6,0.4554};
+	df += {"BoostInt",BoostInt(1),BoostInt(239293)};  // 
+	df += {"BoostFloat",BoostFloat(2.3209),BoostFloat(2.349034)};
+	df += {"BoostRational",BoostRational(14,16),BoostRational(2,3)};
+	df.print(/*setn=*/20);
+
+
+
+	//========================================================================
 
 
 
