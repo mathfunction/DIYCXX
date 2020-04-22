@@ -50,16 +50,19 @@ namespace cxxuseful{
 				return output;
 			}
 
-			void print(int l,int u,int setw_n=10){
+
+
+			void print(const vector<int> &idxs,int setw_n=10){
 				for(int c=0;c<colnames.size();c++){
 					stringstream ss;
 					ss << setw(setw_n) << colnames[c] << " | ";
 					printYellow(ss.str());
 				}
 				cout << endl;
-				for(int r=l;r<u;r++){
+				for(int j=0;j<idxs.size();j++){
+					if(idxs[j] >= this->rows()) break;
 					for(int i=0;i<colnames.size();i++){
-						BoostAny &v = data[colnames[i]][r];
+						BoostAny &v = data[colnames[i]][idxs[j]];
 						if(v.type()==typeid(int)){
 							cout  << setw(setw_n) << type<int>(v) << " | ";
 						}else if(v.type()==typeid(const char*)){
@@ -83,7 +86,7 @@ namespace cxxuseful{
 			}//end_print
 
 
-			
+
 
 
 

@@ -172,7 +172,7 @@ int main(){
 	df += {"BoostInt",BoostInt(1),BoostInt(239293)};  // 
 	df += {"BoostFloat",BoostFloat(2.3209),BoostFloat(2.349034)};
 	df += {"BoostRational",BoostRational(14,16),BoostRational(2,3)};
-	df.print(/*idxL=*/0,/*idxU=*/df.rows(),/*setn=*/20);
+	df.print({0,1,2,3,4,5},/*setn=*/20);
 
 
 
