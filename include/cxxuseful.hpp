@@ -7,6 +7,7 @@
 
 // STL_Library
 #include <iostream>
+#include <array>
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
@@ -60,6 +61,7 @@ namespace cxxuseful{
 #include "filepath.hpp"
 #include "checkinfunc.hpp"
 #include "dataframe.hpp"
+#include "cxxtensor.hpp"
 //#include "socketio.hpp"
 //==============================================================================
 
