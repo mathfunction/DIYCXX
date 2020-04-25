@@ -175,7 +175,7 @@ int main(){
 	df.print({0,1,2,3,4,5},/*setn=*/20);
 
 	//========================================================================
-	// https://www.mathsisfun.com/algebra/matrix-multiplying.html
+	
 	cxxTensor<int> matA({2,3});
 	matA[{0,0}] = 1;
 	matA[{0,1}] = 2;
@@ -183,15 +183,22 @@ int main(){
 	matA[{1,0}] = 4;
 	matA[{1,1}] = 5;
 	matA[{1,2}] = 6;
-	cxxTensor<int> matB = matA;
+	matA.print();
+	printYellow("_________ reshape ____________",true); 
+	matA.reshape({1,6,1,1});
+	matA.print();
+	matA.reshape({1,3,2});
+	matA.print();
+	matA.reshape({1,6,1});
+	matA.print();
+	matA.reshape({3,2});
+	matA.print();
+	printYellow("__________ transpose __________",true);
+	matA.reshape({1,3,2});
+	cxxTensor<int> matB = matA.transpose({0,2,1});
+	matA.print();
 	matB.print();
-	matB.reshape({6,1});
-	matB.print();
-	matB.reshape({1,3,2});
-	matB.print();
-	matB.reshape({1,6,1});
-	matB.print();
-	
+
 	
 	
 	
