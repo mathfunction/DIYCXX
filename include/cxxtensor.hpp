@@ -8,23 +8,24 @@ namespace cxxuseful{
 	class cxxTensor{
 		private:
 			vector<T> _arr;
-			vector<int>  _shape;
-			vector<int>  _prodshape;
+			basic_string<int>  _shape;
+			basic_string<int>  _prodshape;
+
 			
 			
-
-
 		public:
-			cxxTensor(const vector<int>& _shape){
+			cxxTensor(const basic_string<int>& _shape){
 				this->reshape(_shape);
 			}
-			vector<int> shape(){
+			basic_string<int> shape(){
 				return _shape;
 			}//end
 			int shape(int i){
 				return _shape[i];
 			}
-			cxxTensor& reshape(const vector<int> &_shape){
+
+
+			cxxTensor& reshape(const basic_string<int> &_shape){
 				int _size = 1;
 				int n = _shape.size();
 				this->_prodshape.resize(n);
@@ -32,22 +33,25 @@ namespace cxxuseful{
 					_size *= _shape[n-1-i];
 					this->_prodshape[n-1-i] = _size;
 				}//endfor
-				this->_prodshape.push_back(1);
+				// {IJK,JK,K,1}
+				this->_prodshape += 1;
 				this->_shape = _shape;
 				this->_arr.resize(_size);
 				return *this;
 			}//end_shape
-			inline vector<int> fromIdx(int idx){
-				vector<int> coo;
+
+
+
+			inline basic_string<int> fromIdx(int idx){
+				basic_string<int> coo;
 				int _sum = 0;
 				for(int i=1;i<_prodshape.size();i++){
-					idx -= _sum;
-					coo.push_back(idx/_prodshape[i]);
-					_sum += coo[i-1]*_prodshape[i];
+					coo += (idx/_prodshape[i]);
+					idx -= coo[i-1]*_prodshape[i];
 				}//endfor
 				return coo;
 			}
-			inline int toIdx(const vector<int>& coo){
+			inline int toIdx(const basic_string<int>& coo){
 				int idx = 0;
 				for(int i=0;i<coo.size();i++){
 					idx += (coo[i]*_prodshape[i+1]);
@@ -56,14 +60,17 @@ namespace cxxuseful{
 			}//endfromIdx
 
 
-			cxxTensor transpose(const vector<int> &order){
-				vector<int> _newshape;
+			// reallocate
+			cxxTensor transpose(const basic_string<int> &order){
+				basic_string<int> _newshape;
+				basic_string<int> coo;
+				basic_string<int> rcoo;
+
 				for(int i=0;i<order.size();i++){
-					_newshape.push_back(_shape[order[i]]);
+					_newshape += _shape[order[i]];
 				}
 				cxxTensor _newTensor(_newshape);
-				vector<int> coo;
-				vector<int> rcoo;
+				
 				for(int i=0;i<_arr.size();i++){
 					coo = this->fromIdx(i);
 					rcoo.resize(coo.size());
@@ -84,7 +91,7 @@ namespace cxxuseful{
 			
 
 
-			T& operator[](const vector<int>& coo){
+			T& operator[](const basic_string<int>& coo){
 				return _arr[toIdx(coo)];
 			}
 
@@ -95,7 +102,7 @@ namespace cxxuseful{
 				}//endfor
 				cout << endl;
 				for(int i=0;i<_arr.size();i++){
-					vector<int> coo = fromIdx(i);
+					basic_string<int> coo = this->fromIdx(i);
 					cout << "(";
 					for(int j=0;j<coo.size();j++){
 						cout << coo[j] << ",";

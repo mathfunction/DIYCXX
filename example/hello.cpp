@@ -1,5 +1,6 @@
 
 #include "cxxuseful.hpp"
+
 using namespace cxxuseful;
 
 
@@ -176,31 +177,35 @@ int main(){
 
 	//========================================================================
 	
-	cxxTensor<int> matA({2,3});
-	matA[{0,0}] = 1;
-	matA[{0,1}] = 2;
-	matA[{0,2}] = 3;
-	matA[{1,0}] = 4;
-	matA[{1,1}] = 5;
-	matA[{1,2}] = 6;
+	// create 3 x 4 x 5 matrix 
+	cxxTensor<int> matA({3,4});
+	int _count = 0;
+	for(int i=0;i<matA.shape(0);i++){
+		for(int j=0;j<matA.shape(1);j++){
+			matA[{i,j}] = _count;
+			_count += 1;
+		}//endfor
+	}//endfor
+
+
+
 	matA.print();
 	printYellow("_________ reshape ____________",true); 
-	matA.reshape({1,6,1,1});
+	matA.reshape({3,2,2});
 	matA.print();
-	matA.reshape({1,3,2});
+	matA.reshape({1,3,4});
 	matA.print();
-	matA.reshape({1,6,1});
+	matA.reshape({12,1});
 	matA.print();
-	matA.reshape({3,2});
+	matA.reshape({1,12});
 	matA.print();
 	printYellow("__________ transpose __________",true);
-	matA.reshape({1,3,2});
-	cxxTensor<int> matB = matA.transpose({0,2,1});
+	matA.reshape({3,4});
+	cxxTensor<int> matB = matA.transpose({1,0});
 	matA.print();
 	matB.print();
 
-	
-	
+
 	
 
 
