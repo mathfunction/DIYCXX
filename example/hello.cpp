@@ -222,32 +222,10 @@ int main(){
 	matB.print();
 	
 
-	printGreen("_________ comparsion time _________",true);
+	printYellow("_________ constant _________",true);
 	
-	cxxTensor<int> matC({1000,1000,1000});
-	
-	{
-		Timer t("cxxTensor");
-		for(int i=0;i<matC.shape(0);i++){
-			for(int j=0;j<matC.shape(1);j++){
-				for(int k=0;k<matC.shape(2);k++){
-					matC[{i,j,k}] = i+j+k;
-				}//endfor
-			}//endfor
-		}//endfor
-	}
-
-	int matD[1000][1000][1000];
-	{
-		Timer t("C-static-array");
-		for(int i=0;i<1000;i++){
-			for(int j=0;j<1000;j++){
-				for(int k=0;k<1000;k++){
-					matD[i][j][k] = i+j+k;
-				}//endfor
-			}//endfor
-		}//endfor
-	}
+	cxxTensor<BoostFloat> matC({3,3,3},1.2349034);
+	matC.print();
 	
 
 

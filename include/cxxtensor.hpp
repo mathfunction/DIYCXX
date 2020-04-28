@@ -1,6 +1,6 @@
 /*==================================================================
 	cxxTensor::
-		[]         回傳 _arr 陣列值
+		[{座標}]         回傳 _arr 陣列值
 		dual       回傳一對多 _arr[i] ----> vector(i)
 		shape      顯示形狀
 		reshape    重訂形狀 (值得排列方式不變)
@@ -24,6 +24,7 @@
 #ifndef __CXXTENSOR_HPP__
 #define __CXXTENSOR_HPP__
 
+
 namespace cxxuseful{
 	using namespace std;
 	template <typename T>
@@ -34,17 +35,36 @@ namespace cxxuseful{
 			basic_string<int>  _prodshape;
 			
 			
+			
+		
 		public:
+			// I x J x K ----> (I+1) x J x K
+			cxxTensor& concat(int axis=0){
+
+				return *this;
+			}//end
+
+
 			cxxTensor(const basic_string<int>& _shape){
 				this->reshape(_shape);
 			}
+			cxxTensor(const basic_string<int>& _shape,const T& constant){
+				this->reshape(_shape);
+				for(int i=0;i<_arr.size();i++){
+					_arr[i] = constant;
+				}//endfor
+			}
+
+
 			basic_string<int> shape(){
 				return _shape;
 			}//end
 			int shape(int i){
 				return _shape[i];
 			}
-
+			vector<T>& data(){
+				return _arr;
+			}//end_data
 
 			cxxTensor& reshape(const basic_string<int> &_shape){
 				int _size = 1;
@@ -124,12 +144,12 @@ namespace cxxuseful{
 			int size(){
 				return _arr.size();
 			}//end_size
-			T& operator[](int i){
+			inline T& operator[](int i){
 				return _arr[i];
 			}//end_arr
 			
 
-			T& operator[](const basic_string<int>& coo){
+			inline T& operator[](const basic_string<int>& coo){
 				return _arr[toIdx(coo)];
 			}
 			
@@ -141,10 +161,9 @@ namespace cxxuseful{
 				return output;
 			}//end_ptr 
 
-
-
-
-
+			T* ptr(){
+				return &_arr[0];
+			}
 
 			void print(){
 				cout << "shape : ";
@@ -162,6 +181,9 @@ namespace cxxuseful{
 				}//endfor
 				cout << "--------------------" << endl;
 			}//end_print()
+
+
+
 	};
 
 
