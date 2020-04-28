@@ -178,18 +178,34 @@ int main(){
 	//========================================================================
 	
 	// create 3 x 4 x 5 matrix 
-	cxxTensor<int> matA({3,4});
-	int _count = 0;
+	cxxTensor<int> matA({5,4});
 	for(int i=0;i<matA.shape(0);i++){
 		for(int j=0;j<matA.shape(1);j++){
-			matA[{i,j}] = _count;
-			_count += 1;
+			matA[{i,j}] = i+j;
 		}//endfor
 	}//endfor
 
-
+	printBlueGreen("============= cxxTensor =================",true);
 
 	matA.print();
+	printYellow("__________ dual ____________",true);
+	auto d = matA.dual();
+	vector<int> coo_sum4 = d[4];
+	for(int i=0;i<coo_sum4.size();i++){
+		print(matA.fromIdx(coo_sum4[i]));
+	}//endfor
+
+
+	printYellow("__________ copy ____________",true);
+	cxxTensor<int> cmatA = matA;
+	cmatA.print();
+
+	printYellow("__________ assignments ____________",true);
+	matA[{1,1}] = 2000;
+	matA[{2,3}] = 2000;
+	matA.assign({/*coos=*/{0,1},{1,2},{1,3}},/*vals=*/{1000,1000,1000});
+	matA.print();
+
 	printYellow("_________ reshape ____________",true); 
 	matA.reshape({3,2,2});
 	matA.print();
@@ -204,9 +220,36 @@ int main(){
 	cxxTensor<int> matB = matA.transpose({1,0});
 	matA.print();
 	matB.print();
-
-
 	
+
+	printGreen("_________ comparsion time _________",true);
+	
+	cxxTensor<int> matC({1000,1000,1000});
+	
+	{
+		Timer t("cxxTensor");
+		for(int i=0;i<matC.shape(0);i++){
+			for(int j=0;j<matC.shape(1);j++){
+				for(int k=0;k<matC.shape(2);k++){
+					matC[{i,j,k}] = i+j+k;
+				}//endfor
+			}//endfor
+		}//endfor
+	}
+
+	int matD[1000][1000][1000];
+	{
+		Timer t("C-static-array");
+		for(int i=0;i<1000;i++){
+			for(int j=0;j<1000;j++){
+				for(int k=0;k<1000;k++){
+					matD[i][j][k] = i+j+k;
+				}//endfor
+			}//endfor
+		}//endfor
+	}
+	
+
 
 
 

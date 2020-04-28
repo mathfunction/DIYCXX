@@ -1,3 +1,25 @@
+/*==================================================================
+	cxxTensor::
+		[]         回傳 _arr 陣列值
+		dual       回傳一對多 _arr[i] ----> vector(i)
+		shape      顯示形狀
+		reshape    重訂形狀 (值得排列方式不變)
+		fromIdx    1 維位置 到 多維座標
+		toIdx      多維座標 到 1 維位置
+		transpose  轉置運算 <會複製出新的矩陣>
+		ptr        取得 arr 指標
+		assign     多位置賦值
+		
+
+
+
+
+
+
+====================================================================*/
+
+
+
 
 #ifndef __CXXTENSOR_HPP__
 #define __CXXTENSOR_HPP__
@@ -10,7 +32,6 @@ namespace cxxuseful{
 			vector<T> _arr;
 			basic_string<int>  _shape;
 			basic_string<int>  _prodshape;
-
 			
 			
 		public:
@@ -82,6 +103,24 @@ namespace cxxuseful{
 				return _newTensor;
 			}//end_transpose 
 
+
+			cxxTensor& assign(const vector<basic_string<int> >&coos,const vector<T> &vals){
+				vector<T*> ptrs = this->ptr(coos);
+				for(int i=0;i<ptrs.size();i++){
+					*ptrs[i] = vals[i];
+				}//endfor
+				return *this;
+			}//endfor
+
+
+			unordered_map<T,vector<int> > dual(){
+				unordered_map<T,vector<int> > d;
+				for(int i=0;i<_arr.size();i++){
+					d[_arr[i]].push_back(i);
+				}//endfor
+				return d;
+			}//dual
+
 			int size(){
 				return _arr.size();
 			}//end_size
@@ -90,10 +129,22 @@ namespace cxxuseful{
 			}//end_arr
 			
 
-
 			T& operator[](const basic_string<int>& coo){
 				return _arr[toIdx(coo)];
 			}
+			
+			vector<T*> ptr(const vector<basic_string<int> >&coos){
+				vector<T*> output;
+				for(int i=0;i<coos.size();i++){
+					output.push_back(&_arr[toIdx(coos[i])]);  
+				}//endfor
+				return output;
+			}//end_ptr 
+
+
+
+
+
 
 			void print(){
 				cout << "shape : ";
