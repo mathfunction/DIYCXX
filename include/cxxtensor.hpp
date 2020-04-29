@@ -35,22 +35,61 @@ namespace cxxuseful{
 			basic_string<int>  _prodshape;
 			
 			
-			
-		
 		public:
-			/*
-			// I x J x K ----> (I+1) x J x K
-			cxxTensor& concat(int axis=0){
-				return *this;
-			}//end
-			*/
-
+			
+			//==================================================================================================
+			// init
 			cxxTensor(const initializer_list<T>& _init){
 				this->reshape({int(_init.size())});
 				for(int i=0;i<_init.size();i++){
 					_arr[i] = _init.begin()[i];
 				}//endfor
 			}//end_cxxTensor
+
+			cxxTensor(const initializer_list<initializer_list<T> >& _init2){
+				this->reshape({int(_init2.size()),int(_init2.begin()[0].size())});
+				for(int i=0;i<_init2.size();i++){
+					for(int j=0;j<_init2.begin()[0].size();j++){
+						this->operator[]({i,j})= _init2.begin()[i].begin()[j];
+					}//endfor
+				}//endfor
+			}
+
+			cxxTensor(const initializer_list<initializer_list<initializer_list<T> > >&_init3){
+				this->reshape({
+					int(_init3.size()),
+					int(_init3.begin()[0].size()),
+					int(_init3.begin()[0].begin()[0].size())
+				});
+				for(int i=0;i<_init3.size();i++){
+					for(int j=0;j<_init3.begin()[0].size();j++){
+						for(int k=0;k<_init3.begin()[0].begin()[0].size();k++){
+							this->operator[]({i,j,k})= _init3.begin()[i].begin()[j].begin()[k];
+						}//endfor
+					}//endfor
+				}//endfor
+			}
+			
+			cxxTensor(const initializer_list<initializer_list<initializer_list<initializer_list<T> > > > &_init4){
+				this->reshape({
+					int(_init4.size()),
+					int(_init4.begin()[0].size()),
+					int(_init4.begin()[0].begin()[0].size()),
+					int(_init4.begin()[0].begin()[0].begin()[0].size())
+				});
+				for(int i=0;i<_init4.size();i++){
+					for(int j=0;j<_init4.begin()[0].size();j++){
+						for(int k=0;k<_init4.begin()[0].begin()[0].size();k++){
+							for(int t=0;t< _init4.begin()[0].begin()[0].begin()[0].size();t++){
+								this->operator[]({i,j,k,t})= _init4.begin()[i].begin()[j].begin()[k].begin()[t];
+							}//endfor
+						}//endfor
+					}//endfor
+				}//endfor
+			}//end_cxxTensor
+			
+			//=====================================================================================================
+
 
 			cxxTensor(const basic_string<int>& _shape){
 				this->reshape(_shape);
