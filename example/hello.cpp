@@ -187,6 +187,8 @@ int main(){
 
 	printBlueGreen("============= cxxTensor =================",true);
 
+
+
 	matA.print();
 	printYellow("__________ dual ____________",true);
 	auto d = matA.dual();
@@ -227,7 +229,10 @@ int main(){
 	cxxTensor<BoostFloat> matC({3,3,3},1.2349034);
 	matC.print();
 	
+	printYellow("________ initialize _________",true);
 
+	cxxTensor<BoostFloat> matD = {1.247834,2.549859,3.498,4.4893,5.4309,6.4039,7.4390};
+	matD.print();
 
 
 

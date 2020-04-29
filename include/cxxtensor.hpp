@@ -38,12 +38,19 @@ namespace cxxuseful{
 			
 		
 		public:
+			/*
 			// I x J x K ----> (I+1) x J x K
 			cxxTensor& concat(int axis=0){
-
 				return *this;
 			}//end
+			*/
 
+			cxxTensor(const initializer_list<T>& _init){
+				this->reshape({int(_init.size())});
+				for(int i=0;i<_init.size();i++){
+					_arr[i] = _init.begin()[i];
+				}//endfor
+			}//end_cxxTensor
 
 			cxxTensor(const basic_string<int>& _shape){
 				this->reshape(_shape);
