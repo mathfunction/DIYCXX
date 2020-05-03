@@ -34,7 +34,6 @@
 
 namespace cxxuseful{
 	using namespace std;
-	using namespace cmdcolor;
 	
 	class PrintFunc{
 			public:

@@ -9,6 +9,7 @@
 		transpose  轉置運算 <會複製出新的矩陣>
 		ptr        取得 arr 指標
 		assign     多位置賦值
+
 		
 
 
@@ -88,7 +89,7 @@ namespace cxxuseful{
 				}//endfor
 			}//end_cxxTensor
 			
-			//=====================================================================================================
+			
 
 
 			cxxTensor(const basic_string<int>& _shape){
@@ -100,6 +101,7 @@ namespace cxxuseful{
 					_arr[i] = constant;
 				}//endfor
 			}
+			//=====================================================================================================
 
 
 			basic_string<int> shape(){
@@ -179,10 +181,14 @@ namespace cxxuseful{
 			}//endfor
 
 
+			
+
+
+
 			unordered_map<T,vector<int> > dual(){
 				unordered_map<T,vector<int> > d;
 				for(int i=0;i<_arr.size();i++){
-					d[_arr[i]].push_back(i);
+					d[_arr[i]].emplace_back(i);
 				}//endfor
 				return d;
 			}//dual
@@ -202,7 +208,7 @@ namespace cxxuseful{
 			vector<T*> ptr(const vector<basic_string<int> >&coos){
 				vector<T*> output;
 				for(int i=0;i<coos.size();i++){
-					output.push_back(&_arr[toIdx(coos[i])]);  
+					output.emplace_back(&_arr[toIdx(coos[i])]);  
 				}//endfor
 				return output;
 			}//end_ptr 

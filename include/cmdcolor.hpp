@@ -21,7 +21,6 @@
 
 
 namespace cxxuseful{
-	namespace cmdcolor{
 		using namespace std;
 		// ------------------   windows ----------------------------- 
 		#if defined _WIN32 || defined _WIN64 
@@ -155,7 +154,7 @@ namespace cxxuseful{
 
 
 
-	};//end_cxxcolor
+	
 };//end_cxxuseful
 	#endif 
 
