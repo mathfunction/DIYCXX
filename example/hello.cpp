@@ -10,13 +10,14 @@ using json = nlohmann::json;
 int main(){
 	//================================================
 	// cmdcolor
+	
 	printRed("red",true);
 	printGreen("green",true);
 	printYellow("yellow",true);
 	printBlueGreen("bluegreen",true);
 	printBlue("blue",true);
 	printPurple("purple",true);
-
+		
 	//===============================================
 	// shlr
 	string _str = shlr({1,0.123,"456"},"_","X");
@@ -249,15 +250,34 @@ int main(){
 	matC.print();
 
 	//======================================================================
-	// SIMD 
-	vector<int> result;
 	{
-		Timer t2("SIMD");
-		for(int i=0;i<1000;i++){
-			result = avxfunc.add_8ints({-1,2,3,4,5,-6,7,8},{1,2,3,4,5,6,7,8});
-		}//endfor
+		int size = 80;
+		// SIMD 
+		basic_string<int> v1;
+		basic_string<int> v2;
+
+		for(int i=0;i<size;i++){
+			v1 += 1;
+			v2 += 1;
+		}
+
+		basic_string<int> r1;
+		basic_string<int> r2;
+		{
+			Timer add_ints_t("add_ints");
+			r1 = avxfunc.add_ints(v1,v2);
+			
+		}
+		{
+			Timer add_ints_baseline("mul_ints_baseline");
+			r2 = avxfunc.add_ints_baseline(v1,v2);
+		}
+		
+		if(size <= 80){
+			print(r1);
+			print(r2);
+		}//endif
+		
 	}
-	print(result);
-	
 	return 0;
 }//end_main
