@@ -7,9 +7,9 @@ namespace cxxuseful{
 	
 	class CheckInFunc{
 		public:
-			// check_elements_in vector<T>
+			// check_elements_in std::vector<T>
 			template<class T> 
-			int operator()(const vector<T>&v,const T &e){
+			int operator()(const std::vector<T>&v,const T &e){
 				int idx = distance(v.begin(),find(v.begin(),v.end(),e));
 				if (idx == v.size()){
 					return -1;
@@ -19,7 +19,7 @@ namespace cxxuseful{
 
 			// 檢查 A subset B !!
 			template<class T>
-			bool subset(const unordered_set<T> &A,const unordered_set<T> &B){
+			bool subset(const std::unordered_set<T> &A,const std::unordered_set<T> &B){
 				for(auto &a:A){
 					if(B.find(a)==B.end()){
 						return false;

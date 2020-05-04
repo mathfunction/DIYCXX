@@ -19,34 +19,34 @@ namespace cxxuseful{
 	
 	class AsioServer{
 		private:
-			string name;
+			std::string name;
 			int PORT; 
 			
 			
-			string read_from_client(boost::asio::ip::tcp::socket & socket) {  
+			std::string read_from_client(boost::asio::ip::tcp::socket & socket) {  
 	       		boost::asio::streambuf buf;  
 	       		boost::asio::read_until(socket,buf,"\n");  
-	       		string data = boost::asio::buffer_cast<const char*>(buf.data());  
+	       		std::string data = boost::asio::buffer_cast<const char*>(buf.data());  
 	       		return data;  
 			}//end_readFromClient  
 
 
-			void serve_to_client(boost::asio::ip::tcp::socket &socket, const string& message){  
-	       		const string msg = message;
+			void serve_to_client(boost::asio::ip::tcp::socket &socket, const std::string& message){  
+	       		const std::string msg = message;
 	       		boost::asio::write(socket, boost::asio::buffer(message) );
-	       		cerr << "serve_to_client : " << message << endl;   
+	       		std::cerr << "serve_to_client : " << message << std::endl;   
 			}//end_sendToClient  
 
 		public:
 
-			AsioServer(string name="First",int PORT=8888){
+			AsioServer(std::string name="First",int PORT=8888){
 				this->PORT = PORT;
 				this->name = name;
 
 			}//end_Server
 
 			void run(){
-				cerr << "Server[" << this->name << "] are running !! " << endl;
+				std::cerr << "Server[" << this->name << "] are running !! " << std::endl;
 				while(1){
 					//==============================================
 					boost::asio::io_service io_service1;
@@ -57,9 +57,9 @@ namespace cxxuseful{
 					listener1.accept(socket1);
 					//=================================================
 					// only serve once then close the soclet
-					string message = read_from_client(socket1);
+					std::string message = read_from_client(socket1);
 					printYellow(message); 
-					cerr << endl;
+					std::cerr << std::endl;
 					serve_to_client(socket1,message);
 					// ===============================================
 					socket1.close();
@@ -73,21 +73,21 @@ namespace cxxuseful{
 
 	class AsioClient{
 		private:
-			string name;
+			std::string name;
 			int PORT; 
 		public:
-			AsioClient(string name="hello",int PORT=8888){
+			AsioClient(std::string name="hello",int PORT=8888){
 				this->PORT = PORT;
 				this->name = name;
 			}//end_AsioClient
 
-			void send_to_server(boost::asio::ip::tcp::socket &socket, const string& message){
+			void send_to_server(boost::asio::ip::tcp::socket &socket, const std::string& message){
 				boost::system::error_code error;  
 		     	boost::asio::write(socket,boost::asio::buffer(message), error );  
 		     	if(!error) {  
-		          	cerr << "send_to_server : " << message << endl;  
+		          	std::cerr << "send_to_server : " << message << std::endl;  
 		     	}  else {  
-		          	cerr << "send_to_server failed: " << error.message() << endl;  
+		          	std::cerr << "send_to_server failed: " << error.message() << std::endl;  
 		     	}//end_else
 			}//end_send_To_Server
 
@@ -97,17 +97,17 @@ namespace cxxuseful{
 	       		boost::system::error_code error;
 	       		boost::asio::read(socket, receive_buffer, boost::asio::transfer_all(), error);  
 	    		if( error && error != boost::asio::error::eof ) {  
-	          		cerr << "receive_from_server failed: " << error.message() << endl;  
+	          		std::cerr << "receive_from_server failed: " << error.message() << std::endl;  
 	     		}else{  
 	          		const char* data = boost::asio::buffer_cast<const char*>(receive_buffer.data());  
-	          		cerr << "receive_from_server : " << data << endl;  
+	          		std::cerr << "receive_from_server : " << data << std::endl;  
 	     		}//end_else    
 			}//end_readFromClient  
 
-			void cmdtest(string ip="127.0.0.1"){
+			void cmdtest(std::string ip="127.0.0.1"){
 				boost::asio::io_service io_service;
 				
-				string msg; 
+				std::string msg; 
 				while(cin >> msg){
 					boost::asio::ip::tcp::socket socket1(io_service);
 					socket1.connect( boost::asio::ip::tcp::endpoint(boost::asio::ip::address::from_string(ip),this->PORT)); 

@@ -15,73 +15,68 @@
 
 
 
-#if defined _WIN32 || defined _WIN64 
-	#include <windows.h>
-#endif
-
-
 namespace cxxuseful{
-		using namespace std;
+		
 		// ------------------   windows ----------------------------- 
 		#if defined _WIN32 || defined _WIN64 
 			HANDLE _CMDCOLOR_=GetStdHandle(STD_OUTPUT_HANDLE);
 
 
 
-			void printGold(string str,bool newline=false){
+			void printGold(std::string str,bool newline=false){
 				SetConsoleTextAttribute(_CMDCOLOR_, 6);
-				cout << str;
-				if(newline == true) cout << endl;
+				std::cout << str;
+				if(newline == true) std::cout << std::endl;
 				SetConsoleTextAttribute(_CMDCOLOR_, 7);
 			}//end_printGold
 
-			void printGray(string str,bool newline=false){
+			void printGray(std::string str,bool newline=false){
 				SetConsoleTextAttribute(_CMDCOLOR_, 8);
-				cout << str;
-				if(newline == true) cout << endl;
+				std::cout << str;
+				if(newline == true) std::cout << std::endl;
 				SetConsoleTextAttribute(_CMDCOLOR_, 7);
 			}//end_printGray
 
 
-			void printBlue(string str,bool newline=false){
+			void printBlue(std::string str,bool newline=false){
 				SetConsoleTextAttribute(_CMDCOLOR_, 9);
-				cout << str;
-				if(newline == true) cout << endl;
+				std::cout << str;
+				if(newline == true) std::cout << std::endl;
 				SetConsoleTextAttribute(_CMDCOLOR_, 7);
 			}//end_printBlue
 
-			void printGreen(string str,bool newline=false){
+			void printGreen(std::string str,bool newline=false){
 				SetConsoleTextAttribute(_CMDCOLOR_, 10);
-				cout << str;
-				if(newline == true) cout << endl;
+				std::cout << str;
+				if(newline == true) std::cout << std::endl;
 				SetConsoleTextAttribute(_CMDCOLOR_, 7);
 			}//end_printGreen
 
-			void printBlueGreen(string str,bool newline=false){
+			void printBlueGreen(std::string str,bool newline=false){
 				SetConsoleTextAttribute(_CMDCOLOR_, 11);
-				cout << str;
-				if(newline == true) cout << endl;
+				std::cout << str;
+				if(newline == true) std::cout << std::endl;
 				SetConsoleTextAttribute(_CMDCOLOR_, 7);
 			}//end_printBlueGreen
 
-			void printRed(string str,bool newline=false){
+			void printRed(std::string str,bool newline=false){
 				SetConsoleTextAttribute(_CMDCOLOR_, 12);
-				cout << str;
-				if(newline == true) cout << endl;
+				std::cout << str;
+				if(newline == true) std::cout << std::endl;
 				SetConsoleTextAttribute(_CMDCOLOR_, 7);
 			}//end_printRed
 
-			void printPurple(string str,bool newline=false){
+			void printPurple(std::string str,bool newline=false){
 				SetConsoleTextAttribute(_CMDCOLOR_, 13);
-				cout << str;
-				if(newline == true) cout << endl;
+				std::cout << str;
+				if(newline == true) std::cout << std::endl;
 				SetConsoleTextAttribute(_CMDCOLOR_, 7);
 			}//end_printPurple
 
-			void printYellow(string str,bool newline=false){
+			void printYellow(std::string str,bool newline=false){
 				SetConsoleTextAttribute(_CMDCOLOR_, 14);
-				cout << str;
-				if(newline == true) cout << endl;
+				std::cout << str;
+				if(newline == true) std::cout << std::endl;
 				SetConsoleTextAttribute(_CMDCOLOR_, 7);
 			}//end_printYellow
 
@@ -107,45 +102,45 @@ namespace cxxuseful{
 
 
 			
-			void printBlue(string str,bool newline=false){
-				cout << "\033[1;34m"<< str <<"\033[0m";
-				if (newline) cout << "\n";
+			void printBlue(std::string str,bool newline=false){
+				std::cout << "\033[1;34m"<< str <<"\033[0m";
+				if (newline) std::cout << "\n";
 			}//end_printBlue
 
-			void printGreen(string str,bool newline=false){
-				cout << "\033[1;32m"<< str <<"\033[0m";
-				if (newline) cout << "\n";
+			void printGreen(std::string str,bool newline=false){
+				std::cout << "\033[1;32m"<< str <<"\033[0m";
+				if (newline) std::cout << "\n";
 			}//end_printGreen
 
-			void printBlueGreen(string str,bool newline=false){
-				cout << "\033[1;36m"<< str <<"\033[0m";
-				if (newline) cout << "\n";
+			void printBlueGreen(std::string str,bool newline=false){
+				std::cout << "\033[1;36m"<< str <<"\033[0m";
+				if (newline) std::cout << "\n";
 			}//end_printBlueGreen
 
-			void printRed(string str,bool newline=false){
-				cout << "\033[1;31m"<< str <<"\033[0m";
-				if (newline) cout << "\n";
+			void printRed(std::string str,bool newline=false){
+				std::cout << "\033[1;31m"<< str <<"\033[0m";
+				if (newline) std::cout << "\n";
 			}//end_printRed
 
-			void printPurple(string str,bool newline=false){
-				cout << "\033[1;35m"<< str <<"\033[0m";
-				if (newline) cout << "\n";
+			void printPurple(std::string str,bool newline=false){
+				std::cout << "\033[1;35m"<< str <<"\033[0m";
+				if (newline) std::cout << "\n";
 			}//end_printPurple
 
-			void printYellow(string str,bool newline=false){
-				cout << "\033[1;33m"<< str <<"\033[0m";
-				if (newline) cout << "\n";
+			void printYellow(std::string str,bool newline=false){
+				std::cout << "\033[1;33m"<< str <<"\033[0m";
+				if (newline) std::cout << "\n";
 			}//end_printYellow
 
-			void printGray(string str,bool newline=false){
-				cout << str;
-				if (newline) cout << "\n";
+			void printGray(std::string str,bool newline=false){
+				std::cout << str;
+				if (newline) std::cout << "\n";
 			}//end_printGray
 
 
-			void printGold(string str,bool newline=false){
-				cout << "\033[1;33m"<< str <<"\033[0m";
-				if (newline) cout << "\n";
+			void printGold(std::string str,bool newline=false){
+				std::cout << "\033[1;33m"<< str <<"\033[0m";
+				if (newline) std::cout << "\n";
 			}//end_printGold
 
 

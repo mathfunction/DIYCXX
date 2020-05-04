@@ -6,10 +6,10 @@
 namespace cxxuseful{
 	class DataFrame{
 		private:
-			vector<string> colnames;
+			std::vector<std::string> colnames;
 		public:
-			unordered_map<string,vector<BoostAny> >data;
-			DataFrame(const vector<string> &colnames){
+			std::unordered_map<std::string,std::vector<BoostAny> >data;
+			DataFrame(const std::vector<std::string> &colnames){
 				this->colnames = colnames;
 			}//endDataFrame
 			void clearData(){
@@ -22,7 +22,7 @@ namespace cxxuseful{
 			}//end_clearAll
 
 			// add a row
-			DataFrame& operator+=(const vector<BoostAny> &row){
+			DataFrame& operator+=(const std::vector<BoostAny> &row){
 				for(int i=0;i<colnames.size();i++){
 					data[colnames[i]].push_back(row[i]);
 				}//endfor
@@ -42,8 +42,8 @@ namespace cxxuseful{
 				return colnames.size();
 			}//end
 
-			vector<BoostAny> operator[](int j){
-				vector<BoostAny> output;
+			std::vector<BoostAny> operator[](int j){
+				std::vector<BoostAny> output;
 				for(int i=0;i<colnames.size();i++){
 					output.push_back(data[colnames[i]][j]);
 				}//endfor
@@ -52,36 +52,36 @@ namespace cxxuseful{
 
 
 
-			void print(const vector<int> &idxs,int setw_n=10){
+			void print(const std::vector<int> &idxs,int setw_n=10){
 				for(int c=0;c<colnames.size();c++){
-					stringstream ss;
-					ss << setw(setw_n) << colnames[c] << " | ";
+					std::stringstream ss;
+					ss << std::setw(setw_n) << colnames[c] << " | ";
 					printYellow(ss.str());
 				}
-				cout << endl;
+				std::cout << std::endl;
 				for(int j=0;j<idxs.size();j++){
 					if(idxs[j] >= this->rows()) break;
 					for(int i=0;i<colnames.size();i++){
 						BoostAny &v = data[colnames[i]][idxs[j]];
 						if(v.type()==typeid(int)){
-							cout  << setw(setw_n) << type<int>(v) << " | ";
+							std::cout  << std::setw(setw_n) << type<int>(v) << " | ";
 						}else if(v.type()==typeid(const char*)){
-							cout  << setw(setw_n) << type<const char*>(v) << " | ";
-						}else if(v.type()==typeid(string)){
-							cout  << setw(setw_n) << type<int>(v) << " | ";
+							std::cout  << std::setw(setw_n) << type<const char*>(v) << " | ";
+						}else if(v.type()==typeid(std::string)){
+							std::cout  << std::setw(setw_n) << type<int>(v) << " | ";
 						}else if(v.type()==typeid(double)){
-							cout  << setw(setw_n) << type<double>(v) << " | ";
+							std::cout  << std::setw(setw_n) << type<double>(v) << " | ";
 						}else if(v.type()==typeid(BoostInt)){
-							cout  << setw(setw_n) << type<BoostInt>(v) << " | ";
+							std::cout  << std::setw(setw_n) << type<BoostInt>(v) << " | ";
 						}else if(v.type()==typeid(BoostFloat)){
-							cout  << setw(setw_n) << type<BoostFloat>(v) << " | ";
+							std::cout  << std::setw(setw_n) << type<BoostFloat>(v) << " | ";
 						}else if(v.type()==typeid(BoostRational)){
-							cout  << setw(setw_n) << type<BoostRational>(v) << " | ";
+							std::cout  << std::setw(setw_n) << type<BoostRational>(v) << " | ";
 						}else{
 						}//end_else
 
 					}//endfor
-					cout << endl;
+					std::cout << std::endl;
 				}//endfor
 			}//end_print
 

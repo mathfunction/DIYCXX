@@ -1,12 +1,12 @@
 /*==================================================================
-  utf8 本質為 vector<string>
+  utf8 本質為 std::vector<std::string>
   	print_utf8( something ) 可以正確地把中文印出來 (跨平台)
 	目前 something 支援格式如下: 
-		vector<string>
+		std::vector<std::string>
 	
 
-  	s2u8(_str) 回傳出 vector<string> , 每一個 index 代表一個 UTF8 字元
- 	u8s2(_str) vector<string> ---> string 
+  	s2u8(_str) 回傳出 std::vector<std::string> , 每一個 index 代表一個 UTF8 字元
+ 	u8s2(_str) std::vector<std::string> ---> std::string 
   	wintrick 在 windows cmd  正確輸出 trick " \b"
 
 
@@ -26,10 +26,10 @@
 		int s.size()
 
 	// ngram
-	vector<u8string> s.ngram(2) 
+	std::vector<u8string> s.ngram(2) 
 	
 	// split
-	vector<u8string> v = s.split(u8string(","))
+	std::vector<u8string> v = s.split(u8string(","))
 	u8string u8string(",").join(v)
 	
 	// strip
@@ -43,33 +43,27 @@
 #ifndef __UTF8STR_HPP__
 #define __UTF8STR_HPP__
 
-#if defined _WIN32 || defined _WIN64
-	#include<windows.h>
-#endif
 
-#include<iostream>
-#include<vector>
 
 
 namespace cxxuseful{
-	using namespace std;
 	
-	typedef vector<string> utf8;
+	typedef std::vector<std::string> utf8;
 
-	inline utf8 s2u8(const string& str){
-		vector<string> vc;
+	inline utf8 s2u8(const std::string& str){
+		std::vector<std::string> vc;
 		for(int i=0;i<str.size();i++){
 			int c = (unsigned char) str[i];
 			if(c>=0 && c<=127){
-			    vc.push_back(string(1,str[i]));
+			    vc.push_back(std::string(1,str[i]));
 			}else if((c & 0xE0) == 0xC0){
-			    vc.push_back(string(1,str[i])+str[i+1]); 
+			    vc.push_back(std::string(1,str[i])+str[i+1]); 
 			    i+=1;
 			}else if((c & 0xF0) == 0xE0){
-			    vc.push_back(string(1,str[i])+str[i+1]+str[i+2]); 
+			    vc.push_back(std::string(1,str[i])+str[i+1]+str[i+2]); 
 			    i+=2;
 			}else if((c & 0xF8) == 0xF0){ 
-			    vc.push_back(string(1,str[i])+str[i+1]+str[i+2]+str[i+3]); 
+			    vc.push_back(std::string(1,str[i])+str[i+1]+str[i+2]+str[i+3]); 
 			    i+=3;
 			}else{
 			     break;
@@ -79,8 +73,8 @@ namespace cxxuseful{
 	}//end_utf8
 
 
-	inline string u82s(const utf8 &v){
-		string output = "";
+	inline std::string u82s(const utf8 &v){
+		std::string output = "";
 		for(int i=0;i<v.size();i++){
 			output += v[i];
 		}//endfor
@@ -88,7 +82,7 @@ namespace cxxuseful{
 	}//end_utf8
 
 	// 在 windows cmd  輸出的保險輸出
-	string wintrick(const string& str){
+	std::string wintrick(const std::string& str){
 		return " \b"+str;
 	}
 
@@ -97,18 +91,18 @@ namespace cxxuseful{
 		#if defined _WIN32 || defined _WIN64
 			SetConsoleOutputCP(65001); // 調到 utf8 模式
 		#endif
-		cout << "[\n";
+		std::cout << "[\n";
 		for(int i=0;i<vc.size();i++){
-			cout << "\t" << i << " : " ;
+			std::cout << "\t" << i << " : " ;
 			#if defined _WIN32 || defined _WIN64
 				// bug windows_cmd 加入 dummy 空格+退格
-				cout << wintrick(vc[i]);
+				std::cout << wintrick(vc[i]);
 			#else
-				cout << vc[i];
+				std::cout << vc[i];
 			#endif 
-			cout << "\n";
+			std::cout << "\n";
 		}//endfor
-		cout << "]\n";
+		std::cout << "]\n";
 		#if defined _WIN32 || defined _WIN64
 			SetConsoleOutputCP(950); // 預設 Big5
 		#endif
@@ -121,13 +115,13 @@ namespace cxxuseful{
 	class u8string{
 		public:
 			utf8 v;
-			string str;
+			std::string str;
 			// 建構
 			u8string(){
 				str = "";
 				v = s2u8(str);
 			}
-			u8string(const string &_str){
+			u8string(const std::string &_str){
 				str = _str;
 				v = s2u8(str);
 			}//end_UTF8
@@ -139,15 +133,15 @@ namespace cxxuseful{
 			void print(){
 				#if defined _WIN32 || defined _WIN64
 					SetConsoleOutputCP(65001); 
-					cout << wintrick(str) << endl;
+					std::cout << wintrick(str) << std::endl;
 					SetConsoleOutputCP(950); 
 				#else 
-					cout << str << endl;
+					std::cout << str << std::endl;
 				#endif
 			}//end_print
 			//=======================================================================
 			// copy
-			u8string& operator=(const string &_str){
+			u8string& operator=(const std::string &_str){
 				str = _str;
 				v = s2u8(str);
 				return *this; 
@@ -155,7 +149,7 @@ namespace cxxuseful{
 
 			// substr
 
-			u8string& operator()(const string &_str){
+			u8string& operator()(const std::string &_str){
 				str = _str;
 				v = s2u8(str);
 				return *this; 
@@ -183,14 +177,14 @@ namespace cxxuseful{
 			u8string operator+(const u8string& _u8str2){
 				return u8string(this->str+_u8str2.str);
 			}
-			u8string operator+(const string& _str){
+			u8string operator+(const std::string& _str){
 				return u8string(this->str+_str);
 			}
 
 
 			// ngram
-			vector<u8string> ngram(int n=2){
-				vector<u8string> output;
+			std::vector<u8string> ngram(int n=2){
+				std::vector<u8string> output;
 				int m = this->size()-n+1;
 				for(int i=0;i<m;i++){
 					output.push_back(this->operator()(i,i+n));
@@ -210,7 +204,7 @@ namespace cxxuseful{
 				return true;
 			}
 
-			bool operator==(const string& _str){
+			bool operator==(const std::string& _str){
 				u8string _u8str2(_str);
 				if(this->size() != _u8str2.v.size()){
 					return false;
@@ -226,8 +220,8 @@ namespace cxxuseful{
 
 
 
-			u8string join(const vector<u8string> &u8vec){
-				string output;
+			u8string join(const std::vector<u8string> &u8vec){
+				std::string output;
 				int n = u8vec.size();
 				for(int i=0;i<n;i++){
 					output+= u8vec[i].str;
@@ -242,11 +236,11 @@ namespace cxxuseful{
 
 
 
-			vector<u8string> split(const u8string &delimiter,bool _boolFull=false){
+			std::vector<u8string> split(const u8string &delimiter,bool _boolFull=false){
 				if (delimiter.v.size() == 0){
 					return this->ngram(1);
 				}//endif
-				vector<u8string> output;
+				std::vector<u8string> output;
 				int n = this->size();
 				int dn = delimiter.v.size();
 				int m = n-dn+1;
@@ -265,8 +259,8 @@ namespace cxxuseful{
 			
 
 
-			vector<u8string> split(const string &delimiter="",bool _boolFull=false){
-				vector<u8string> output;
+			std::vector<u8string> split(const std::string &delimiter="",bool _boolFull=false){
+				std::vector<u8string> output;
 				u8string u8d = u8string(delimiter);
 				output = this->split(u8d,_boolFull);
 				return output;
@@ -276,9 +270,9 @@ namespace cxxuseful{
 
 	};
 		
-	// handle  vector<u8string>
-	u8string substr(const vector<u8string>&u8v,int m,int n){
-		string output;
+	// handle  std::vector<u8string>
+	u8string substr(const std::vector<u8string>&u8v,int m,int n){
+		std::string output;
 		if(n==-1){
 			n = u8v.size()-1;
 		}

@@ -4,22 +4,22 @@
 	
 	目前 something 支援格式如下:
 		
-		- basic_string
-			basic_string<int>
-			basic_string<double>
-		- vector
-			vector<int>
-			vector<double>
-			vector< pair<string,double> >
+		- std::basic_string
+			std::basic_string<int>
+			std::basic_string<double>
+		- std::vector
+			std::vector<int>
+			std::vector<double>
+			std::vector< std::pair<std::string,double> >
 		
-		- unordered_map
-			unordered_map<string,string>
-			unordered_map<string,double>
-			unordered_map<string,int>
-			unordered_map<int,int>
-			unordered_map<int,double>
-		-list
-			list<string>
+		- std::unordered_map
+			std::unordered_map<std::string,std::string>
+			std::unordered_map<std::string,double>
+			std::unordered_map<std::string,int>
+			std::unordered_map<int,int>
+			std::unordered_map<int,double>
+		-std::list
+			std::list<std::string>
 
 
 
@@ -29,67 +29,66 @@
 #ifndef __PRINTFUNC_HPP__
 #define __PRINTFUNC_HPP__
 
-#include "utf8str.hpp"
 
 
 namespace cxxuseful{
-	using namespace std;
+	
 	
 	class PrintFunc{
 			public:
 
-				void operator()(const vector< pair<string,double> > &v){
-					printGreen("vector<pair<string,double> >",true);
+				void operator()(const std::vector< std::pair<std::string,double> > &v){
+					printGreen("std::vector<std::pair<std::string,double> >",true);
 					printYellow("[",true);
 					for(int i=0;i<v.size();i++){
-						cerr << "\t Pair(" << v[i].first << "," ;
-						printYellow(to_string(v[i].second)+")",true);
+						std::cout << "\t std::pair(" << v[i].first << "," ;
+						printYellow(std::to_string(v[i].second)+")",true);
 
 					}//endfor
 					printYellow("]",true);
 				}	
 
-				void operator()(const vector<BoostAny> &v){
-					printGreen("vector<BoostAny>",true);
+				void operator()(const std::vector<BoostAny> &v){
+					printGreen("std::vector<BoostAny>",true);
 					printYellow("[",true);
 					for(int i=0;i<v.size();i++){
 						if(v[i].type()==typeid(int)){
-							cout << "\t" <<  i << " : " << type<int>(v[i]) << endl;
+							std::cout << "\t" <<  i << " : " << type<int>(v[i]) << std::endl;
 						}else if(v[i].type()==typeid(const char*)){
-							cout << "\t" <<  i << " : " << type<const char*>(v) << endl;
-						}else if(v[i].type()==typeid(string)){
-							cout << "\t" <<  i << " : " << type<string>(v[i]) << endl;
+							std::cout << "\t" <<  i << " : " << type<const char*>(v) << std::endl;
+						}else if(v[i].type()==typeid(std::string)){
+							std::cout << "\t" <<  i << " : " << type<std::string>(v[i]) << std::endl;
 						}else if(v[i].type()==typeid(double)){
-							cout << "\t" <<  i << " : " << type<double>(v[i]) << endl;
+							std::cout << "\t" <<  i << " : " << type<double>(v[i]) << std::endl;
 						}else if(v[i].type()==typeid(BoostInt)){
-							cout << "\t" <<  i << " : " << type<BoostInt>(v[i]) << endl;
+							std::cout << "\t" <<  i << " : " << type<BoostInt>(v[i]) << std::endl;
 						}else if(v[i].type()==typeid(BoostFloat)){
-							cout << "\t" <<  i << " : " << type<BoostFloat>(v[i]) << endl;
+							std::cout << "\t" <<  i << " : " << type<BoostFloat>(v[i]) << std::endl;
 						}else if(v[i].type()==typeid(BoostRational)){
-							cout << "\t" <<  i << " : " << type<BoostRational>(v[i]) << endl;
+							std::cout << "\t" <<  i << " : " << type<BoostRational>(v[i]) << std::endl;
 						}else{
 						}//end_else
 					}//endfor
 					printYellow("]",true);
 				}
-				void operator()(const basic_string<int> &v){printGreen("basic_string<int>",true); return handleList<int>(v);}
-				void operator()(const basic_string<double> &v){printGreen("basic_string<double>",true);return handleList<double>(v);}
-				void operator()(const vector<int> &v){printGreen("vector<int>",true);return handleList<int>(v);}
-				void operator()(const vector<double> &v){printGreen("vector<double>",true);return handleList<double>(v);}//end
-				void operator()(const vector<string> &v){printGreen("vector<string>",true);return handleList(v);}//end
-				void operator()(const unordered_map<string,string> &v){printGreen("unordered_map<string,string>",true);return handleDict(v);}//end
-				void operator()(const unordered_map<string,double> &v){printGreen("unordered_map<string,double>",true);return handleDict<string,double>(v);}//end
-				void operator()(const unordered_map<string,int> &v){printGreen("unordered_map<string,int>",true);return handleDict<string,int>(v);}//end
-				void operator()(const unordered_map<int,int> &v){printGreen("unordered_map<int,int>",true);return handleDict<int,int>(v);}//end
-				void operator()(const unordered_map<int,double> &v){printGreen("unordered_map<int,double>",true);return handleDict<int,double>(v);}//end
-				void operator()(const unordered_set<int> &s){printGreen("unordered_set<int>",true);return handleSet<int>(s);}
-				//void operator()(const unordered_set<string> &s){printGreen("unordered_set<string>",true);return handleSet<string>(s);}
-				void operator()(const list<string> &v){printGreen("unordered_map<int,double>",true);return handleList(v);}
-				void operator()(const vector<pair<string,int> > &s){
-					printGreen("vector<pair<string,int> >",true);
+				void operator()(const std::basic_string<int> &v){printGreen("std::basic_string<int>",true); return handleList<int>(v);}
+				void operator()(const std::basic_string<double> &v){printGreen("std::basic_string<double>",true);return handleList<double>(v);}
+				void operator()(const std::vector<int> &v){printGreen("std::vector<int>",true);return handleList<int>(v);}
+				void operator()(const std::vector<double> &v){printGreen("std::vector<double>",true);return handleList<double>(v);}//end
+				void operator()(const std::vector<std::string> &v){printGreen("std::vector<std::string>",true);return handleList(v);}//end
+				void operator()(const std::unordered_map<std::string,std::string> &v){printGreen("std::unordered_map<std::string,std::string>",true);return handleDict(v);}//end
+				void operator()(const std::unordered_map<std::string,double> &v){printGreen("std::unordered_map<std::string,double>",true);return handleDict<std::string,double>(v);}//end
+				void operator()(const std::unordered_map<std::string,int> &v){printGreen("std::unordered_map<std::string,int>",true);return handleDict<std::string,int>(v);}//end
+				void operator()(const std::unordered_map<int,int> &v){printGreen("std::unordered_map<int,int>",true);return handleDict<int,int>(v);}//end
+				void operator()(const std::unordered_map<int,double> &v){printGreen("std::unordered_map<int,double>",true);return handleDict<int,double>(v);}//end
+				void operator()(const std::unordered_set<int> &s){printGreen("std::unordered_set<int>",true);return handleSet<int>(s);}
+				//void operator()(const std::unordered_set<std::string> &s){printGreen("std::unordered_set<std::string>",true);return handleSet<std::string>(s);}
+				void operator()(const std::list<std::string> &v){printGreen("std::unordered_map<int,double>",true);return handleList(v);}
+				void operator()(const std::vector<std::pair<std::string,int> > &s){
+					printGreen("std::vector<std::pair<std::string,int> >",true);
 					printYellow("[",true);
 					for(int i=0;i<s.size();i++){
-						cout << "\t" << s[i].first << "," << s[i].second << endl;
+						std::cout << "\t" << s[i].first << "," << s[i].second << std::endl;
 					}//enfor
 					printYellow("]",true);
 				}
@@ -97,27 +96,27 @@ namespace cxxuseful{
 
 
 				
-				void operator()(const vector<u8string> &v){
+				void operator()(const std::vector<u8string> &v){
 					printYellow("[",true);
 					#if defined _WIN32 || defined _WIN64
 						SetConsoleOutputCP(65001); 
 						for(int i=0;i<v.size();i++){
-							cout << "\t" <<  i << " : " <<  wintrick(v[i].str)  << endl;
+							std::cout << "\t" <<  i << " : " <<  wintrick(v[i].str)  << std::endl;
 						}
 						SetConsoleOutputCP(950); 
 					#else
 						for(int i=0;i<v.size();i++){
-							cout << "\t" <<  i << " : " <<  v[i].str  << endl;
+							std::cout << "\t" <<  i << " : " <<  v[i].str  << std::endl;
 						}
 					#endif
 					printYellow("]",true);
 				}
 
-				void operator()(const string &str){
+				void operator()(const std::string &str){
 					#if defined _WIN32 || defined _WIN64
 						SetConsoleOutputCP(65001); 
 					#endif
-					cout << wintrick(str) << endl;
+					std::cout << wintrick(str) << std::endl;
 					#if defined _WIN32 || defined _WIN64
 						SetConsoleOutputCP(950); 
 					#endif
@@ -125,14 +124,14 @@ namespace cxxuseful{
 				
 			private:
 				template<class T>
-				void handleSet(const unordered_set<T> &s){
+				void handleSet(const std::unordered_set<T> &s){
 					#if defined _WIN32 || defined _WIN64
 						SetConsoleOutputCP(65001);
 					#endif
 					printYellow("{",true);
 					for(auto &k:s){
-						cout << "\t";
-						printYellow(wintrick(to_string(k)),true);
+						std::cout << "\t";
+						printYellow(wintrick(std::to_string(k)),true);
 					}//endfor
 					printYellow("}",true);
 					#if defined _WIN32 || defined _WIN64
@@ -142,14 +141,14 @@ namespace cxxuseful{
 
 
 				template<class T,class S>
-				void handleDict(const unordered_map<T,S> &v){
+				void handleDict(const std::unordered_map<T,S> &v){
 					#if defined _WIN32 || defined _WIN64
 							SetConsoleOutputCP(65001);
 					#endif
 					printYellow("{",true);
 					for(auto &k:v){
-						cerr << "\t"  << k.first << " : " ;
-						printYellow(wintrick(to_string(k.second)),true);
+						std::cout << "\t"  << k.first << " : " ;
+						printYellow(wintrick(std::to_string(k.second)),true);
 					}//endfor
 					printYellow("}",true);
 					#if defined _WIN32 || defined _WIN64
@@ -157,13 +156,13 @@ namespace cxxuseful{
 					#endif
 				}//end_handleDict
 
-				void handleDict(const unordered_map<string,string> &v){
+				void handleDict(const std::unordered_map<std::string,std::string> &v){
 					#if defined _WIN32 || defined _WIN64
 						SetConsoleOutputCP(65001); 
 					#endif
 					printYellow("{",true);
 					for(auto &k:v){
-						cerr << "\t" << wintrick(k.first) << " : " ;
+						std::cout << "\t" << wintrick(k.first) << " : " ;
 						printYellow(wintrick(k.second),true);
 					}//endfor
 					printYellow("}",true);
@@ -171,12 +170,12 @@ namespace cxxuseful{
 						SetConsoleOutputCP(950); 
 					#endif
 				}//end_
-				// handle list
-				void handleList(const list<string> &v){
+				// handle std::list
+				void handleList(const std::list<std::string> &v){
 					printYellow("[",true);
 					int i = 0;
 					for(auto &k:v){
-						cerr << "\t" << i << " : " ;
+						std::cout << "\t" << i << " : " ;
 						printYellow(k,true);
 						i+=1;
 					}//endfor
@@ -185,36 +184,36 @@ namespace cxxuseful{
 
 
 
-				// handle basic_string 
+				// handle std::basic_string 
 				template<class T>
-				void handleList(const basic_string<T> &v){
+				void handleList(const std::basic_string<T> &v){
 					printYellow("[",true);
 					for(int i=0;i<v.size();i++){
-						cerr << "\t" << i << " : " ;
-						printYellow(wintrick(to_string(v[i])),true);
+						std::cout << "\t" << i << " : " ;
+						printYellow(wintrick(std::to_string(v[i])),true);
 					}//endfor
 					printYellow("]",true);
 				}//end_
 
-				// handle vector
+				// handle std::vector
 				template<class T>
-				void handleList(const vector<T> &v){
+				void handleList(const std::vector<T> &v){
 					printYellow("[",true);
 					for(int i=0;i<v.size();i++){
-						cerr << "\t" << i << " : " ;
-						printYellow(wintrick(to_string(v[i])),true);
+						std::cout << "\t" << i << " : " ;
+						printYellow(wintrick(std::to_string(v[i])),true);
 					}//endfor
 					printYellow("]",true);
 				}//end_
 
 
-				void handleList(const vector<string> &v){
+				void handleList(const std::vector<std::string> &v){
 					#if defined _WIN32 || defined _WIN64
 						SetConsoleOutputCP(65001); 
 					#endif
 					printYellow("[",true);
 					for(int i=0;i<v.size();i++){
-						cerr << "\t" << i << " : " ;
+						std::cout << "\t" << i << " : " ;
 						printYellow(wintrick(v[i]),true);
 					}//endfor
 					printYellow("]",true);

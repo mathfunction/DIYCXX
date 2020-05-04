@@ -4,7 +4,7 @@
 		
 		- unif_int(_size,min)  隨機產生 [min,min+_size) 之間的整數
 		- draw_one_at_a_time(_dist,_drawsize,_boolPrint,_boolReplacement) 
-			逐一從 _dist 離散分布(unoredered_map<string,int>) 抽出 _drawsize 個東西  , _boolReplacement = true 代表取後放回 !!
+			逐一從 _dist 離散分布(unoredered_map<std::string,int>) 抽出 _drawsize 個東西  , _boolReplacement = true 代表取後放回 !!
 		
 
 
@@ -16,11 +16,11 @@
 
 
 namespace cxxuseful{
-	using namespace std;
+	
 	class RandomFunc{
 		private:
 			unsigned seed;
-			mt19937 gen;
+			std::mt19937 gen;
 			//mt19937_64 gen 
 			//minstd_rand0 gen
 			//minstd_rand gen
@@ -29,17 +29,17 @@ namespace cxxuseful{
 			RandomFunc(){
 				setSeed();
 			}//end_RandFunc
-			void setSeed(string _strSeed="__NOW__"){
+			void setSeed(std::string _strSeed="__NOW__"){
 				if(_strSeed == "__NOW__"){
-					this->seed = chrono::system_clock::now().time_since_epoch().count();
+					this->seed = std::chrono::system_clock::now().time_since_epoch().count();
 				}else{
-					this->seed = static_cast<unsigned>(stoi(_strSeed));
+					this->seed = static_cast<unsigned>(std::stoi(_strSeed));
 				}//end_else
-				this->gen = mt19937(this->seed);
+				this->gen = std::mt19937(this->seed);
 				printGreen("RandomFunc set seed to "+_strSeed,true);
 			}//end_setSeed
 			double unif_real(double min=0,double max=1){
-				uniform_real_distribution<> dist(min,max);
+				std::uniform_real_distribution<> dist(min,max);
 				return dist(gen);
 			}//end_unif_real
 
@@ -48,11 +48,11 @@ namespace cxxuseful{
 				return min + gen()%_size;
 			}//end unif
 
-			vector<string> draw_one_at_a_time(const unordered_map<string,int> &_dist,int _drawsize=1,bool _boolPrint=false,bool _boolReplacement=false){
+			std::vector<std::string> draw_one_at_a_time(const std::unordered_map<std::string,int> &_dist,int _drawsize=1,bool _boolPrint=false,bool _boolReplacement=false){
 				// compute total size , build blackbox
-				vector<string> result;
-				vector<string> blackbox;
-				vector<string>::iterator it;
+				std::vector<std::string> result;
+				std::vector<std::string> blackbox;
+				std::vector<std::string>::iterator it;
 				for(auto &kv:_dist){ 
 					for(int i=0;i<kv.second;i++){
 						blackbox.push_back(kv.first);
@@ -76,7 +76,7 @@ namespace cxxuseful{
 				}//endfor
 
 				if(_boolPrint){
-					cerr << "____ result _____" << endl;
+					std::cout << "____ result _____" << std::endl;
 					print(result);
 				}//endif
 				return result;

@@ -2,19 +2,18 @@
 #define __OTHERFUNC_HPP__
 
 namespace cxxuseful{
-	using namespace std;
 	class OtherFunc{
 		public:
 		// cumulative 
-		vector< pair<string,double> > cumulative(const unordered_map<string,double> &v){
-			vector< pair<string,double> > _output;
+		std::vector< std::pair<std::string,double> > cumulative(const std::unordered_map<std::string,double> &v){
+			std::vector< std::pair<std::string,double> > _output;
 			double _sum = 0.0;
-			_output.push_back(make_pair("START",_sum));
+			_output.push_back(std::make_pair("START",_sum));
 						
 			for(auto &k:v){
 				if(k.second != 0.0){
 					_sum += k.second;
-					_output.push_back(make_pair(k.first,_sum));
+					_output.push_back(std::make_pair(k.first,_sum));
 				}//endif
 			}//endfor
 						
@@ -22,9 +21,9 @@ namespace cxxuseful{
 		}//end_cumulative
 
 
-		// vector<string>  to  vector<int>
-		vector<int> vec_s2i(const vector<string> &vs){
-			vector<int> output;
+		// std::vector<std::string>  to  std::vector<int>
+		std::vector<int> vec_s2i(const std::vector<std::string> &vs){
+			std::vector<int> output;
 			for(int i=0;i<vs.size();i++){
 				output.push_back(stoi(vs[i]));
 			}//endfor
@@ -34,8 +33,8 @@ namespace cxxuseful{
 		
 
 		template<typename T>
-		vector<pair<T,int> > make_conti(const vector<T> &v){
-			vector<pair<T,int> > output;
+		std::vector<std::pair<T,int> > make_conti(const std::vector<T> &v){
+			std::vector<std::pair<T,int> > output;
 			int tempIdx = 0;
 			int numConnect;
 			T tempVal = v[0];
@@ -44,7 +43,7 @@ namespace cxxuseful{
 					continue;
 				}else{
 					numConnect = (i-tempIdx);
-					output.push_back(make_pair(tempVal,numConnect));
+					output.push_back(std::make_pair(tempVal,numConnect));
 					// 更新暫存點 !!
 					tempVal = v[i];
 					tempIdx = i;
@@ -53,14 +52,14 @@ namespace cxxuseful{
 			}//endfor
 			// tail handle 
 			numConnect = v.size()-tempIdx;
-			output.push_back(make_pair(tempVal,numConnect));
+			output.push_back(std::make_pair(tempVal,numConnect));
 			return output;
 		} 
 
 
 		template<typename T>
-		vector<T> join_conti(const vector<pair<T,int> > &v){
-			vector<T> output;
+		std::vector<T> join_conti(const std::vector<std::pair<T,int> > &v){
+			std::vector<T> output;
 			for(int i=0;i<v.size();i++){
 				for(int j=0;j<v[i].second;j++){
 					output.push_back(v[i].first);

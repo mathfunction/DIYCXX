@@ -1,11 +1,11 @@
 /*==============================================
 
 
-- shlr(vector<>,分隔符,頭標) // 支援混雜型態 int , double , string , ... !! 
+- shlr(std::vector<>,分隔符,頭標) // 支援混雜型態 int , double , std::string , ... !! 
 	ex: shlr({1,0.123,"456"},"_","X")  ====> "X_1_0.123_456"
 
 
-- shlr.c2s 可把 char 轉成 string
+- shlr.c2s 可把 char 轉成 std::string
 - shlr.c2ccp 可把 char 轉成 const char* 
 
 ================================================*/
@@ -15,26 +15,25 @@
 
 
 namespace cxxuseful{
-	using namespace std;
 
 
 	class StrHandler{
 		public:
-			string operator()(const vector<string> &v,string delimiter="_",string title="[Key]"){
-				string _output = title;
+			std::string operator()(const std::vector<std::string> &v,std::string delimiter="_",std::string title="[Key]"){
+				std::string _output = title;
 				for(int i=0;i<v.size();i++){
 					_output += delimiter;
 					_output += v[i];
 				}//endfor
 				return _output;
 			}//end
-			string operator()(const vector<BoostAny> &v,string delimiter="_",string title="[Key]"){
-				stringstream ss;
+			std::string operator()(const std::vector<BoostAny> &v,std::string delimiter="_",std::string title="[Key]"){
+				std::stringstream ss;
 				ss << title;
 				for(int i=0;i<v.size();i++){
 					ss << delimiter;
-					if(v[i].type() == typeid(string)){
-						ss << type<string>(v[i]);
+					if(v[i].type() == typeid(std::string)){
+						ss << type<std::string>(v[i]);
 					}else if(v[i].type() == typeid(const char*)){
 						ss << type<const char*>(v[i]);
 					}else if(v[i].type() == typeid(int)){
@@ -50,10 +49,10 @@ namespace cxxuseful{
 
 			// c == char , const char* => ccp
 			const char* c2ccp(char c){
-				return string(1,c).c_str();
+				return std::string(1,c).c_str();
 			}
-			string c2s(char c){
-				return string(1,c);
+			std::string c2s(char c){
+				return std::string(1,c);
 			}
 			
 

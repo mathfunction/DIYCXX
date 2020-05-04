@@ -3,7 +3,7 @@
 
 	
  -  jsonfunc.read("xxx.json")  可以回傳 json 物件
- -  jsonfunc.dict<T,S>(j) 可以回傳 key = T , value = S 的 unordered_map
+ -  jsonfunc.dict<T,S>(j) 可以回傳 key = T , value = S 的 std::unordered_map
  -  jsonfunc.list<T>(j)  value = T 的 list
 =================================================================================*/
 
@@ -13,25 +13,23 @@
 #define __JSONFUNC_HPP__
 
 namespace cxxuseful{
-	using json = nlohmann::json;
-	using namespace std;
 	class JsonFunc{
 		public:
-			json read(string jsonfile,bool _boolLog=true){
+			nlohmann::json read(std::string jsonfile,bool _boolLog=true){
 				if(_boolLog == true){
 					printBlueGreen("[Read] "+jsonfile,true);
 				}
-				ifstream i(jsonfile);
-				json j;
+				std::ifstream i(jsonfile);
+				nlohmann::json j;
 				i >> j;
 				return j;
 			}//endread
-			template<typename T,typename S> unordered_map<T,S> dict(json &j){
-				unordered_map<T,S> d = j;
+			template<typename T,typename S> std::unordered_map<T,S> dict(nlohmann::json &j){
+				std::unordered_map<T,S> d = j;
 				return d;
 			}
-			template<typename T> vector<T> list(json &j){
-				vector<T> v = j;
+			template<typename T> std::vector<T> list(nlohmann::json &j){
+				std::vector<T> v = j;
 				return j;
 			}
 
@@ -49,7 +47,6 @@ namespace cxxuseful{
 
 
 #endif
-
 
 
 

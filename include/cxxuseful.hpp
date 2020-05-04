@@ -26,8 +26,11 @@
 #include <random>
 #include <functional>
 #include <initializer_list>
-
-
+//==============================================================================
+// windows 指令集
+#if defined _WIN32 || defined _WIN64
+	#include<windows.h>
+#endif
 
 // ===============================================================================
 // third_party 第三方好用函式庫
@@ -41,15 +44,13 @@ namespace cxxuseful{
 		return boost::any_cast<T>(val);
 	}//endif
 
-
 };//end_namespace
 
 //==============================================================================
 
 
 // DIY 開發 HPP 
-
-
+#include "utf8str.hpp"
 #include "cmdcolor.hpp"
 #include "printfunc.hpp"
 #include "makedictfunc.hpp"
@@ -57,13 +58,13 @@ namespace cxxuseful{
 #include "timer.hpp"
 #include "jsonfunc.hpp"
 #include "strhandler.hpp"
-#include "utf8str.hpp"
 #include "otherfunc.hpp"
 #include "setfunc.hpp"
 #include "filepath.hpp"
 #include "checkinfunc.hpp"
 #include "dataframe.hpp"
 #include "cxxtensor.hpp"
+
 //#include "socketio.hpp"
 //==============================================================================
 
