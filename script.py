@@ -15,6 +15,8 @@ if __name__ == '__main__':
 			cmds = [
 				"g++",
 				"-std={}".format(sys.argv[2]),
+				"-mavx",
+				"-mavx2",
 				"-O3",
 				"-o",
 				cppname.split(".cpp")[0],

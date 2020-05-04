@@ -64,7 +64,7 @@ namespace cxxuseful{
 #include "checkinfunc.hpp"
 #include "dataframe.hpp"
 #include "cxxtensor.hpp"
-
+#include "simd.hpp"
 //#include "socketio.hpp"
 //==============================================================================
 

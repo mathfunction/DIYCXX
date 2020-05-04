@@ -248,8 +248,16 @@ int main(){
 	
 	matC.print();
 
-
-
-
+	//======================================================================
+	// SIMD 
+	vector<int> result;
+	{
+		Timer t2("SIMD");
+		for(int i=0;i<1000;i++){
+			result = avxfunc.add_8ints({-1,2,3,4,5,-6,7,8},{1,2,3,4,5,6,7,8});
+		}//endfor
+	}
+	print(result);
+	
 	return 0;
 }//end_main
