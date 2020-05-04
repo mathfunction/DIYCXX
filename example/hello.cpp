@@ -251,7 +251,7 @@ int main(){
 
 	//======================================================================
 	{
-		int size = 80;
+		int size = 320000000;
 		// SIMD 
 		basic_string<int> v1;
 		basic_string<int> v2;
@@ -270,7 +270,7 @@ int main(){
 			
 		}
 		{
-			Timer add_ints_baseline("mul_ints_baseline");
+			Timer add_ints_baseline("add_ints_baseline");
 			r2 = avxfunc.add_ints_baseline(v1,v2);
 		}
 		
@@ -282,6 +282,7 @@ int main(){
 	}
 
 	//==================================================================
+	/*
 	// 平行化 方格!! 
 	std::function<int(int)> plus1 = [](int i) { return i+1; };
 	std::vector<int> inputv;
@@ -294,7 +295,7 @@ int main(){
 			parallel_vector_block(plus1,inputv,i);
 		}
 	}//endfor
-
+	*/
 
 	return 0;
 }//end_main
