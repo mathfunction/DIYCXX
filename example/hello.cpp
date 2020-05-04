@@ -251,15 +251,16 @@ int main(){
 
 	//======================================================================
 	{
-		int size = 8000000;
+		int size = 80;
 		// SIMD 
 		basic_string<int> v1;
 		basic_string<int> v2;
-
+		
+		
 		for(int i=0;i<size;i++){
 			v1 += 1;
 			v2 += 1;
-		}
+		}//endfor
 
 		basic_string<int> r1;
 		basic_string<int> r2;
@@ -280,8 +281,19 @@ int main(){
 		
 	}
 
-
-
+	//==================================================================
+	// 平行化 方格!! 
+	std::function<int(int)> plus1 = [](int i) { return i+1; };
+	std::vector<int> inputv;
+	for(int i=0;i<100000000;i++){
+		inputv.emplace_back(i);
+	}//endfor
+	for(int i=0;i<8;i++){
+		{
+			Timer t("thread="+std::to_string(i+1));
+			parallel_vector_block(plus1,inputv,i);
+		}
+	}//endfor
 
 
 	return 0;

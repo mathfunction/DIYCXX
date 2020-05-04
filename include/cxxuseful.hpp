@@ -65,6 +65,7 @@ namespace cxxuseful{
 #include "dataframe.hpp"
 #include "cxxtensor.hpp"
 #include "simd.hpp"
+#include "parallel_block.hpp"
 //#include "socketio.hpp"
 //==============================================================================
 
