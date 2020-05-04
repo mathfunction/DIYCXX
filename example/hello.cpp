@@ -251,7 +251,7 @@ int main(){
 
 	//======================================================================
 	{
-		int size = 80;
+		int size = 8000000;
 		// SIMD 
 		basic_string<int> v1;
 		basic_string<int> v2;
@@ -279,5 +279,10 @@ int main(){
 		}//endif
 		
 	}
+
+
+
+
+
 	return 0;
 }//end_main
