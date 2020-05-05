@@ -251,23 +251,33 @@ int main(){
 	}};
 	
 	matC.print();
+	//=========================================================================
+	// avx2 
+	const int N = 4096*2160*3;
+	array<float,N> input1;
+	array<float,N> input2;
+	array<float,N> output1;
+	array<float,N> output2;
 
-	basic_string<double> v3;
-	basic_string<double> v4;
-	for(int i=0;i<1000000000;i++){
-		v3 += 0.00001*(float)(i);
-		v4 += 0.00001*(float)(i);
-	}
-	//========================================================================
+	for(int i=0;i<N;i++){
+		input1[i] = (float)(i+1);
+		input2[i] = (float)(i+1);
+	}//endfor
+
 	{
-		Timer t1("add_doubles");
-		int a = avxfunc.add_doubles_baseline(v3,v4);
+		Timer t1("naive");
+		output1 = avxfunc.add_naive(input1,input2);
+		output1 = avxfunc.sub_naive(input1,input2);
+		output1 = avxfunc.mul_naive(input1,input2);
+		output1 = avxfunc.div_naive(input1,input2);
 	}
 	{	
-		Timer t2("add_doubles_baseline");
-		int b = avxfunc.add_doubles(v3,v4);
+		Timer t2("avx2");
+		output2 = avxfunc.add(input1,input2);
+		output2 = avxfunc.sub(input1,input2);
+		output2 = avxfunc.mul(input1,input2);
+		output2 = avxfunc.div(input1,input2);
 	}
-	
-
+	cout << output1.size() << endl;
 	return 0;
 }//end_main

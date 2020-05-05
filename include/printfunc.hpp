@@ -106,7 +106,7 @@ namespace cxxuseful{
 						SetConsoleOutputCP(950); 
 					#else
 						for(int i=0;i<v.size();i++){
-							std::cout << "\t" <<  i << " : " <<  v[i].str  << std::endl;
+							std::cout << "\t" <<  i << " : " <<  v[i].to_str()  << std::endl;
 						}
 					#endif
 					printYellow("]",true);
