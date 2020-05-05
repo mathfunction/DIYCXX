@@ -17,6 +17,7 @@ if __name__ == '__main__':
 				"-std={}".format(sys.argv[2]),
 				"-mavx",
 				"-mavx2",
+				"-march=native",
 				#"-fopenmp",
 				"-O3",
 				"-o",

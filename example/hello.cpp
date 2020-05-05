@@ -251,9 +251,23 @@ int main(){
 	}};
 	
 	matC.print();
+
+	basic_string<double> v3;
+	basic_string<double> v4;
+	for(int i=0;i<1000000000;i++){
+		v3 += 0.00001*(float)(i);
+		v4 += 0.00001*(float)(i);
+	}
 	//========================================================================
-
-
+	{
+		Timer t1("add_doubles");
+		int a = avxfunc.add_doubles_baseline(v3,v4);
+	}
+	{	
+		Timer t2("add_doubles_baseline");
+		int b = avxfunc.add_doubles(v3,v4);
+	}
+	
 
 	return 0;
 }//end_main
