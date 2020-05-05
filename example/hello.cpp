@@ -93,40 +93,43 @@ int main(){
 	typedef u8string u8;
 
 	u8("_______這是 u8string_測試_________").print();
-	u8 s1("中國");
-	u8 s2("武漢");
-	// concat 測試 !!
+	// 宣告字串
+	u8 s1,s2,s3;
+	s1 = "中國";
+	s2 = "武漢";
+	// 合併字串 !!
 	(s1+s2).print();
 	(s2+"肺炎").print();
 	(s1+s2+"肺炎").print();
 	(s1+"的"+s2).print();
 	
+
 	s1 = "1二3四5六";
-	// 子字串測試
-	s1(1,-1).print();
-	s1(2,4).print();
-	s1(3).print();
-
-
+	// 子字串複製測試
+	s1[{1,-1}].print();
+	s1[{2,4}].print();
+	s1[{1}].print();
+	
 	// join 字串
-	s1 = u8(",").join({u8("我正要去"),u8("空中大學"),u8("!!")});
+	s1 = u8("|").join({"我正要去","美國","頂尖","大學","!!"});
 	s1.print();
-
 
 	// split 字串
 	vector<u8> v;
-	s1("!看我看看!知道什麼!到底要知道什麼!!知道什麼不知道!知道最好!!看!");
+	s1 = "你看看你，我看你";
+	// 變更字元 !!
+	s1[3] = "我";
 	s1.print();
-	v = s1.ngram(3);
+	v = s1.ngram(2);
 	print(v);
-	v = s1.split("!");
-	print(v);
-	v = s1.split(u8("知道"));
-	print(v);
-
-	s1 = u8("測試").join(v);
+	v = s1.split("看");
+	s1 = u8("聽").join(v);
 	s1.print();
 	
+	
+
+
+
 	//==========================================================================================================================
 	// set
 
@@ -248,54 +251,9 @@ int main(){
 	}};
 	
 	matC.print();
+	//========================================================================
 
-	//======================================================================
-	{
-		int size = 320000000;
-		// SIMD 
-		basic_string<int> v1;
-		basic_string<int> v2;
-		
-		
-		for(int i=0;i<size;i++){
-			v1 += 1;
-			v2 += 1;
-		}//endfor
 
-		basic_string<int> r1;
-		basic_string<int> r2;
-		{
-			Timer add_ints_t("add_ints");
-			r1 = avxfunc.add_ints(v1,v2);
-			
-		}
-		{
-			Timer add_ints_baseline("add_ints_baseline");
-			r2 = avxfunc.add_ints_baseline(v1,v2);
-		}
-		
-		if(size <= 80){
-			print(r1);
-			print(r2);
-		}//endif
-		
-	}
-
-	//==================================================================
-	/*
-	// 平行化 方格!! 
-	std::function<int(int)> plus1 = [](int i) { return i+1; };
-	std::vector<int> inputv;
-	for(int i=0;i<100000000;i++){
-		inputv.emplace_back(i);
-	}//endfor
-	for(int i=0;i<8;i++){
-		{
-			Timer t("thread="+std::to_string(i+1));
-			parallel_vector_block(plus1,inputv,i);
-		}
-	}//endfor
-	*/
 
 	return 0;
 }//end_main

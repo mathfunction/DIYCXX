@@ -10,11 +10,11 @@ namespace cxxuseful{
 		std::vector<T> output;
 		output.resize(v.size());
 		#ifdef __APPLE__
-			#pragma omp parallel for num_threads(threads)
 			for(int i=0;i<v.size();i++){
 				output[i] = f(v[i]);
 			}//endfor
 		#else
+			#pragma omp parallel for num_threads(threads)
 			for(int i=0;i<v.size();i++){
 				output[i] = f(v[i]);
 			}//endfor	

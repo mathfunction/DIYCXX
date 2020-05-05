@@ -55,15 +55,15 @@ namespace cxxuseful{
 		for(int i=0;i<str.size();i++){
 			int c = (unsigned char) str[i];
 			if(c>=0 && c<=127){
-			    vc.push_back(std::string(1,str[i]));
+			    vc.emplace_back(std::string(1,str[i]));
 			}else if((c & 0xE0) == 0xC0){
-			    vc.push_back(std::string(1,str[i])+str[i+1]); 
+			    vc.emplace_back(std::string(1,str[i])+str[i+1]); 
 			    i+=1;
 			}else if((c & 0xF0) == 0xE0){
-			    vc.push_back(std::string(1,str[i])+str[i+1]+str[i+2]); 
+			    vc.emplace_back(std::string(1,str[i])+str[i+1]+str[i+2]); 
 			    i+=2;
 			}else if((c & 0xF8) == 0xF0){ 
-			    vc.push_back(std::string(1,str[i])+str[i+1]+str[i+2]+str[i+3]); 
+			    vc.emplace_back(std::string(1,str[i])+str[i+1]+str[i+2]+str[i+3]); 
 			    i+=3;
 			}else{
 			     break;
@@ -71,6 +71,11 @@ namespace cxxuseful{
 		}//endfor
 		return vc;
 	}//end_utf8
+
+
+	
+
+	
 
 
 	inline std::string u82s(const utf8 &v){
@@ -115,17 +120,16 @@ namespace cxxuseful{
 	class u8string{
 		public:
 			utf8 v;
-			std::string str;
 			// 建構
 			u8string(){
-				str = "";
-				v = s2u8(str);
+				v = s2u8("");
 			}
 			u8string(const std::string &_str){
-				str = _str;
-				v = s2u8(str);
+				v = s2u8(_str);
 			}//end_UTF8
-
+			std::string to_str() const {
+				return u82s(this->v);
+			}
 			//=======================================================================
 			int size(){
 				return v.size();
@@ -133,52 +137,62 @@ namespace cxxuseful{
 			void print(){
 				#if defined _WIN32 || defined _WIN64
 					SetConsoleOutputCP(65001); 
-					std::cout << wintrick(str) << std::endl;
+					std::cout << wintrick(this->to_str()) << std::endl;
 					SetConsoleOutputCP(950); 
 				#else 
-					std::cout << str << std::endl;
+					std::cout << this->to_str() << std::endl;
 				#endif
 			}//end_print
 			//=======================================================================
 			// copy
 			u8string& operator=(const std::string &_str){
-				str = _str;
-				v = s2u8(str);
+				v = s2u8(_str);
 				return *this; 
 			}
 
-			// substr
 
+
+			// 初始化 
 			u8string& operator()(const std::string &_str){
-				str = _str;
-				v = s2u8(str);
+				v = s2u8(_str);
 				return *this; 
 			}
 
-			u8string operator()(int first,int end){
+			// 這個會複製子字串 !! 
+			u8string operator[](const std::initializer_list<int> &p){
 				utf8 v2;
-				if(end == -1){
-					end = this->size();
-				}//endif
-				for(int k=first;k<end;k++){
-					v2.push_back(v[k]);
-				}//endfor
+				if(p.size() == 1){
+					v2.emplace_back(v[p.begin()[0]]);
+				}else if(p.size() ==  2){
+					if(p.begin()[1] == -1){
+						for(int k=p.begin()[0];k<v.size();k++){
+							v2.emplace_back(v[k]);
+						}//endfor
+					}else{
+						for(int k=p.begin()[0];k<p.begin()[1];k++){
+							v2.emplace_back(v[k]);
+						}//endfor
+					}//end_else
+				}else{
+					std::cout << "operator[] error in utf8str.hpp !!" << std::endl; 
+					std::exit(1);
+				}//end_else
 				return u8string(u82s(v2));
 			}
 
 
-			u8string operator()(int idx){
-				return u8string(v[idx]);
+			std::string& operator[](int idx){
+				return v[idx];
 			}
 
 
 
 			// concat 
 			u8string operator+(const u8string& _u8str2){
-				return u8string(this->str+_u8str2.str);
+				return u8string(this->to_str()+_u8str2.to_str());
 			}
 			u8string operator+(const std::string& _str){
-				return u8string(this->str+_str);
+				return u8string(this->to_str()+_str);
 			}
 
 
@@ -187,7 +201,7 @@ namespace cxxuseful{
 				std::vector<u8string> output;
 				int m = this->size()-n+1;
 				for(int i=0;i<m;i++){
-					output.push_back(this->operator()(i,i+n));
+					output.emplace_back(this->operator[]({i,i+n}));
 				}//endfor
 				return output;
 			}//end_ngram
@@ -217,16 +231,22 @@ namespace cxxuseful{
 				return true;				
 			}
 
-
+			u8string join(const std::vector<std::string> &vec){
+				std::vector<u8string> u8vec;
+				for(int i=0;i<vec.size();i++){
+					u8vec.emplace_back(u8string(vec[i]));
+				}//endfor
+				return this->join(u8vec);
+			}
 
 
 			u8string join(const std::vector<u8string> &u8vec){
 				std::string output;
 				int n = u8vec.size();
 				for(int i=0;i<n;i++){
-					output+= u8vec[i].str;
+					output+= u8vec[i].to_str();
 					if(i<n-1){
-						output += this->str;
+						output += this->to_str();
 					}//endif
 				}//endfor
 				return u8string(output);
@@ -246,14 +266,14 @@ namespace cxxuseful{
 				int m = n-dn+1;
 				int _idx = 0;
 				for(int i=0;i<m;i++){
-					if ((this->operator()(i,i+dn)) == delimiter){
-						output.push_back(this->operator()(_idx,i));
-						if(_boolFull) output.push_back(delimiter);
+					if ((this->operator[]({i,i+dn})) == delimiter){
+						output.emplace_back(this->operator[]({_idx,i}));
+						if(_boolFull) output.emplace_back(delimiter);
 						_idx = i+dn;
 						i +=(dn-1);
 					}//endif
 				}//endfor
-				output.push_back(this->operator()(_idx,n));
+				output.emplace_back(this->operator[]({_idx,n}));
 				return output;
 			}//end_split
 			
@@ -277,7 +297,7 @@ namespace cxxuseful{
 			n = u8v.size()-1;
 		}
 		for(int i=m;i<n;i++){
-			output += u8v[i].str;
+			output += u8v[i].to_str();
 		}//endfor
 		return u8string(output);
 	}

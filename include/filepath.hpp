@@ -49,17 +49,17 @@ namespace cxxuseful{
 				_type.print();
 			}
 			std::string dirname(){
-				return _dirname.str;
+				return _dirname.to_str();
 			}
 			
 			std::vector<u8string> tokens(){
 				return _tokens;
 			}
 			std::string filename(){
-				return _filename.str;
+				return _filename.to_str();
 			}
 			std::string type(){
-				return _type.str;
+				return _type.to_str();
 			}
 	};
 

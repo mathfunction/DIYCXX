@@ -101,7 +101,7 @@ namespace cxxuseful{
 					#if defined _WIN32 || defined _WIN64
 						SetConsoleOutputCP(65001); 
 						for(int i=0;i<v.size();i++){
-							std::cout << "\t" <<  i << " : " <<  wintrick(v[i].str)  << std::endl;
+							std::cout << "\t" <<  i << " : " <<  wintrick(v[i].to_str())  << std::endl;
 						}
 						SetConsoleOutputCP(950); 
 					#else
