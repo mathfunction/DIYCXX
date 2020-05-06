@@ -1,5 +1,3 @@
-
-
 #include "cxxuseful.hpp"
 
 
@@ -252,32 +250,36 @@ int main(){
 	
 	matC.print();
 	//=========================================================================
-	// avx2 
-	const int N = 4096*2160*3;
+	// avx2 : 註 : 內存不能太大 !! 
+	const int N = 100000;
+	
 	array<float,N> input1;
 	array<float,N> input2;
-	array<float,N> output1;
-	array<float,N> output2;
+	array<float,N> computed;
 
 	for(int i=0;i<N;i++){
 		input1[i] = (float)(i+1);
 		input2[i] = (float)(i+1);
+		computed[i] = 0.99999;
 	}//endfor
-
+	
 	{
 		Timer t1("naive");
-		output1 = avxfunc.add_naive(input1,input2);
-		output1 = avxfunc.sub_naive(input1,input2);
-		output1 = avxfunc.mul_naive(input1,input2);
-		output1 = avxfunc.div_naive(input1,input2);
+		avxfunc.mul(input1,computed);
+		avxfunc.add(input1,computed);
+		
 	}
+	
 	{	
 		Timer t2("avx2");
-		output2 = avxfunc.add(input1,input2);
-		output2 = avxfunc.sub(input1,input2);
-		output2 = avxfunc.mul(input1,input2);
-		output2 = avxfunc.div(input1,input2);
+		avxfunc.mul(input2,computed);
+		avxfunc.add(input2,computed);
+		
 	}
-	cout << output1.size() << endl;
+	for(int i=0;i<10;i++){
+		cout << input1[i] << " == " << input2[i] << endl;
+	}
+	
+	
 	return 0;
 }//end_main
