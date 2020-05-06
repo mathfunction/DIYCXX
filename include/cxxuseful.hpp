@@ -37,7 +37,9 @@
 // third_party 第三方好用函式庫
 #include "boost_includes.hpp"
 // JSON for Modern C++ / single_include https://github.com/nlohmann/json
-#include "json.hpp"
+#ifndef __NVCC__	
+	#include "json.hpp"
+#endif
 // =============================================================================
 // 全域函式
 namespace cxxuseful{
@@ -53,17 +55,21 @@ namespace cxxuseful{
 // DIY 開發 HPP 
 #include "utf8str.hpp"
 #include "cmdcolor.hpp"
-#include "printfunc.hpp"
+#ifndef __NVCC__
+	#include "printfunc.hpp"
+#endif
 #include "makedictfunc.hpp"
-#include "randomfunc.hpp"
-#include "timer.hpp"
-#include "jsonfunc.hpp"
+#ifndef __NVCC__
+	#include "randomfunc.hpp"
+	#include "timer.hpp" 
+	#include "jsonfunc.hpp"
+	#include "dataframe.hpp"
+#endif
 #include "strhandler.hpp"
 #include "otherfunc.hpp"
 #include "setfunc.hpp"
 #include "filepath.hpp"
 #include "checkinfunc.hpp"
-#include "dataframe.hpp"
 #include "cxxtensor.hpp"
 #include "simd.hpp"
 #include "parallel_block.hpp"
