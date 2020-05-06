@@ -20,79 +20,84 @@
 					//=========================================================================================
 					// 乘法
 					template<size_t N>
-					void mul(std::array<float,N> &v1,const std::array<float,N> &v2){
+					void mul(float *v1,float *v2){
 						constexpr int Q = N/8;
 						constexpr int R = N%8;
-						constexpr int RL = Q*8;
-						constexpr int RU = Q*8+R; 
+						int i = Q;
 						// avx part 
-						for(int i=0;i<N;i+=8){
-							__m256 avx_v1 = _mm256_load_ps(&v1[i]);
-							__m256 avx_v2 = _mm256_load_ps(&v2[i]);
+						while(i--){
+							
+							__m256 avx_v1 = _mm256_load_ps(v1);
+							__m256 avx_v2 = _mm256_load_ps(v2);
 							avx_v1 = _mm256_mul_ps(avx_v1,avx_v2);
-							_mm256_store_ps(&v1[i],avx_v1);
+							_mm256_store_ps(v1,avx_v1);
+							v1+=8;
+							v2+=8;
 						}//endfor
-						for(int i=RL;i<RU;i++){
+						for(;i<R;i++){
 							v1[i]*=v2[i];
-						}//endfor
+						}
 					}//endfor
 					//========================================================================================
 					// 加法
 					template<size_t N>
-					void add(std::array<float,N> &v1,const std::array<float,N> &v2){
+					void add(float *v1,float *v2){
 						constexpr int Q = N/8;
 						constexpr int R = N%8;
-						constexpr int RL = Q*8;
-						constexpr int RU = Q*8+R; 
+						int i = Q;
 						// avx part 
-						for(int i=0;i<N;i+=8){
-							__m256 avx_v1 = _mm256_load_ps(&v1[i]);
-							__m256 avx_v2 = _mm256_load_ps(&v2[i]);
+						while(i--){
+							__m256 avx_v1 = _mm256_load_ps(v1);
+							__m256 avx_v2 = _mm256_load_ps(v2);
 							avx_v1 = _mm256_add_ps(avx_v1,avx_v2);	
-							_mm256_store_ps(&v1[i],avx_v1);
+							_mm256_store_ps(v1,avx_v1);
+							v1+=8;
+							v2+=8;
 						}//endfor
-						for(int i=RL;i<RU;i++){
+						for(;i<R;i++){
 							v1[i]+=v2[i];
-						}//endfor
+						}
 					}//endfor
 					//===================================================================================
 					// 減法
 					template<size_t N>
-					void sub(std::array<float,N> &v1,const std::array<float,N> &v2){
+					void sub(float *v1,float *v2){
 						constexpr int Q = N/8;
 						constexpr int R = N%8;
-						constexpr int RL = Q*8;
-						constexpr int RU = Q*8+R; 
+						int i = Q; 
 						// avx part 
-						for(int i=0;i<N;i+=8){
-							__m256 avx_v1 = _mm256_load_ps(&v1[i]);
-							__m256 avx_v2 = _mm256_load_ps(&v2[i]);
+						while(i--){
+							__m256 avx_v1 = _mm256_load_ps(v1);
+							__m256 avx_v2 = _mm256_load_ps(v2);
 							avx_v1 = _mm256_sub_ps(avx_v1,avx_v2);	
-							_mm256_store_ps(&v1[i],avx_v1);
+							_mm256_store_ps(v1,avx_v1);
+							v1+=8;
+							v2+=8;
 						}//endfor
-						for(int i=RL;i<RU;i++){
+						for(;i<R;i++){
 							v1[i]-=v2[i];
-						}//endfor
+						}
 					}//endfor
 					//=======================================================================================
 					// 除法
 
 					template<size_t N>
-					void div(std::array<float,N> &v1,const std::array<float,N> &v2){
+					void div(float *v1,float *v2){
 						constexpr int Q = N/8;
 						constexpr int R = N%8;
-						constexpr int RL = Q*8;
-						constexpr int RU = Q*8+R; 
 						// avx part 
-						for(int i=0;i<N;i+=8){
-							__m256 avx_v1 = _mm256_load_ps(&v1[i]);
-							__m256 avx_v2 = _mm256_load_ps(&v2[i]);
+						int i = Q;
+						while(i--){
+							__m256 avx_v1 = _mm256_load_ps(v1);
+							__m256 avx_v2 = _mm256_load_ps(v2);
 							avx_v1 = _mm256_div_ps(avx_v1,avx_v2);	
-							_mm256_store_ps(&v1[i],avx_v1);
+							_mm256_store_ps(v1,avx_v1);
+							v1+=8;
+							v2+=8;
 						}//endfor
-						for(int i=RL;i<RU;i++){
+						for(;i<R;i++){
 							v1[i]/=v2[i];
-						}//endfor
+						}
 					}//endfor
 				
 

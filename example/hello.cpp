@@ -251,8 +251,8 @@ int main(){
 	matC.print();
 	//=========================================================================
 	// avx2 : 註 : 內存不能太大 !! 
-	const int N = 1000000;
-	
+	const int N = 829440;
+	const int R = 32;
 	array<float,N> input1;
 	array<float,N> computed;
 
@@ -263,7 +263,7 @@ int main(){
 	
 	{
 		Timer t1("naive");
-		for(int i=0;i<10000;i++){
+		for(int i=0;i<R;i++){
 			avxfunc.mul_naive(input1,computed);
 			avxfunc.add_naive(input1,computed);
 			avxfunc.add_naive(input1,computed);
@@ -285,11 +285,11 @@ int main(){
 
 	{	
 		Timer t2("avx2");
-		for(int i=0;i<10000;i++){
-			avxfunc.mul(input1,computed);
-			avxfunc.add(input1,computed);
-			avxfunc.add(input1,computed);
-			avxfunc.add(input1,computed);
+		for(int i=0;i<R;i++){
+			avxfunc.mul<N>(&input1[0],&computed[0]);
+			avxfunc.add<N>(&input1[0],&computed[0]);
+			avxfunc.add<N>(&input1[0],&computed[0]);
+			avxfunc.add<N>(&input1[0],&computed[0]);
 		}
 		
 	}
