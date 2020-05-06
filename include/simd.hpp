@@ -20,7 +20,7 @@
 					//=========================================================================================
 					// 乘法
 					template<size_t N>
-					void mul(std::array<float,N> &v1,const std::array<float,N> &v2,int power=1){
+					void mul(std::array<float,N> &v1,const std::array<float,N> &v2){
 						constexpr int Q = N/8;
 						constexpr int R = N%8;
 						constexpr int RL = Q*8;

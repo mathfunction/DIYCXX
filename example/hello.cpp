@@ -251,33 +251,50 @@ int main(){
 	matC.print();
 	//=========================================================================
 	// avx2 : 註 : 內存不能太大 !! 
-	const int N = 100000;
+	const int N = 1000000;
 	
 	array<float,N> input1;
-	array<float,N> input2;
 	array<float,N> computed;
 
 	for(int i=0;i<N;i++){
 		input1[i] = (float)(i+1);
-		input2[i] = (float)(i+1);
 		computed[i] = 0.99999;
 	}//endfor
 	
 	{
 		Timer t1("naive");
-		avxfunc.mul(input1,computed);
-		avxfunc.add(input1,computed);
+		for(int i=0;i<10000;i++){
+			avxfunc.mul_naive(input1,computed);
+			avxfunc.add_naive(input1,computed);
+			avxfunc.add_naive(input1,computed);
+			avxfunc.add_naive(input1,computed);
+		}//endfor
 		
 	}
+	//============================================
+	for(int i=0;i<10;i++){
+		cout << input1[i]  << endl;
+	}
+
+	for(int i=0;i<N;i++){
+		input1[i] = (float)(i+1);
+		computed[i] = 0.99999;
+	}//endfo
 	
+	
+
 	{	
 		Timer t2("avx2");
-		avxfunc.mul(input2,computed);
-		avxfunc.add(input2,computed);
+		for(int i=0;i<10000;i++){
+			avxfunc.mul(input1,computed);
+			avxfunc.add(input1,computed);
+			avxfunc.add(input1,computed);
+			avxfunc.add(input1,computed);
+		}
 		
 	}
 	for(int i=0;i<10;i++){
-		cout << input1[i] << " == " << input2[i] << endl;
+		cout << input1[i]  << endl;
 	}
 	
 	
