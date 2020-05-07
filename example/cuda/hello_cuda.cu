@@ -19,6 +19,9 @@
 
 
 #include "cxxuseful.hpp"
+#include "npp.h"
+
+
 
 
 using namespace cxxuseful;

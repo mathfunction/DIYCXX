@@ -26,7 +26,6 @@
 						int i = Q;
 						// avx part 
 						while(i--){
-							
 							__m256 avx_v1 = _mm256_load_ps(v1);
 							__m256 avx_v2 = _mm256_load_ps(v2);
 							avx_v1 = _mm256_mul_ps(avx_v1,avx_v2);
@@ -64,7 +63,7 @@
 					void sub(float *v1,float *v2){
 						constexpr int Q = N/8;
 						constexpr int R = N%8;
-						int i = Q; 
+						int i = Q;
 						// avx part 
 						while(i--){
 							__m256 avx_v1 = _mm256_load_ps(v1);
@@ -80,12 +79,10 @@
 					}//endfor
 					//=======================================================================================
 					// 除法
-
 					template<size_t N>
 					void div(float *v1,float *v2){
 						constexpr int Q = N/8;
 						constexpr int R = N%8;
-						// avx part 
 						int i = Q;
 						while(i--){
 							__m256 avx_v1 = _mm256_load_ps(v1);
@@ -97,36 +94,36 @@
 						}//endfor
 						for(;i<R;i++){
 							v1[i]/=v2[i];
-						}
+						}//endfor
 					}//endfor
 				
 
 				#endif
 				
-				template<size_t N>
-				void add_naive(std::array<float,N> &v1,const std::array<float,N> &v2){
-					for(int i=0;i<v1.size();i++){
+				
+				void add_naive(float *v1,float *v2,int N){
+					for(int i=0;i<N;i++){
 						v1[i]+=v2[i];
 					}//endfor
 				}
 
-				template<size_t N>
-				void sub_naive(std::array<float,N> &v1,const std::array<float,N> &v2){
-					for(int i=0;i<v1.size();i++){
+				
+				void sub_naive(float *v1,float *v2,int N){
+					for(int i=0;i<N;i++){
 						v1[i]-=v2[i];
 					}//endfor
 				}
 
-				template<size_t N>
-				void div_naive(std::array<float,N> &v1,const std::array<float,N> &v2){
-					for(int i=0;i<v1.size();i++){
+				
+				void div_naive(float *v1,float *v2,int N){
+					for(int i=0;i<N;i++){
 						v1[i]/=v2[i];
 					}//endfor	
 				}
 
-				template<size_t N>
-				void mul_naive(std::array<float,N> &v1,const std::array<float,N> &v2){
-					for(int i=0;i<v1.size();i++){
+				
+				void mul_naive(float *v1,float *v2,int N){
+					for(int i=0;i<N;i++){
 						v1[i]*=v2[i];
 					}//endfor	
 				}

@@ -61,8 +61,8 @@ namespace cxxuseful{
 #endif
 #include "makedictfunc.hpp"
 #ifndef __NVCC__
-	#include "randomfunc.hpp"
 	#include "timer.hpp" 
+	#include "randomfunc.hpp"
 	#include "jsonfunc.hpp"
 	#include "dataframe.hpp"
 #endif

@@ -40,14 +40,23 @@ namespace cxxuseful{
 	class Timer : public TimerBaseClocker{
 		private:
 			std::string program_name;
+			bool _boolPrint;
 		public:
-			Timer(std::string program_name){
+			Timer(std::string program_name,bool _boolPrint=true){
 				this->program_name = program_name;
+				this->_boolPrint = _boolPrint;
 				Start();	
 			};
-			~Timer(){
+			float get(){
 				std::clock_t t = GetMs();
-				std::cerr << "Block{" << program_name << "} : " << 1000*((float)t)/CLOCKS_PER_SEC << " ms" << std::endl;
+				return 1000*((float)t)/CLOCKS_PER_SEC;
+			}
+
+			~Timer(){
+				if(_boolPrint==true){
+					std::clock_t t = GetMs();
+					std::cerr << "Block{" << program_name << "} : " << 1000*((float)t)/CLOCKS_PER_SEC << " ms" << std::endl;
+				}
 			};
 	};
 	
