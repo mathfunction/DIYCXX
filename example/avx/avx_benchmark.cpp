@@ -1,4 +1,4 @@
-
+// compile as clang intel
 
 #include "cxxuseful.hpp"
 
@@ -12,13 +12,10 @@ using namespace std;
 
 int main(){
 
-	#if defined _WIN32 || defined _WIN64 
-		const int N = 2048;
-		const int T = 100000;	
-	#else
-		const int N = 4096;
-		const int T = 100000;
-	#endif
+	
+	const int N = 800000;
+	const int T = 1000;
+	
 	
 	
 
@@ -36,6 +33,7 @@ int main(){
 	
 	{
 		Timer t1("naive");
+		
 		for(int i=0;i<T;i++){
 			avxfunc.mul_naive(ptr_input1,ptr_computed,N);
 			avxfunc.add_naive(ptr_input1,ptr_computed,N);
@@ -61,9 +59,42 @@ int main(){
 		
 	}
 	//============================================
-	for(int i=0;i<10;i++){
-		cout << ptr_input1[i]  << endl;
+	//=======================================================
+	for(int i=0;i<N;i++){
+		ptr_input1[i] = (float)(i+1);
+		ptr_computed[i] = 0.99999;
+	}//endfor
+
+	
+	{
+		Timer t2("omp simd");
+		#pragma omp simd
+		for(int i=0;i<T;i++){
+			avxfunc.mul_naive(ptr_input1,ptr_computed,N);
+			avxfunc.add_naive(ptr_input1,ptr_computed,N);
+			avxfunc.add_naive(ptr_input1,ptr_computed,N);
+			avxfunc.add_naive(ptr_input1,ptr_computed,N);
+			avxfunc.add_naive(ptr_input1,ptr_computed,N);
+			avxfunc.add_naive(ptr_input1,ptr_computed,N);
+			avxfunc.add_naive(ptr_input1,ptr_computed,N);
+			avxfunc.add_naive(ptr_input1,ptr_computed,N);
+			avxfunc.add_naive(ptr_input1,ptr_computed,N);
+			avxfunc.add_naive(ptr_input1,ptr_computed,N);
+			avxfunc.add_naive(ptr_input1,ptr_computed,N);
+			avxfunc.add_naive(ptr_input1,ptr_computed,N);
+			avxfunc.add_naive(ptr_input1,ptr_computed,N);
+			avxfunc.add_naive(ptr_input1,ptr_computed,N);
+			avxfunc.add_naive(ptr_input1,ptr_computed,N);
+			avxfunc.add_naive(ptr_input1,ptr_computed,N);
+			avxfunc.add_naive(ptr_input1,ptr_computed,N);
+			avxfunc.add_naive(ptr_input1,ptr_computed,N);
+			avxfunc.add_naive(ptr_input1,ptr_computed,N);
+			avxfunc.mul_naive(ptr_input1,ptr_computed,N);
+		}//endfor
+
 	}
+
+
 	
 	for(int i=0;i<N;i++){
 		ptr_input1[i] = (float)(i+1);
@@ -72,7 +103,7 @@ int main(){
 	
 	
 	{	
-		Timer t2("avx2");
+		Timer t3("intel instrinsics");
 		for(int i=0;i<T;i++){
 			avxfunc.mul<N>(ptr_input1,ptr_computed);
 			avxfunc.add<N>(ptr_input1,ptr_computed);
@@ -94,18 +125,14 @@ int main(){
 			avxfunc.add<N>(ptr_input1,ptr_computed);
 			avxfunc.add<N>(ptr_input1,ptr_computed);
 			avxfunc.mul<N>(ptr_input1,ptr_computed);
+			
 		}
 		
 	}
 	
-	for(int i=0;i<10;i++){
-		cout << ptr_input1[i]  << endl;
-	}
+	
 
-
-
-
-
+	
 
 
 
