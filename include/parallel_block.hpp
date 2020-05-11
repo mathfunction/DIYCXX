@@ -18,10 +18,6 @@ namespace ThreadsPiplines{
 	#endif
 
 
-
-
-
-
 	// global variables
 	std::thread threads[__NUM_CPUS__];
 	bool idle[__NUM_CPUS__];
@@ -62,7 +58,7 @@ namespace ThreadsPiplines{
 		for(int i=0;i<__NUM_CPUS__;i++){
 			threads[i] = std::thread(threads_main,i);
 		}//endfor
-		printBlueGreen("create "+std::to_string(__NUM_CPUS__) + "/" + std::to_string(std::thread::hardware_concurrency()) +  " [threads/numCPUs]",true);
+		printBlueGreen("create "+std::to_string(__NUM_CPUS__) + "/" + std::to_string(std::thread::hardware_concurrency()) +  " [piplines/numCPUs]",true);
 	}//init
 
 	
@@ -79,7 +75,7 @@ namespace ThreadsPiplines{
 			threads[i].join();
 		}//endfor 
 
-		printBlueGreen("closed "+std::to_string(__NUM_CPUS__) + " [threads/numCPUs]",true);
+		printBlueGreen("closed "+std::to_string(__NUM_CPUS__) + " pipines",true);
 
 	}
 
