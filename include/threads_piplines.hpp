@@ -1,7 +1,8 @@
-#ifndef __PARALLEL_BLOCK_HPP__
-#define __PARALLEL_BLOCK_HPP__
+#ifndef __THREADS_PIPLINES_HPP__
+#define __THREADS_PIPLINES_HPP__
 
 #include <thread>
+#include <mutex>
 #include <functional>
 
 
@@ -23,37 +24,64 @@ namespace ThreadsPiplines{
 	bool idle[__NUM_CPUS__];
 	int while_on[__NUM_CPUS__];
 	std::function<void()> funcTable[__NUM_CPUS__]; 
+	std::basic_string<int> idleID;
 
 	__attribute__((optimize("O0")))
 	void threads_main(int id){
 		while(while_on[id]){
-			while(!idle[id]);
+			while(idle[id]);
 			funcTable[id]();
-			idle[id] = false;
+			idle[id] = true;
 		}//end_while
 	}//end_run
 
 	void run_all(){
 		for(int i=0;i<__NUM_CPUS__;i++){
-			idle[i] = true;
+			idle[i] = false;
 		}//endfor
 	}
 
+
+	void run(int id){
+		idle[id] = false;
+	}
+
+	__attribute__((optimize("O0")))
+	void wait_idle(int id){
+		while(!idle[id]);
+	}
 
 
 	__attribute__((optimize("O0")))
 	void wait_all_idle(){
 		for(int i=0;i<__NUM_CPUS__;i++){
-			while(idle[i]);
+			while(!idle[i]);
 		}//endfor
 	}//end_wait
 
 
+	void check_exists_idle(){
+		while(idleID.size()==0){
+			for(int i=0;i<__NUM_CPUS__;i++){
+				if(idle[i] == true){
+					idleID += i;
+				}//endif
+			}//endfor
+		}//end_while
+	}
+
+	void run_exists_idle(){
+		for(int i=0;i<idleID.size();i++){
+			run(i);
+		}//endfor
+		idleID.clear();
+	}
 
 	
 	void init(){
 		for(int i=0;i<__NUM_CPUS__;i++){
 			while_on[i] = 1;
+			idle[i] = true;
 		}//endfor
 		for(int i=0;i<__NUM_CPUS__;i++){
 			threads[i] = std::thread(threads_main,i);
@@ -63,12 +91,17 @@ namespace ThreadsPiplines{
 
 	
 	void join(){
+				
 		for(int i=0;i<__NUM_CPUS__;i++){
 			while_on[i] = 0;
 		}//endfor
 
 		for(int i=0;i<__NUM_CPUS__;i++){
-			idle[i] = true;
+			funcTable[i] = [](){}; // do nothing 
+		}
+
+		for(int i=0;i<__NUM_CPUS__;i++){
+			idle[i] = false;
 		}//endfor
 
 		for(int i=0;i<__NUM_CPUS__;i++){
@@ -83,7 +116,16 @@ namespace ThreadsPiplines{
 
 
 
+
+
+
+
 };//===============================================================================================================================================
+
+
+
+
+
 
 
 	

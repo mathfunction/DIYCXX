@@ -73,7 +73,7 @@ namespace cxxuseful{
 #include "checkinfunc.hpp"
 #include "cxxtensor.hpp"
 #include "simd.hpp"
-#include "parallel_block.hpp"
+#include "threads_piplines.hpp"
 //#include "socketio.hpp"
 //==============================================================================
 
