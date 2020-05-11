@@ -74,7 +74,6 @@ namespace cxxuseful{
 #include "cxxtensor.hpp"
 #include "simd.hpp"
 #include "threads_piplines.hpp"
-//#include "cxxpipline.hpp"
 //#include "socketio.hpp"
 //==============================================================================
 

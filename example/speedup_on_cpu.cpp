@@ -51,27 +51,26 @@ int main(){
 	}
 
 	ThreadsPiplines::join();
+	
+	//===========================================
+
+	for(int i=0;i<1000;i++){
+		ThreadsPiplines2::push(i%__NUM_CPUS__,i);
+	}
+	ThreadsPiplines2::run();
+
+
+	ThreadsPiplines2::wait_all_empty();
+	ThreadsPiplines2::closed();
+
+
+
+
 		
 	return 0;
 }//end_main
 
-/*
 
 
-#include "cxxuseful.hpp"
 
-using namespace std;
-using namespace cxxuseful;
 
-int main(){
-	
-	for(int i=0;i<10000;i++){
-		cxxpipline::push(i%4,i);
-	}
-	cxxpipline::run();
-	cxxpipline::wait_all_empty();
-	cxxpipline::closed();
-	return 0;
-}
-
-*/
