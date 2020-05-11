@@ -1,3 +1,5 @@
+
+/*
 #define __NUM_CPUS__ 6
 #include "cxxuseful.hpp"
 
@@ -5,6 +7,8 @@
 
 using namespace std;
 using namespace cxxuseful;
+
+
 
 queue<int> Q;
 
@@ -49,12 +53,26 @@ int main(){
 
 	ThreadsPiplines::join();
 		
-	
-	
-	
-	
-
-
-
 	return 0;
 }//end_main
+*/
+
+#include "cxxuseful.hpp"
+
+using namespace std;
+using namespace cxxuseful;
+
+int main(){
+	cxxpipline::init();
+	for(int i=0;i<1000;i++){
+	
+		cxxpipline::push(i%4,1);
+	
+	}
+
+
+	cxxpipline::closed();
+	return 0;
+}
+
+
