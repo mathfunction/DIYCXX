@@ -10,6 +10,9 @@
 #include <thread>
 #include <chrono>
 #include <mutex>
+#include <condition_variable>
+
+
 
 namespace cxxuseful{
 
@@ -23,42 +26,53 @@ namespace cxxpipline{
 
 	
 	std::queue<int> q[__NUM_CPUS__];
-	std::mutex mtx;
-		
+	std::mutex mtx[__NUM_CPUS__];
+	std::mutex mtx2;
+	
+	std::condition_variable cv;
 	void push(int i,int val){
-		mtx.lock();
+		mtx[i].lock();
 		q[i].push(val);
-		mtx.unlock();
+		mtx[i].unlock();
 	}
 
 	std::thread threads[__NUM_CPUS__];
-	bool _boolClosed = false;
+	
 
 	void threads_main(int id){
-		
-		if(_boolClosed){
-			return;
-		}
 		if(!q[id].empty()){
-			std::cout << q[id].front() << std::endl;
+			mtx2.lock();
+			std::cout << "======================" << std::endl;
+			for(int i=0;i<__NUM_CPUS__;i++){
+				std::cout << "[" << i << "] " << q[i].size() << "," ;
+			} std::cout << std::endl;
 			q[id].pop();
+			mtx2.unlock();		
 			threads_main(id);
-			// callback
+		}else{
+			return;
 		}
 		
 	}//end_threads_main
 		
-	void init(){
+	void run(){
 		for(int i=0;i<__NUM_CPUS__;i++){
 			threads[i] = std::thread(threads_main,i);
 		}//endfor
 	}
-
-
+	
+	
+	void wait_all_empty(){
+		std::mutex mtx3;
+		std::unique_lock<std::mutex> lock(mtx3);
+		cv.wait(lock);
+	}
 	
 
 	void closed(){
-		_boolClosed = true;
+		for(int i=0;i<__NUM_CPUS__;i++){
+			threads[i].join();
+		}
 	}
 
 

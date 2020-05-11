@@ -1,6 +1,6 @@
 
-/*
-#define __NUM_CPUS__ 6
+
+#define __NUM_CPUS__ 2
 #include "cxxuseful.hpp"
 
 
@@ -26,11 +26,11 @@ void do_something(int id,int input){
 
 int main(){
 	
+	for(int i=0;i<10000;i++){
+		Q.push(i);
+	}//endfor	
 
 	ThreadsPiplines::init();
-		for(int i=0;i<10000;i++){
-			Q.push(i);
-		}//endfor
 	{
 		Timer timecost(to_string(__NUM_CPUS__));
 		while(!Q.empty()){
@@ -50,12 +50,13 @@ int main(){
 		
 	}
 
-
 	ThreadsPiplines::join();
 		
 	return 0;
 }//end_main
-*/
+
+/*
+
 
 #include "cxxuseful.hpp"
 
@@ -63,16 +64,14 @@ using namespace std;
 using namespace cxxuseful;
 
 int main(){
-	cxxpipline::init();
-	for(int i=0;i<1000;i++){
 	
-		cxxpipline::push(i%4,1);
-	
+	for(int i=0;i<10000;i++){
+		cxxpipline::push(i%4,i);
 	}
-
-
+	cxxpipline::run();
+	cxxpipline::wait_all_empty();
 	cxxpipline::closed();
 	return 0;
 }
 
-
+*/

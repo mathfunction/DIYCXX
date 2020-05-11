@@ -26,14 +26,26 @@ namespace ThreadsPiplines{
 	std::function<void()> funcTable[__NUM_CPUS__]; 
 	std::basic_string<int> idleID;
 
-	__attribute__((optimize("O0")))
-	void threads_main(int id){
-		while(while_on[id]){
-			while(idle[id]);
-			funcTable[id]();
-			idle[id] = true;
-		}//end_while
-	}//end_run
+	
+	#ifdef __clang__
+		[[clang::optnone]]
+		void threads_main(int id){
+			while(while_on[id]){
+				while(idle[id]);
+				funcTable[id]();
+				idle[id] = true;
+			}//end_while
+		}//end_run
+	#else 
+		__attribute__((optimize("O0")))
+		void threads_main(int id){
+			while(while_on[id]){
+				while(idle[id]);
+				funcTable[id]();
+				idle[id] = true;
+			}//end_while
+		}//end_run
+	#endif
 
 	void run_all(){
 		for(int i=0;i<__NUM_CPUS__;i++){
@@ -46,19 +58,32 @@ namespace ThreadsPiplines{
 		idle[id] = false;
 	}
 
-	__attribute__((optimize("O0")))
-	void wait_idle(int id){
-		while(!idle[id]);
-	}
+	#ifndef __clang__
+		[[clang::optnone]]
+		void wait_idle(int id){
+			while(!idle[id]);
+		}
+	#else
+		void wait_idle(int id){
+			while(!idle[id]);
+		}
+	#endif
 
-
-	__attribute__((optimize("O0")))
-	void wait_all_idle(){
-		for(int i=0;i<__NUM_CPUS__;i++){
-			while(!idle[i]);
-		}//endfor
-	}//end_wait
-
+	#ifdef __clang__
+		[[clang::optnone]]
+		void wait_all_idle(){
+			for(int i=0;i<__NUM_CPUS__;i++){
+				while(!idle[i]);
+			}//endfor
+		}//end_wait
+	#else
+		__attribute__((optimize("O0")))
+		void wait_all_idle(){
+			for(int i=0;i<__NUM_CPUS__;i++){
+				while(!idle[i]);
+			}//endfor
+		}//end_wait
+	#endif 
 
 	void check_exists_idle(){
 		while(idleID.size()==0){
