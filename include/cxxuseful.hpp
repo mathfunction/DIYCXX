@@ -72,8 +72,8 @@ namespace cxxuseful{
 #include "filepath.hpp"
 #include "checkinfunc.hpp"
 #include "cxxtensor.hpp"
-#include "simd.hpp"
-#include "threads_piplines.hpp"
+//#include "simd.hpp"
+//#include "threads_piplines.hpp"
 //#include "socketio.hpp"
 //==============================================================================
 
