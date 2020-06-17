@@ -50,6 +50,40 @@ namespace cxxuseful{
 				return output;
 			}
 
+			void print(int setw_n=10){
+				for(int c=0;c<colnames.size();c++){
+					std::stringstream ss;
+					ss << std::setw(setw_n) << colnames[c] << " | ";
+					printYellow(ss.str());
+				}
+				std::cout << std::endl;
+				for(int i=0;i<this->rows();i++){
+					for(int j=0;j<this->cols();j++){
+						BoostAny &v = data[colnames[j]][i];
+						
+						if(v.type()==typeid(int)){
+							std::cout  << std::setw(setw_n) << type<int>(v) << " | ";
+						}else if(v.type()==typeid(std::string)){
+							std::cout  << std::setw(setw_n) << type<std::string>(v) << " | ";
+						}else if(v.type()==typeid(const char*)){
+							std::cout  << std::setw(setw_n) << type<const char*>(v) << " | ";
+						}else if(v.type()==typeid(std::string)){
+							std::cout  << std::setw(setw_n) << type<int>(v) << " | ";
+						}else if(v.type()==typeid(double)){
+							std::cout  << std::setw(setw_n) << type<double>(v) << " | ";
+						}else if(v.type()==typeid(BoostInt)){
+							std::cout  << std::setw(setw_n) << type<BoostInt>(v) << " | ";
+						}else if(v.type()==typeid(BoostFloat)){
+							std::cout  << std::setw(setw_n) << type<BoostFloat>(v) << " | ";
+						}else if(v.type()==typeid(BoostRational)){
+							std::cout  << std::setw(setw_n) << type<BoostRational>(v) << " | ";
+						}else{
+						}//end_else
+						
+					}//endfor
+					std::cout << std::endl;
+				}//endfor
+			}//end_print
 
 
 			void print(const std::vector<int> &idxs,int setw_n=10){
@@ -65,6 +99,8 @@ namespace cxxuseful{
 						BoostAny &v = data[colnames[i]][idxs[j]];
 						if(v.type()==typeid(int)){
 							std::cout  << std::setw(setw_n) << type<int>(v) << " | ";
+						}else if(v.type()==typeid(std::string)){
+							std::cout  << std::setw(setw_n) << type<std::string>(v) << " | ";
 						}else if(v.type()==typeid(const char*)){
 							std::cout  << std::setw(setw_n) << type<const char*>(v) << " | ";
 						}else if(v.type()==typeid(std::string)){
