@@ -130,6 +130,11 @@ namespace cxxuseful{
 			std::string to_str() const {
 				return u82s(this->v);
 			}
+			const char* c_str() const {
+				return u82s(this->v).c_str();
+			}
+
+
 			//=======================================================================
 			int size(){
 				return v.size();
@@ -287,10 +292,14 @@ namespace cxxuseful{
 			}//end_split
 
 
+			
+
+
+
 
 	};
 		
-	// handle  std::vector<u8string>
+	// 選擇子字串 !! 
 	u8string substr(const std::vector<u8string>&u8v,int m,int n){
 		std::string output;
 		if(n==-1){
