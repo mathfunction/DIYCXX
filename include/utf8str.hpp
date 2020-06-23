@@ -113,6 +113,10 @@ namespace cxxuseful{
 		#endif
 	}//end_printutf8
 	
+	
+
+
+
 
 	// ======================================================================================
 	// 主要物件 !! 
@@ -139,13 +143,15 @@ namespace cxxuseful{
 			int size(){
 				return v.size();
 			}//end_size
-			void print(){
+			void print(bool _boolNewline=true){
 				#if defined _WIN32 || defined _WIN64
 					SetConsoleOutputCP(65001); 
-					std::cout << wintrick(this->to_str()) << std::endl;
+					std::cout << wintrick(this->to_str());
+					if(_boolNewline) std::cout << std::endl;
 					SetConsoleOutputCP(950); 
 				#else 
-					std::cout << this->to_str() << std::endl;
+					std::cout << this->to_str();
+					if(_boolNewline) std::cout << std::endl;
 				#endif
 			}//end_print
 			//=======================================================================

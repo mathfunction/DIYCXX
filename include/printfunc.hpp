@@ -111,12 +111,12 @@ namespace cxxuseful{
 					#endif
 					printYellow("]",true);
 				}
-
+				// windows 上可以印 utf8
 				void operator()(const std::string &str){
 					#if defined _WIN32 || defined _WIN64
 						SetConsoleOutputCP(65001); 
 					#endif
-					std::cout << wintrick(str) << std::endl;
+					std::cout << wintrick(str);
 					#if defined _WIN32 || defined _WIN64
 						SetConsoleOutputCP(950); 
 					#endif
