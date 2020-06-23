@@ -48,6 +48,10 @@ namespace cxxuseful{
 				return min + gen()%_size;
 			}//end unif
 
+			
+
+
+
 			std::vector<std::string> draw_one_at_a_time(const std::unordered_map<std::string,int> &_dist,int _drawsize=1,bool _boolPrint=false,bool _boolReplacement=false){
 				// compute total size , build blackbox
 				std::vector<std::string> result;
