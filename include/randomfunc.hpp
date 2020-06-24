@@ -48,8 +48,17 @@ namespace cxxuseful{
 				return min + gen()%_size;
 			}//end unif
 
+			// [min,max]
+			int unif_int2(int min,int max){
+				return unif_int(max-min+1,min);
+			}
 			
-
+			bool bernoulli(double p){
+				if(unif_real(0,1) < p){
+					return true;
+				}//endif
+				return false;
+			}
 
 
 			std::vector<std::string> draw_one_at_a_time(const std::unordered_map<std::string,int> &_dist,int _drawsize=1,bool _boolPrint=false,bool _boolReplacement=false){
