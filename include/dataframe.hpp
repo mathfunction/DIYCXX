@@ -1,7 +1,7 @@
 #ifndef __DATAFRAME_HPP__
 #define __DATAFRAME_HPP__
 
-
+#include <fstream>
 
 namespace cxxuseful{
 	class DataFrame{
@@ -122,8 +122,39 @@ namespace cxxuseful{
 			}//end_print
 
 
-
-
+			void to_csv(std::string csvfile){
+				std::ofstream fout(csvfile.c_str(),std::ios::out);
+				for(int c=0;c<colnames.size();c++){
+					fout << colnames[c] << ",";
+				}//endfor
+				fout << "\n";
+				for(int j=0;j<this->rows();j++){
+					for(int i=0;i<colnames.size();i++){
+						BoostAny &v = data[colnames[i]][j];
+						if(v.type()==typeid(int)){
+							fout << type<int>(v) << ",";
+						}else if(v.type()==typeid(std::string)){
+							fout << type<std::string>(v)  << ",";
+						}else if(v.type()==typeid(const char*)){
+							fout << type<const char*>(v)  << ",";
+						}else if(v.type()==typeid(std::string)){
+							fout << type<int>(v)  << ",";
+						}else if(v.type()==typeid(double)){
+							fout << type<double>(v)  << ",";
+						}else if(v.type()==typeid(BoostInt)){
+							fout << type<BoostInt>(v)  << ",";
+						}else if(v.type()==typeid(BoostFloat)){
+							fout << type<BoostFloat>(v)  << ",";
+						}else if(v.type()==typeid(BoostRational)){
+							fout << type<BoostRational>(v)  << ",";
+						}else{
+						}//end_else
+					}//endfor
+					fout << "\n";
+				}//endfor
+				printGreen("write df to "+csvfile+"\n");
+				fout.close();
+			}//end_to_csv
 
 
 
