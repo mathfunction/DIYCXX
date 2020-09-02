@@ -84,7 +84,7 @@ namespace cxxuseful{
 					std::cout << std::endl;
 				}//endfor
 			}//end_print
-
+			
 
 			void print(const std::vector<int> &idxs,int setw_n=10){
 				for(int c=0;c<colnames.size();c++){

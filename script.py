@@ -15,6 +15,7 @@ if __name__ == '__main__':
 			cmds = [
 				"g++",
 				"-std={}".format(sys.argv[2]),
+				"-static",
 				"-mavx",
 				"-mavx2",
 				"-march=native",
